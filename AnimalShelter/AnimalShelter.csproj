@@ -124,5 +124,8 @@
   <ItemGroup>
     <Resource Include="Res\BackgroundAuth.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\DefaultPhoto.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

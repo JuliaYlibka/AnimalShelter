@@ -27,8 +27,26 @@ namespace AnimalShelter.Pages
 
         private void ButAuth_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new RegistrationPage());
+            NavigationService?.Navigate(new RegistrationPage());  // Изменить на актуальную страницу.
 
+        }
+
+        private void LoginTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtHintLogin.Visibility = Visibility.Visible;
+            if (LoginTB.Text.Length > 0)
+            {
+                txtHintLogin.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void PasswordAuth_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtHintPassword.Visibility = Visibility.Visible;
+            if (PasswordAuth.Password.Length > 0)
+            {
+                txtHintPassword.Visibility = Visibility.Hidden;
+            }
         }
     }
 }
