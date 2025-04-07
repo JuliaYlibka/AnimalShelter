@@ -19,8 +19,8 @@
             </Viewbox>
 
         </Grid>
-        <Label HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,-150,220,0" Content="Логин" FontSize="15"  Foreground="DarkGray" FontStyle="Oblique" FontWeight="DemiBold"  Height="30" Width="200" />
-        <Label HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,0,223,0" Content="Пароль" FontSize="15" Foreground="DarkGray" FontStyle="Oblique" FontWeight="DemiBold"  Height="31" Width="200" />
+        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,-150,220,0" Text="Логин"   Foreground="DarkGray" FontSize="15"   FontStyle="Oblique" FontWeight="DemiBold"  Height="30" Width="200" />
+        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,0,223,0" Text="Пароль" FontSize="15" Foreground="DarkGray" FontStyle="Oblique" FontWeight="DemiBold"  Height="31" Width="200" />
         <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Top" Padding="0" Margin="0,130,125,0"  FontSize="20pt" Text="Авторизация" TextAlignment="Center"  Width="300" Background="Transparent" />
 
         <TextBlock Text=" Введите логин.." HorizontalAlignment="Right" Padding="5,10,5,5"  VerticalAlignment="Center" Margin="0,-90,120,0" FontSize="16" Height="35" Width="300" Foreground="Gray" Name="txtHintLogin"/>

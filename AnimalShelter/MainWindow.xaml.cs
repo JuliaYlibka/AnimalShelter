@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -33,6 +34,7 @@ namespace AnimalShelter
             this.Title = $"Приют для животных: {page.Title}";
             if (e.Content is AuthPage)
             {
+                MenuBar.Visibility = Visibility.Hidden;
                 this.Width = 1020;
                 this.Height = 576;
                 this.MaxHeight = 576;
@@ -42,8 +44,16 @@ namespace AnimalShelter
             }
             //if (page is Pages.AuthPage)
             //    ButReturn.Visibility = Visibility.Hidden;
-            //else
-            //    ButReturn.Visibility = Visibility.Visible;
+            else {
+                MenuBar.Visibility= Visibility.Visible;
+            }
+                //ButReturn.Visibility = Visibility.Visible;
+        }
+
+
+        private void Back_But_Click(object sender, RoutedEventArgs e)
+        {
+            if(MainFrame.CanGoBack) { MainFrame.GoBack(); }
         }
 
         //private void ButReturn_Click(object sender, RoutedEventArgs e)

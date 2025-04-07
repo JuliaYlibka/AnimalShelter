@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d8bc58172fd04a6eb1d58f0ab6f7336e" Name="Diagram1">
+        <EntityTypeShape EntityType="AnimalShelterModel.Adoption" Width="1.5" PointX="7.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Adoption_status" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Animal" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Animal_status" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Breed" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Care_log" Width="1.5" PointX="10.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Care_type" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Contractor" Width="1.5" PointX="3" PointY="32.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Contractor_type" Width="1.5" PointX="0.75" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Donation" Width="1.5" PointX="5.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Donation_type" Width="1.5" PointX="3" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Employee" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Gender" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Housing_type" Width="1.5" PointX="3" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Medical_record" Width="1.5" PointX="7.5" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.New_owner" Width="1.5" PointX="5.25" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Position" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Source_of_receipt" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Species" Width="1.5" PointX="0.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Task_status" Width="1.5" PointX="8.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Veterinary_examination" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AnimalShelterModel.Volunteer" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Adoption_Adoption_status" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Adoption_Animal" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Adoption_New_owner" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Animal_status" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Breed" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Source_of_receipt" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Species" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Animal_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Care_log_Animal" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Medical_record_Animal" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Breed_Species" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Care_log_Care_type" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Care_log_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Care_log_Task_status" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Care_log_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Contractor_Contractor_type" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Donation_Contractor" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Donation_Donation_type" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Donation_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Employee_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Employee_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_Volunteer_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="AnimalShelterModel.FK_New_owner_Housing_type" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

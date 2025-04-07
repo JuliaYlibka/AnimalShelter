@@ -11,7 +11,7 @@
         <Setter Property="TextBlock.Background" Value="#FF9C1A"/>
     </Style>
     <Style TargetType="TextBox">
-        <Setter Property="FontSize" Value="10pt"/>
+        <Setter Property="FontSize" Value="16pt"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="Padding" Value="10"/>
@@ -20,13 +20,15 @@
 
     </Style>
     <Style TargetType="TextBlock">
+        
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="FontSize" Value="16pt"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
     <Style TargetType="PasswordBox">
         <Setter Property="Height" Value="30"/>
-        <Setter Property="FontSize" Value="10pt"/>
+        <Setter Property="FontSize" Value="16pt"/>
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="Padding" Value="10"/>
 
@@ -34,11 +36,22 @@
     </Style>
     <Style TargetType="ComboBox">
         <Setter Property="Height" Value="30"/>
-        <Setter Property="FontSize" Value="10pt"/>
+        <Setter Property="FontSize" Value="16pt"/>
         <Setter Property="FontFamily" Value="Tw Cen MT"/>
 
 
 
     </Style>
+    <Style TargetType="MenuItem">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0"/>
+
+        <Setter Property="Background" Value="Transparent"/>
+
+    </Style>
+
+    
 
 </ResourceDictionary>

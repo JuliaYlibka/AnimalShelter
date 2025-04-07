@@ -27,8 +27,29 @@ namespace AnimalShelter.Pages
 
         private void ButAuth_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new RegistrationPage());  // Изменить на актуальную страницу.
+            if (string.IsNullOrEmpty(LoginTB.Text) || string.IsNullOrEmpty(PasswordAuth.Password))
+            {
+                MessageBox.Show("Введите логин и пароль!");
+                return;
+            }
 
+            using (var db = new AnimalShelterEntities())
+            {
+                var users = db.Employee.AsNoTracking().ToList();
+
+                var user = users.FirstOrDefault(u => u.Login == LoginTB.Text && u.Password == PasswordAuth.Password);
+
+                if (user == null)
+                {
+                    MessageBox.Show("Пользователя с такими данными не найден!");
+                    return;
+                }
+
+                MessageBox.Show("Пользователь успешно найден!");
+
+                NavigationService?.Navigate(new AnimalsPage());  
+
+            }
         }
 
         private void LoginTB_TextChanged(object sender, TextChangedEventArgs e)

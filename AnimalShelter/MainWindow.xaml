@@ -7,8 +7,42 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden" Source="Pages/AuthPage.xaml">
-            
+
+        <Frame  x:Name="MainFrame" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden" Source="Pages/AuthPage.xaml">
+
         </Frame>
+        <Border Name="MenuBar" CornerRadius="10" BorderThickness="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="60" BorderBrush="#FFFFF1DF" Background="#FFFFF1DF">
+
+            <Menu  Padding="3" Background="Transparent"   FontFamily="Calibri" FontSize="16" Height="40" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                <MenuItem Name="Back_But" Header="Назад" Click="Back_But_Click" >
+                    <MenuItem.Icon>
+                        <Image Source="Res/BackImage.png" Height="auto " />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+
+                <MenuItem Header="Животные" >
+                    <MenuItem Header="Список животных"/>
+                    <Separator/>
+                    <MenuItem Header="Вет осмотры"/>
+
+                    <MenuItem Header="Мед карты"/>
+                    <MenuItem Header="Журнал ухода"/>
+                    <Separator/>
+                    <MenuItem Header="Породы"/>
+                    <MenuItem Header="Источники поступления"/>
+                </MenuItem>
+                <MenuItem Header="Контрагенты">
+                    <MenuItem Header="Контрагенты"/>
+                    <Separator/>
+                    <MenuItem Header="Сотрудники" />
+                     <MenuItem Header="Волонтеры" />
+                    <MenuItem Header="Владельцы" />
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="Пожертвования"/>
+                <MenuItem Header="Усыновления"/>
+            </Menu>
+        </Border>
     </Grid>
 </Window>
