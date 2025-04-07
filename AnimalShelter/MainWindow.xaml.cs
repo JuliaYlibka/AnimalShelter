@@ -37,17 +37,17 @@ namespace AnimalShelter
                 MenuBar.Visibility = Visibility.Hidden;
                 this.Width = 1020;
                 this.Height = 576;
-                this.MaxHeight = 576;
-                this.MaxWidth = 1020;
-                this.MinHeight = 576;
-                this.MinWidth = 1020;
+                this.ResizeMode = ResizeMode.NoResize;
+
             }
             //if (page is Pages.AuthPage)
             //    ButReturn.Visibility = Visibility.Hidden;
             else {
                 MenuBar.Visibility= Visibility.Visible;
+                this.ResizeMode = ResizeMode.CanResize;
+
             }
-                //ButReturn.Visibility = Visibility.Visible;
+            //ButReturn.Visibility = Visibility.Visible;
         }
 
 

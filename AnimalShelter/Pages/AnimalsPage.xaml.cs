@@ -38,7 +38,7 @@ namespace AnimalShelter.Pages
 
         private void ListAnimals_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            NavigationService?.Navigate(new AnimalPage());
         }
 
         private void But_Sort_Nickname_Up_Click(object sender, RoutedEventArgs e)
@@ -86,12 +86,39 @@ namespace AnimalShelter.Pages
             But_Sort_Age_Down.Background = PassiveBut;
             CB_Status.SelectedIndex = 0;
             TB_Nickname.Clear();
+            currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
+
+            ListAnimals.ItemsSource = currentAnimals;
 
         }
 
         private void TB_Nickname_TextChanged(object sender, TextChangedEventArgs e)
         {
-            currentAnimals = currentAnimals.Where(x => x.Nickname.ToLower().Contains(TB_Nickname.Text.ToLower())).ToList();
+            Update();
+        }
+
+        private void CB_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+        private  void Update()
+        {
+            //загружаем всех пользователей в список
+            currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
+            //CB_Status
+            if (CB_Status.SelectedIndex != 0)
+                currentAnimals = currentAnimals = currentAnimals.Where(x => x.Animal_status == CB_Status.SelectedIndex).ToList();
+            
+            //TB_Nickname
+            if (TB_Nickname.Text.Trim().Length != 0)
+            {
+                currentAnimals = currentAnimals.Where(x => x.Nickname.ToLower().Contains(TB_Nickname.Text.ToLower())).ToList();
             }
+
+
+
+            ListAnimals.ItemsSource = currentAnimals;
+
+        }
     }
 }

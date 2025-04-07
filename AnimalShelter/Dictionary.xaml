@@ -14,7 +14,6 @@
         <Setter Property="FontSize" Value="16pt"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontFamily" Value="Calibri"/>
-        <Setter Property="Padding" Value="10"/>
 
 
 
@@ -24,13 +23,11 @@
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="FontSize" Value="16pt"/>
-        <Setter Property="Padding" Value="5"/>
     </Style>
     <Style TargetType="PasswordBox">
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontSize" Value="16pt"/>
         <Setter Property="FontFamily" Value="Calibri"/>
-        <Setter Property="Padding" Value="10"/>
 
 
     </Style>
