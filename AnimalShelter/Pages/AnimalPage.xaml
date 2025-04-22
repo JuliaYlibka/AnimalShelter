@@ -14,12 +14,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition MinWidth="250" Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.RowSpan="2" Grid.ColumnSpan="3" Source="/Res/WaveBackground.png" Stretch="Fill"/>
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Stretch" Background="Red">
+        <Grid Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Stretch" Background="Red">
             <TextBlock Text="Кличка:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <TextBox Name="TB_Nickname" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
 
@@ -32,13 +32,21 @@
             <TextBlock Text="Пол:"  Margin="0,150,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ComboBox Name="CB_Gender" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,150,0,5"/>
 
-            <TextBlock Text="Источник поступления:" Margin="0,200,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock Text="Источник поступления:" TextWrapping="Wrap" Margin="0,185,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Height="50"/>
             <ComboBox Name="CB_Source_of_receipt" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,200,0,5"/>
 
             <TextBlock Text="Статус:" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ComboBox Name="CB_Status" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,250,0,5"/>
             <TextBlock Text="Примечания:" Margin="0,250,0,125" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <TextBox Name="TB_Note" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="100" Margin="10,0,10,10"/>
+
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Background="red" HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Stretch">
+            <TextBlock Text="Дата рождения:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBlock Text="Дата регистрации:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,100,0,0"/>
+            <DatePicker Name="DP_Date_of_birth" VerticalAlignment="Top" HorizontalAlignment="Right" Padding="0" >
+            </DatePicker>
+            <DatePicker Name="DP_Date_of_registration" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,100,0,0"/>
 
         </Grid>
 
