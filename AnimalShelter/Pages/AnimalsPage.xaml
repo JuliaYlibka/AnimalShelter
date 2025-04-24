@@ -202,7 +202,7 @@
         <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent"  Name="ListAnimals" Margin="0,60,0,0" MouseDoubleClick="ListAnimals_MouseDoubleClick" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"  HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate >
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
+                    <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
 

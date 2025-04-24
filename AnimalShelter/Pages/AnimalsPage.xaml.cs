@@ -33,7 +33,7 @@ namespace AnimalShelter.Pages
             ListAnimals.ItemsSource = currentAnimals;
             CB_Status.ItemsSource = currentStatuses;
             CB_Status.SelectedIndex = 0;
-            //Update();
+            
         }
 
         private void ListAnimals_MouseDoubleClick(object sender, MouseButtonEventArgs e)

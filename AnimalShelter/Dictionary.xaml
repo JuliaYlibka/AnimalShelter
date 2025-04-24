@@ -5,18 +5,26 @@
         <Setter Property="Width" Value="100"/>
         <Setter Property="FontSize" Value="10pt"/>
         <Setter Property="FontFamily" Value="Calibri"/>
-
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Background" Value="#FF9C1A"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="TextBlock.Background" Value="#FF9C1A"/>
     </Style>
-    <Style TargetType="TextBox">
-        <Setter Property="FontSize" Value="16pt"/>
-        <Setter Property="Height" Value="30"/>
+    <Style TargetType="Button" x:Key="But_Defoult">
+        <Setter Property="FontSize" Value="10pt"/>
         <Setter Property="FontFamily" Value="Calibri"/>
 
-
-
+        <Setter Property="Background" Value="#FF9C1A"/>
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+    <Style TargetType="TextBox">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
+    </Style>
+    <Style TargetType="TextBox" x:Key="TB_Defolt">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Calibri"/>
     </Style>
     <Style TargetType="TextBlock">
 
@@ -27,14 +35,14 @@
     </Style>
     <Style TargetType="PasswordBox">
         <Setter Property="Height" Value="30"/>
-        <Setter Property="FontSize" Value="16pt"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="Calibri"/>
 
 
     </Style>
     <Style TargetType="ComboBox">
         <Setter Property="Height" Value="30"/>
-        <Setter Property="FontSize" Value="16pt"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="Tw Cen MT"/>
 
 

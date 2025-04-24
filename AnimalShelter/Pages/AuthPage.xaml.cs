@@ -23,6 +23,7 @@ namespace AnimalShelter.Pages
         public AuthPage()
         {
             InitializeComponent();
+            LoginTB.Focus();
         }
 
         private void ButAuth_Click(object sender, RoutedEventArgs e)
@@ -67,6 +68,15 @@ namespace AnimalShelter.Pages
             if (PasswordAuth.Password.Length > 0)
             {
                 txtHintPassword.Visibility = Visibility.Hidden;
+            }
+        }
+        private void Input_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Проверяем, была ли нажата клавиша Enter
+            if (e.Key == Key.Enter)
+            {
+                // Вызываем метод обработки нажатия кнопки "Вход"
+                ButAuth_Click(sender, e);
             }
         }
     }
