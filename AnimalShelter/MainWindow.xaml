@@ -22,26 +22,27 @@
                 <Separator />
 
                 <MenuItem Header="Животные" >
-                    <MenuItem Header="Список животных"/>
+                    <MenuItem Header="Список животных" Click="Animals_Click"/>
                     <Separator/>
-                    <MenuItem Header="Вет осмотры"/>
+                    <MenuItem Header="Вет осмотры" Click="Veterinary_examination_Click"/>
 
-                    <MenuItem Header="Мед карты"/>
-                    <MenuItem Header="Журнал ухода"/>
+                    <MenuItem Header="Мед карты" Click="Medical_record_Click"/>
+                    <MenuItem Header="Журнал ухода" Click="Care_log_Click"/>
                     <Separator/>
-                    <MenuItem Header="Породы"/>
-                    <MenuItem Header="Источники поступления"/>
+                    <MenuItem Header="Породы" Click="Breeds_Click"/>
+                    <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click"/>
                 </MenuItem>
-                <MenuItem Header="Контрагенты">
-                    <MenuItem Header="Контрагенты"/>
+                <MenuItem Header="Контрагенты" >
+                    <MenuItem Header="Контрагенты"  Click="Contractor_Click"/>
                     <Separator/>
-                    <MenuItem Header="Сотрудники" />
-                     <MenuItem Header="Волонтеры" />
-                    <MenuItem Header="Владельцы" />
+                    <MenuItem Header="Сотрудники" Click="Employee_Click"/>
+                    <MenuItem Header="Волонтеры" Click="Volunteer_Click"/>
+                    <MenuItem Header="Владельцы" Click="New_owner_Click"/>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="Пожертвования"/>
-                <MenuItem Header="Усыновления"/>
+                <MenuItem Header="Пожертвования" Click="Donation_Click"/>
+                <MenuItem Header="Усыновления" Click="Adoption_Click"/>
+                <TextBox x:Name="aaa"/>
             </Menu>
         </Border>
     </Grid>

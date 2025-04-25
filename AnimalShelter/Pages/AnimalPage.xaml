@@ -30,24 +30,24 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Кличка:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="0" Name="TB_Nickname" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <TextBlock Grid.Row="0" Text="Кличка:"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <TextBox Grid.Row="0" Name="TB_Nickname" Text="{Binding Nickname}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
 
             <TextBlock Grid.Row="1" Text="Вид:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox Grid.Row="1" Name="CB_Species" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox Grid.Row="1" Name="CB_Species" DisplayMemberPath="Name_species" SelectedValuePath="ID_species" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
 
             <TextBlock Grid.Row="2"  Text="Порода:"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox  Grid.Row="2" Name="CB_Breed" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox  Grid.Row="2" Name="CB_Breed" DisplayMemberPath="Name_breed" SelectedValuePath="ID_breed" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
 
             <TextBlock Grid.Row="3" Text="Пол:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox  Grid.Row="3" Name="CB_Gender" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox  Grid.Row="3" Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
 
             <TextBlock Grid.Row="4" Text="Источник поступления:" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Height="50"/>
-            <ComboBox Grid.Row="4" Name="CB_Source_of_receipt" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
-            <TextBlock Grid.Row="5"  Text="Статус:" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox  Grid.Row="5" Name="CB_Status" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,250,0,5"/>
+            <ComboBox Grid.Row="4" Name="CB_Source_of_receipt" DisplayMemberPath="Name_source_of_receipt" SelectedValuePath="ID_source_of_receipt" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,7,0,5"/>
+            <TextBlock Grid.Row="5"  Text="Статус:" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <ComboBox  Grid.Row="5" Name="CB_Status" DisplayMemberPath="Name_animal_status" SelectedValuePath="ID_animal_status" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
             <TextBlock Grid.Row="6" Text="Примечания:" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="6" Name="TB_Note" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{DynamicResource TB_Defolt}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  Margin="0,20,0,10"/>
+            <TextBox Grid.Row="6" Name="TB_Note" VerticalAlignment="Stretch" Text="{Binding Note}" HorizontalAlignment="Stretch" Style="{DynamicResource TB_Defolt}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  Margin="0,20,0,10"/>
 
         </Grid>
         <Grid Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" Margin="10,10,0,0" VerticalAlignment="Stretch">
@@ -58,18 +58,19 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Text="Дата рождения:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBlock Grid.Row="1" Text="Дата регистрации:" VerticalAlignment="Top" HorizontalAlignment="Left" />
-            <DatePicker Grid.Row="0" Name="DP_Date_of_birth" VerticalAlignment="Top" HorizontalAlignment="Right" >
+            <TextBlock Grid.Row="0" Text="Дата рождения:" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Row="1" Text="Дата регистрации:" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left" />
+            <DatePicker Grid.Row="0" SelectedDate="{Binding Date_of_birth}" Name="DP_Date_of_birth" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0" HorizontalAlignment="Stretch" >
             </DatePicker>
-            <DatePicker Grid.Row="1" Name="DP_Date_of_registration" VerticalAlignment="Top" HorizontalAlignment="Right" />
+            <DatePicker Grid.Row="1" SelectedDate="{Binding Date_of_registration}" Name="DP_Date_of_registration" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0"  HorizontalAlignment="Stretch" />
             <TextBlock Grid.Row="2" Text="Волонтёр:" VerticalAlignment="Bottom" Margin="0,5,0,5" HorizontalAlignment="Left"/>
             <ComboBox 
                 Name="CB_Volunteer" 
                 Grid.Row="2"
+                
                 VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="140,3,50,5"
                 IsTextSearchEnabled="False"
-                DisplayMemberPath="Surname"
+                DisplayMemberPath="FullNameWithInitials"
                 SelectedValuePath="ID_volunteer"
                 IsEditable="True"
                 TextBoxBase.TextChanged="CB_Volunteer_TextChanged">
@@ -77,8 +78,8 @@
             <Button Grid.Row="2" Name="But_Volunteer" BorderThickness="0"  Click="But_Volunteer_Click"  Background="Transparent" Margin="200,0,15,6"  VerticalAlignment="Bottom" Width="30" Height="30" HorizontalAlignment="Right">
                 <Image Source="../Res/tab.png"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="UniformToFill" />
             </Button>
-            <Button Grid.Row="3" Name="But_Medical_record" Margin="20,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Медицинская книга" Width="150" Background="#FFFFFF" Foreground="#FF9C1A" FontWeight="Black"/>
-            <Button Grid.Row="4" Name="But_Care_log" Margin="20,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Журнал ухода" Width="150" Background="#FFFFFF" Foreground="#FF9C1A" FontWeight="Black"/>
+            <Button Grid.Row="3" Name="But_Medical_record" Click="But_Medical_record_Click" Margin="20,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Медицинская книга" Width="150" Background="#FFFFFF" Foreground="#FF9C1A" FontWeight="Black"/>
+            <Button Grid.Row="4" Name="But_Care_log" Click="But_Care_log_Click" Margin="20,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Журнал ухода" Width="150" Background="#FFFFFF" Foreground="#FF9C1A" FontWeight="Black"/>
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="20,10,10,10">
             <Border  BorderThickness="2"  Width="auto" Height="auto" Background="#ffffff" BorderBrush="#FF9C1A" >
@@ -95,15 +96,17 @@
                 </Image>
             </Border>
             <Border  CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Stretch" Margin="10,10,10,10" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
-                <Button Name="But_Add_photo" BorderThickness="0" Height="25" Background="Transparent" Content="Загрузить фотографию" Padding="2" Margin="0,0,0,0"  Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
+                <Button Name="But_Add_photo" BorderThickness="0" Height="25" Background="Transparent" Click="But_Add_photo_Click" Content="Загрузить фотографию" Padding="2" Margin="0,0,0,0"  Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
             </Border>
+
+            <Border  CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Center" Margin="20,0,10,20" Height="auto" Width="auto" Background="#ffffff" BorderBrush="#FF9C1A" >
+                <Button Name="But_Delete_photo" BorderThickness="0" Height="25" Click="But_Delete_photo_Click" Background="Transparent" Foreground="red" FontWeight="Black" Content="   Удалить фотографию   " Padding="2" Width="auto" Margin="0,0,0,0"  Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
+            </Border>
+
         </StackPanel>
 
-        <Border Grid.Column="2" Grid.Row="1" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10,10,10" Width="auto" Height="auto" Background="#ffffff" BorderBrush="#00810f">
-            <Button Name="But_Save" Click="But_Save_Click" BorderThickness="0" Background="Transparent" Content="Сохранить" Padding="5" Foreground="#00810f" Margin="0,0,0,0" FontWeight="Black" HorizontalAlignment="Stretch" />
-        </Border>
-        <Border Grid.Column="2" Grid.Row="1" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,10,10,10" Width="auto" Height="auto" Background="#ffffff" BorderBrush="Red">
-            <Button Name="But_Delete" Click="But_Delete_Click" BorderThickness="0" Background="Transparent" Padding="5" Content="Удалить" Foreground="Red" Margin="0,0,0,0" FontWeight="Black" HorizontalAlignment="Stretch" />
+        <Border Grid.Column="2" Grid.Row="1" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,10,10,10"  Height="auto" Background="#ffffff" BorderBrush="#00810f">
+            <Button Name="But_Save" Click="But_Save_Click" BorderThickness="0" Background="Transparent" Content="Сохранить" Padding="0,10,0,0" Foreground="#00810f" Margin="0,0,0,0" FontWeight="Black" Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
         </Border>
     </Grid>
 </Page>

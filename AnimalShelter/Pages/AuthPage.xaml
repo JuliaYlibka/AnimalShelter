@@ -11,7 +11,7 @@
     <Grid>
         <Image Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill"/>
         <Grid VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center" MinHeight="150" MinWidth="150">
-
+            
             <Viewbox Stretch="Uniform" Width="Auto" Height="Auto">
                 <Image Source="/Res/BackgroundAuth.png" 
                Stretch="Uniform" 
@@ -32,7 +32,7 @@
         
         
         <Border CornerRadius="10" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="450,220,0,0"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
-            <Button Name="ButAuth" Padding="0" Content="Вход" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButAuth_Click"  VerticalAlignment="Stretch" Height="30" Width="90" />
+            <Button Name="ButAuth" Padding="5" Content="Вход" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButAuth_Click"  VerticalAlignment="Stretch" Height="30" Width="90" />
         </Border>
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,19 +21,48 @@ namespace AnimalShelter.Pages
     /// </summary>
     public partial class AnimalPage : Page
     {
-        public AnimalPage()
+        private Animal _current_animal= new Animal();
+
+        public AnimalPage(Animal Selected_animal)
         {
             InitializeComponent();
-            var allVolunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
-            CB_Volunteer.ItemsSource = allVolunteers;
+            var All_volunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
+            var All_species = AnimalShelterEntities.GetContext().Species.ToList();
+            var All_genders = AnimalShelterEntities.GetContext().Gender.ToList();
+            var All_statuses = AnimalShelterEntities.GetContext().Animal_status.ToList();
+            var All_sources_of_receipt = AnimalShelterEntities.GetContext().Source_of_receipt.ToList();
+            var All_breeds = AnimalShelterEntities.GetContext().Breed.ToList();
+            All_breeds.Insert(0, new Breed { ID_breed = 0, Name_breed = "Не указано" });
+
+            CB_Volunteer.ItemsSource= All_volunteers;
+            CB_Species.ItemsSource= All_species;
+            CB_Gender.ItemsSource= All_genders;
+            CB_Status.ItemsSource= All_statuses;
+            CB_Source_of_receipt.ItemsSource    = All_sources_of_receipt;
+            CB_Breed.ItemsSource= All_breeds;
+            CB_Volunteer.ItemsSource = All_volunteers;
+            if (Selected_animal != null)
+            {
+                _current_animal= Selected_animal;
+                CB_Volunteer.SelectedItem = Selected_animal.Volunteer1;
+                CB_Status.SelectedItem=Selected_animal.Animal_status1;
+                CB_Species.SelectedItem=Selected_animal.Species1;
+                CB_Source_of_receipt.SelectedItem=Selected_animal.Source_of_receipt1;
+                CB_Gender.SelectedItem=Selected_animal.Gender1;
+                if(Selected_animal.Breed1 != null) CB_Breed.SelectedItem=Selected_animal.Breed1;
+                if(Selected_animal.Breed1==null) CB_Breed.SelectedIndex=0;
+                //TODO: Настроить показ пород в зависимости от вида. надо или нет?
+            }
+
+            DataContext = _current_animal;
         }
 
-        private void CB_Volunteer_TextChanged(object sender, TextChangedEventArgs e)
+        private void CB_Volunteer_TextChanged(object sender, TextChangedEventArgs e) 
         {
             var tb = (TextBox)e.OriginalSource;
             if (tb.SelectionStart != 0)
             {
-                CB_Volunteer.SelectedItem = null; // Если набирается текст сбросить выбраный элемент
+                CB_Volunteer.SelectedItem = null; // Если набирается текст сбросить выбранный элемент
             }
             if (tb.SelectionStart == 0 && CB_Volunteer.SelectedItem == null)
             {
@@ -52,10 +82,150 @@ namespace AnimalShelter.Pages
                             volunteer.Surname.IndexOf(CB_Volunteer.Text, StringComparison.CurrentCultureIgnoreCase) >= 0);
                 };
             }
+            //TODO: придумать как сделать так, чтобы комбобокс не открывался при открытии карточки животного. Из-за того, что из бд текст вставляется комбобокс думает что это поиск.
         }
 
         private void But_Volunteer_Click(object sender, RoutedEventArgs e)
         {
+            if (CB_Volunteer.SelectedIndex == 0) return;
+            else
+            {
+                // TODO: реализовать открытие страницы определенного волонтера
+            }
+
+        }
+
+        private void But_Save_Click(object sender, RoutedEventArgs e)
+        {
+            StringBuilder errors = new StringBuilder();
+
+            // Проверка на кличку
+            if (string.IsNullOrWhiteSpace(_current_animal.Nickname))
+                errors.AppendLine("Укажите кличку животного!");
+            else _current_animal.Nickname=TB_Nickname.Text.Trim();
+
+            // Проверка на вид животного
+            if (CB_Species.SelectedItem == null)
+                errors.AppendLine("Укажите вид животного!");
+            else
+                _current_animal.Species = (int)CB_Species.SelectedValue;
+
+            // Проверка на пол животного
+            if (CB_Gender.SelectedItem == null)
+                errors.AppendLine("Укажите пол животного!");
+            else
+                _current_animal.Gender = (int)CB_Gender.SelectedValue;
+
+            // Проверка на дату рождения
+            if (DP_Date_of_birth.SelectedDate == null)
+                errors.AppendLine("Укажите дату рождения животного!");
+            else if (DP_Date_of_birth.SelectedDate > DateTime.Today)
+            {
+                errors.AppendLine("Дата рождения не может быть позже сегодняшнего дня.");
+            }
+            else
+                _current_animal.Date_of_birth = (DateTime)DP_Date_of_birth.SelectedDate;
+
+            // Проверка на дату регистрации
+            if (DP_Date_of_registration.SelectedDate == null)
+            {
+                errors.AppendLine("Укажите дату регистрации животного!");
+            }
+            else if (DP_Date_of_registration.SelectedDate > DateTime.Today)
+            {
+                errors.AppendLine("Дата регистрации не может быть позже сегодняшнего дня.");
+            }
+            else
+                _current_animal.Date_of_registration = (DateTime)DP_Date_of_registration.SelectedDate;
+
+            // Проверка на источник поступления
+            if (CB_Source_of_receipt.SelectedValue == null)
+                errors.AppendLine("Укажите источник поступления животного!");
+            else
+                _current_animal.Source_of_receipt = (int)CB_Source_of_receipt.SelectedValue;
+
+            // Проверка на статус животного
+            if (CB_Status.SelectedItem == null)
+                errors.AppendLine("Укажите актуальный статус животного!");
+            else
+                _current_animal.Animal_status = (int)CB_Status.SelectedValue;
+
+            if(CB_Breed.SelectedValue!=null) _current_animal.Breed=(int)CB_Breed.SelectedValue;
+            if (CB_Breed.SelectedIndex == 0) _current_animal.Breed = null;
+            _current_animal.Note = TB_Note.Text.Trim();
+            _current_animal.Volunteer = (int)CB_Volunteer.SelectedValue;
+
+
+            // Проверка на наличие ошибок
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+
+            if (_current_animal.ID_animal == 0)
+                AnimalShelterEntities.GetContext().Animal.Add(_current_animal);
+
+            //Делаем попытку записи данных в БД о новом пользователе
+            try
+            {
+                AnimalShelterEntities.GetContext().SaveChanges();
+                MessageBox.Show("Данные успешно сохранены!");
+
+                NavigationService?.Navigate(new AnimalsPage());
+
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show($"Ошибка обновления: {dbEx.InnerException?.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            
+
+        }
+
+        
+
+        private void But_Medical_record_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Реализовать переход на определенную медицинскую книгу
+        }
+
+        private void But_Care_log_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Реализовать переход на определенный журнал ухода
+
+        }
+
+        private void But_Add_photo_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
+            fileDialog.Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"; // Фильтр для изображений
+
+            if (fileDialog.ShowDialog() == true)
+            {
+                // Получаем путь к файлу
+                string filePath = fileDialog.FileName;
+
+                // Загружаем изображение
+                ImageSource imageSource = new BitmapImage(new Uri(filePath));
+
+                // Устанавливаем загруженное изображение в элемент Image
+                Image_Animal.Source = imageSource;
+
+                // Сохраняем путь к изображению в объекте _current_animal
+                _current_animal.Photo = filePath; // Убедитесь, что у вас есть соответствующее свойство в классе Animal
+            }
+        }
+
+        private void But_Delete_photo_Click(object sender, RoutedEventArgs e)
+        {
+            _current_animal.Photo = null; // Сбрасываем путь к фотографии в объекте
+            Image_Animal.Source = new BitmapImage(new Uri("/Res/DefaultPhoto.png", UriKind.Relative)); 
 
         }
     }

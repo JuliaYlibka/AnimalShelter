@@ -42,5 +42,17 @@ namespace AnimalShelter
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donation> Donation { get; set; }
         public virtual Gender Gender1 { get; set; }
+
+        // Метод для получения полного имени в формате "Фамилия И.О."
+        public string FullNameWithInitials
+        {
+            get
+            {
+                string firstInitial = !string.IsNullOrEmpty(First_name) ? First_name.Substring(0, 1) : string.Empty;
+                string patronymicInitial = !string.IsNullOrEmpty(Patronymic) ? Patronymic.Substring(0, 1) : string.Empty;
+                string initials = $"{firstInitial}. {patronymicInitial}.";
+                return $"{Surname} {initials}".Trim();
+            }
+        }
     }
 }

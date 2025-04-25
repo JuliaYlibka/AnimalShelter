@@ -32,13 +32,36 @@ namespace AnimalShelter.Pages
 
             ListAnimals.ItemsSource = currentAnimals;
             CB_Status.ItemsSource = currentStatuses;
-            CB_Status.SelectedIndex = 0;
+            CB_Status.SelectedIndex = 1;
+            
             
         }
 
         private void ListAnimals_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            NavigationService?.Navigate(new AnimalPage());
+            try
+            {
+                if (ListAnimals.SelectedItem != null)
+                {
+                    var Selected_animal = ListAnimals.SelectedItem as Animal; 
+
+                    if (Selected_animal != null)
+                    {
+                        NavigationService?.Navigate(new AnimalPage(Selected_animal));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найдена карточка животного.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
 
         private void But_Sort_Nickname_Up_Click(object sender, RoutedEventArgs e)
