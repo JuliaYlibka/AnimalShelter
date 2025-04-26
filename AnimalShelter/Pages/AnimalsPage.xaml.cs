@@ -23,11 +23,16 @@ namespace AnimalShelter.Pages
         SolidColorBrush PassiveBut = new SolidColorBrush(Colors.White);
         SolidColorBrush ActiveBut = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFAD50"));
         System.Collections.Generic.List<AnimalShelter.Animal> currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
+        private bool _nick_Up;
+        private bool _age_Up;
+        private bool _nick_Down;
+        private bool _age_Down;
 
         public AnimalsPage()
         {
             InitializeComponent();
             var currentStatuses = AnimalShelterEntities.GetContext().Animal_status.ToList();
+            currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
             currentStatuses.Insert(0, new Animal_status { Name_animal_status = "Все статусы" }); 
 
             ListAnimals.ItemsSource = currentAnimals;
@@ -66,39 +71,55 @@ namespace AnimalShelter.Pages
 
         private void But_Sort_Nickname_Up_Click(object sender, RoutedEventArgs e)
         {
-            ListAnimals.ItemsSource = currentAnimals.OrderBy(x => x.Nickname).ToList();
             But_Sort_Nickname_Up.Background = ActiveBut; 
             But_Sort_Nickname_Down.Background = PassiveBut;
             But_Sort_Age_Up.Background = PassiveBut;
             But_Sort_Age_Down.Background = PassiveBut;
+            _age_Down = false;
+            _age_Up = false;
+            _nick_Down = false;
+            _nick_Up = true;
+            Update();
 
         }
 
         private void But_Sort_Nickname_Down_Click(object sender, RoutedEventArgs e)
         {
-            ListAnimals.ItemsSource = currentAnimals.OrderByDescending(x => x.Nickname).ToList();
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = ActiveBut;
             But_Sort_Age_Up.Background = PassiveBut;
             But_Sort_Age_Down.Background = PassiveBut;
+            _age_Down = false;
+            _age_Up = false;
+            _nick_Down = true;
+            _nick_Up = false;
+            Update();
         }
 
         private void But_Sort_Age_Up_Click(object sender, RoutedEventArgs e)
         {
-            ListAnimals.ItemsSource = currentAnimals.OrderBy(x => x.Age).ToList();
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = PassiveBut;
             But_Sort_Age_Up.Background =ActiveBut ;
             But_Sort_Age_Down.Background = PassiveBut;
+            _age_Down = false;
+            _age_Up = true;
+            _nick_Down = false;
+            _nick_Up = false;
+            Update();
         }
 
         private void But_Sort_Age_Down_Click(object sender, RoutedEventArgs e)
         {
-            ListAnimals.ItemsSource = currentAnimals.OrderByDescending(x => x.Age).ToList();
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = PassiveBut;
             But_Sort_Age_Up.Background = PassiveBut;
             But_Sort_Age_Down.Background =ActiveBut ;
+            _age_Down = true;
+            _age_Up = false;
+            _nick_Down = false;
+            _nick_Up = false;
+            Update();
         }
 
         private void But_Clear_Click(object sender, RoutedEventArgs e)
@@ -112,6 +133,11 @@ namespace AnimalShelter.Pages
             currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
 
             ListAnimals.ItemsSource = currentAnimals;
+            _age_Down = false;
+            _age_Up = false;
+            _nick_Down = false;
+            _nick_Up = false;
+            
 
         }
 
@@ -137,11 +163,16 @@ namespace AnimalShelter.Pages
             {
                 currentAnimals = currentAnimals.Where(x => x.Nickname.ToLower().Contains(TB_Nickname.Text.ToLower())).ToList();
             }
-
-
-
             ListAnimals.ItemsSource = currentAnimals;
+            if(_nick_Up) ListAnimals.ItemsSource = currentAnimals.OrderBy(x => x.Nickname).ToList();
+            if (_nick_Down) ListAnimals.ItemsSource = currentAnimals.OrderByDescending(x => x.Nickname).ToList();
+            if (_age_Up) ListAnimals.ItemsSource = currentAnimals.OrderBy(x => x.Age).ToList();
+            if (_age_Down) ListAnimals.ItemsSource = currentAnimals.OrderByDescending(x => x.Age).ToList();
+        }
 
+        private void But_Add_animal_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new AnimalPage(null));
         }
     }
 }

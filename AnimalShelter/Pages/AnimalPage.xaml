@@ -84,7 +84,7 @@
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="20,10,10,10">
             <Border  BorderThickness="2"  Width="auto" Height="auto" Background="#ffffff" BorderBrush="#FF9C1A" >
 
-                <Image Name="Image_Animal" Height="auto" HorizontalAlignment="Stretch" MinHeight="50" Stretch="UniformToFill" >
+                <Image Name="Image_Animal" MaxHeight="300" Height="auto" HorizontalAlignment="Stretch" MinHeight="50" Stretch="Uniform" >
                     <Image.Source>
                         <Binding Path="Photo">
                             <Binding.TargetNullValue>

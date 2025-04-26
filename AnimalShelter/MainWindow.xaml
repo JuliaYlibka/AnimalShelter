@@ -22,7 +22,7 @@
                 <Separator />
 
                 <MenuItem Header="Животные" >
-                    <MenuItem Header="Список животных" Click="Animals_Click"/>
+                    <MenuItem Header="Список животных" Click="Animals_Click" Foreground="Green"/>
                     <Separator/>
                     <MenuItem Header="Вет осмотры" Click="Veterinary_examination_Click"/>
 

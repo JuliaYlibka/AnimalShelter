@@ -133,6 +133,9 @@
     <Compile Include="Pages\AnimalsPage.xaml.cs">
       <DependentUpon>AnimalsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BreedsPage.xaml.cs">
+      <DependentUpon>BreedsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Position.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\BreedsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

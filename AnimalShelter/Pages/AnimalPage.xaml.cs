@@ -52,6 +52,8 @@ namespace AnimalShelter.Pages
                 if(Selected_animal.Breed1 != null) CB_Breed.SelectedItem=Selected_animal.Breed1;
                 if(Selected_animal.Breed1==null) CB_Breed.SelectedIndex=0;
                 //TODO: Настроить показ пород в зависимости от вида. надо или нет?
+                //TODO: Добавить обозначение обязательных полей
+
             }
 
             DataContext = _current_animal;
@@ -153,7 +155,8 @@ namespace AnimalShelter.Pages
             if(CB_Breed.SelectedValue!=null) _current_animal.Breed=(int)CB_Breed.SelectedValue;
             if (CB_Breed.SelectedIndex == 0) _current_animal.Breed = null;
             _current_animal.Note = TB_Note.Text.Trim();
-            _current_animal.Volunteer = (int)CB_Volunteer.SelectedValue;
+
+            if(CB_Volunteer.SelectedValue!=null) _current_animal.Volunteer = (int)CB_Volunteer.SelectedValue;
 
 
             // Проверка на наличие ошибок
@@ -203,30 +206,59 @@ namespace AnimalShelter.Pages
 
         private void But_Add_photo_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
-            fileDialog.Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"; // Фильтр для изображений
-
-            if (fileDialog.ShowDialog() == true)
+            MessageBoxResult result;
+            if (_current_animal.Photo == null)
             {
-                // Получаем путь к файлу
-                string filePath = fileDialog.FileName;
-
-                // Загружаем изображение
-                ImageSource imageSource = new BitmapImage(new Uri(filePath));
-
-                // Устанавливаем загруженное изображение в элемент Image
-                Image_Animal.Source = imageSource;
-
-                // Сохраняем путь к изображению в объекте _current_animal
-                _current_animal.Photo = filePath; // Убедитесь, что у вас есть соответствующее свойство в классе Animal
+                result = MessageBox.Show("Вы уверены, что хотите добавить фотографию?",
+                                   "Подтверждение добавления фотографии",
+                                   MessageBoxButton.YesNo,
+                                   MessageBoxImage.Warning);
             }
+            else if (_current_animal.Photo != null)
+            {
+                 result = MessageBox.Show("Вы уверены, что хотите изменить фотографию? Отменить действие будет невозможно!",
+                                   "Подтверждение изменения фотографии",
+                                   MessageBoxButton.YesNo,
+                                   MessageBoxImage.Warning);
+            }
+            else return;
+            if (result == MessageBoxResult.Yes)
+            {
+                Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog();
+                fileDialog.Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"; // Фильтр для изображений
+
+                if (fileDialog.ShowDialog() == true)
+                {
+                    // Получаем путь к файлу
+                    string filePath = fileDialog.FileName;
+
+                    // Загружаем изображение
+                    ImageSource imageSource = new BitmapImage(new Uri(filePath));
+
+                    // Устанавливаем загруженное изображение в элемент Image
+                    Image_Animal.Source = imageSource;
+
+                    // Сохраняем путь к изображению в объекте _current_animal
+                    _current_animal.Photo = filePath; // Убедитесь, что у вас есть соответствующее свойство в классе Animal
+                }
+            }
+
+
+            
         }
 
         private void But_Delete_photo_Click(object sender, RoutedEventArgs e)
         {
-            _current_animal.Photo = null; // Сбрасываем путь к фотографии в объекте
-            Image_Animal.Source = new BitmapImage(new Uri("/Res/DefaultPhoto.png", UriKind.Relative)); 
+            var result = MessageBox.Show("Вы уверены, что хотите удалить фотографию? Отменить действие будет невозможно!",
+                                   "Подтверждение удаления",
+                                   MessageBoxButton.YesNo,
+                                   MessageBoxImage.Warning);
 
+            if (result == MessageBoxResult.Yes)
+            {
+                _current_animal.Photo = null; // Сбрасываем путь к фотографии в объекте
+                Image_Animal.Source = new BitmapImage(new Uri("/Res/DefaultPhoto.png", UriKind.Relative));
+            }
         }
     }
 }

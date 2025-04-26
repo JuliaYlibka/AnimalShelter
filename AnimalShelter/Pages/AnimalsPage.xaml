@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AnimalShelter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AnimalsPage"
+      Title="Список животных"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     <Page.Resources>
         <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
@@ -279,7 +279,7 @@ Text="{Binding AgeString}" />
                             <ComboBox SelectionChanged="CB_Status_SelectionChanged" Template="{DynamicResource CB_White_Color_Template}" Name="CB_Status" DisplayMemberPath="Name_animal_status" FontSize="12" SelectedValuePath="ID_animal_status" Background="Transparent" HorizontalAlignment="Stretch" Padding="3" Margin="10,0,10,0" />
                         </StackPanel>
                         <StackPanel Grid.Row="2" Orientation="Vertical">
-                            <TextBlock Text="Кличка:" Margin="5,5,0,0"/>
+                            <TextBlock Text="Поиск по кличке:" Margin="5,15,0,0"/>
                             <TextBox Name="TB_Nickname" HorizontalAlignment="Stretch" Margin="10,0,10,0" Padding="2" TextChanged="TB_Nickname_TextChanged"  />
                         </StackPanel>
                     </StackPanel>
@@ -305,12 +305,10 @@ Text="{Binding AgeString}" />
                             <Button Name="But_Clear"  Content="Сбросить фильтры" Width="200" Height="30" Padding="5" Click="But_Clear_Click" BorderThickness="0" Background="Transparent" Foreground="#FF9C1A" FontWeight="Bold"    />
                         </Border>
                         <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,5"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
-                            <Button Name="But_AddAnimal"  Content="Добавить животное" Width="200" Height="30" Click="But_Clear_Click" BorderThickness="0" Background="Transparent"  Padding="5"  />
+                            <Button Name="But_Add_animal"  Content="Добавить животное" Width="200" Height="30" Click="But_Add_animal_Click" BorderThickness="0" Background="Transparent"  Padding="5"  />
                         </Border>
                     </StackPanel>
-                    
-                    
-                </Grid>
+            </Grid>
                     
                    
 

@@ -58,6 +58,8 @@ namespace AnimalShelter
 
         private void Animals_Click(object sender, RoutedEventArgs e) {
             aaa.Text = string.Empty;
+            MainFrame.Navigate(new AnimalsPage());
+
             aaa.Text = "animal";
         }
         private void Veterinary_examination_Click(object sender, RoutedEventArgs e)
@@ -79,6 +81,8 @@ namespace AnimalShelter
         }
         private void Breeds_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new BreedsPage());
+
             aaa.Text = "breed";
         }
         private void Source_of_receipt_Click(object sender, RoutedEventArgs e)
