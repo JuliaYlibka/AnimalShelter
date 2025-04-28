@@ -18,6 +18,7 @@ namespace AnimalShelter
     public partial class AnimalShelterEntities : DbContext
     {
         private static AnimalShelterEntities _context;
+
         public AnimalShelterEntities()
             : base("name=AnimalShelterEntities")
         {

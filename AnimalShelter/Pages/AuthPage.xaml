@@ -31,8 +31,12 @@
         <PasswordBox KeyDown="Input_KeyDown" x:Name="PasswordAuth" PasswordChanged="PasswordAuth_PasswordChanged" Background="Transparent" FontSize="16" HorizontalAlignment="Right" Padding="5,10,5,5" VerticalAlignment="Center" Height="35" Margin="0,60,120,0" Width="300"  />
         
         
-        <Border CornerRadius="10" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="450,220,0,0"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
-            <Button Name="ButAuth" Padding="5" Content="Вход" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButAuth_Click"  VerticalAlignment="Stretch" Height="30" Width="90" />
+        <Border CornerRadius="10" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="350,220,0,0"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+            <Button Name="ButAuth" Padding="5" Content="Вход" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButAuth_Click"  VerticalAlignment="Stretch" Height="30" Width="90" IsDefault="True" />
+        </Border>
+
+        <Border CornerRadius="10" BorderThickness="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,220,150,0" Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+            <Button Name="ButReg" Padding="5" Content="Регистрация" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButReg_Click"  VerticalAlignment="Stretch" Height="30" Width="120" />
         </Border>
     </Grid>
 </Page>

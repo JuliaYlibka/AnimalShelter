@@ -11,10 +11,10 @@
         <Frame  x:Name="MainFrame" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden" Source="Pages/AuthPage.xaml">
 
         </Frame>
-        <Border Name="MenuBar" CornerRadius="10" BorderThickness="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="60" BorderBrush="#FFFFF1DF" Background="#FFFFF1DF">
+        <Border Name="MenuBar" CornerRadius="10" BorderThickness="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="63" BorderBrush="#FFFFF1DF" Background="#FFFFF1DF">
 
             <Menu  Padding="3" Background="Transparent"   FontFamily="Calibri" FontSize="16" Height="40" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" >
-                <MenuItem Name="Back_But" Header="Назад" Click="Back_But_Click" >
+                <MenuItem Name="Back_But" Header="Назад" Click="Back_But_Click" Padding="6">
                     <MenuItem.Icon>
                         <Image Source="Res/BackImage.png" Height="auto " />
                     </MenuItem.Icon>

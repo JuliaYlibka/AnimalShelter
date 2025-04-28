@@ -36,20 +36,27 @@ namespace AnimalShelter.Pages
 
             using (var db = new AnimalShelterEntities())
             {
-                var users = db.Employee.AsNoTracking().ToList();
+                var employees = db.Employee.AsNoTracking().ToList();
+                var volunteers = db.Volunteer.AsNoTracking().ToList();
 
-                var user = users.FirstOrDefault(u => u.Login == LoginTB.Text && u.Password == PasswordAuth.Password);
+                var employee = employees.FirstOrDefault(em => em.Login == LoginTB.Text && em.Password == PasswordAuth.Password);
+                var volunteer = volunteers.FirstOrDefault(v => v.Login == LoginTB.Text && v.Password == PasswordAuth.Password);
 
-                if (user == null)
+                if (employee != null)
                 {
-                    MessageBox.Show("Пользователя с такими данными не найден!");
+                    MessageBox.Show($"Добро пожаловать, {employee.First_name} {employee.Patronymic}!");
+                    NavigationService?.Navigate(new AnimalsPage());
                     return;
                 }
 
-                MessageBox.Show("Пользователь успешно найден!");
+                if (volunteer != null)
+                {
+                    MessageBox.Show($"Добро пожаловать, {volunteer.First_name} {volunteer.Patronymic}!");
+                    NavigationService?.Navigate(new AnimalsPage());
+                    return;
+                }
 
-                NavigationService?.Navigate(new AnimalsPage());  
-
+                MessageBox.Show("Пользователь с такими данными не найден!");
             }
         }
 
@@ -70,6 +77,7 @@ namespace AnimalShelter.Pages
                 txtHintPassword.Visibility = Visibility.Hidden;
             }
         }
+
         private void Input_KeyDown(object sender, KeyEventArgs e)
         {
             // Проверяем, была ли нажата клавиша Enter
@@ -78,6 +86,11 @@ namespace AnimalShelter.Pages
                 // Вызываем метод обработки нажатия кнопки "Вход"
                 ButAuth_Click(sender, e);
             }
+        }
+
+        private void ButReg_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new RegistrationPage());
         }
     }
 }

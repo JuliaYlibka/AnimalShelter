@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,16 +24,25 @@ namespace AnimalShelter
     /// </summary>
     public partial class MainWindow : Window
     {
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if(MessageBox.Show("Вы действительно хотите выйти из приложения?", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.Cancel)
+                e.Cancel = true;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
         {
             this.MaxHeight = double.PositiveInfinity;
             this.MaxWidth = double.PositiveInfinity;
+
             if (!(e.Content is Page page)) return;
             this.Title = $"Приют для животных: {page.Title}";
+
             if (e.Content is AuthPage)
             {
                 MenuBar.Visibility = Visibility.Hidden;
@@ -53,7 +64,8 @@ namespace AnimalShelter
 
         private void Back_But_Click(object sender, RoutedEventArgs e)
         {
-            if(MainFrame.CanGoBack) { MainFrame.GoBack(); }
+            if (MainFrame.CanGoBack) 
+                MainFrame.GoBack();
         }
 
         private void Animals_Click(object sender, RoutedEventArgs e) {
