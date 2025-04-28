@@ -1,0 +1,31 @@
+﻿<Window x:Class="AnimalShelter.Pages.SourceAddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalShelter.Pages"
+        mc:Ignorable="d"
+        Title="Источник поступления" Height="250" Width="450" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Image Source="/Res/WaveBackground.png" Stretch="Fill"/>
+
+        <StackPanel Orientation="Vertical" Margin="15,5,15,5">
+            <TextBlock x:Name="Title_TB" HorizontalAlignment="Center" VerticalAlignment="top" Text="simple" FontWeight="Black" />
+
+            
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <TextBlock Text="Название источника: " Margin="0,10,0,0" />
+                <TextBox x:Name="TB_Name" Text="{Binding Name_source_of_receipt}" Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,10,5"  Width="auto" Height="auto" Background="#ffff" BorderBrush="#FF9C1A">
+                    <Button Name="But_Cancel"  Content="Отмена" Click="But_Cancel_Click" Width="auto" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  />
+                </Border>
+                <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10,10,0,5"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+                    <Button Name="But_Add_Source"  Content="Сохранить" Width="200" Click="But_Add_Source_Click" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  />
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -28,6 +28,8 @@ namespace AnimalShelter.Pages
         private bool _only_dog;
         private bool az;
         private bool za;
+        private AddBreedWindow _addBreedWindow; // Переменная для хранения текущего окна
+
         public BreedsPage()
         {
             InitializeComponent();
@@ -37,7 +39,40 @@ namespace AnimalShelter.Pages
         }
         private void ListBreeds_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO: Открыть изменение породы
+            try
+            {
+                if (ListBreeds.SelectedItem != null)
+                {
+                    var Selected_breed = ListBreeds.SelectedItem as Breed;
+
+                    if (Selected_breed != null)
+                    {
+                        if (_addBreedWindow == null || !_addBreedWindow.IsVisible)
+                        {
+                            _addBreedWindow = new AddBreedWindow(Selected_breed);
+                            _addBreedWindow.BreedAdded += Update; // Подписываемся на событие
+                            _addBreedWindow.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Окно добавления породы уже открыто.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найдена порода для изменения.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
+            
         }
 
         private void But_Cats_Click(object sender, RoutedEventArgs e)
@@ -113,7 +148,17 @@ namespace AnimalShelter.Pages
         }
         private void But_Add_Breed_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Открыть создание породы
+            // Проверка, что окно не открыто
+            if (_addBreedWindow == null || !_addBreedWindow.IsVisible)
+            {
+                _addBreedWindow = new AddBreedWindow(null);
+                _addBreedWindow.BreedAdded += Update; // Подписываемся на событие
+                _addBreedWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления породы уже открыто.");
+            }
 
         }
 

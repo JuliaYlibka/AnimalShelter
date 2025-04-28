@@ -87,6 +87,8 @@ namespace AnimalShelter
         }
         private void Source_of_receipt_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new Source_of_receipt_Page());
+
             aaa.Text = "source";
         }
         private void Contractor_Click(object sender, RoutedEventArgs e)

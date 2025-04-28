@@ -127,6 +127,9 @@
     <Compile Include="New_owner.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddBreedWindow.xaml.cs">
+      <DependentUpon>AddBreedWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,12 @@
     </Compile>
     <Compile Include="Pages\BreedsPage.xaml.cs">
       <DependentUpon>BreedsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SourceAddWindow.xaml.cs">
+      <DependentUpon>SourceAddWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Source_of_receipt_Page.xaml.cs">
+      <DependentUpon>Source_of_receipt_Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Position.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -179,6 +188,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddBreedWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AnimalPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +209,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SourceAddWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Source_of_receipt_Page.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

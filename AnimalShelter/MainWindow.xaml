@@ -29,7 +29,7 @@
                     <MenuItem Header="Мед карты" Click="Medical_record_Click"/>
                     <MenuItem Header="Журнал ухода" Click="Care_log_Click"/>
                     <Separator/>
-                    <MenuItem Header="Породы" Click="Breeds_Click"/>
+                    <MenuItem Header="Породы" Click="Breeds_Click" Foreground="Green"/>
                     <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click"/>
                 </MenuItem>
                 <MenuItem Header="Контрагенты" >
