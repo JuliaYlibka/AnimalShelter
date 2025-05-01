@@ -28,11 +28,12 @@ namespace AnimalShelter.Pages
 
         private void ButAuth_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(LoginTB.Text) || string.IsNullOrEmpty(PasswordAuth.Password))
+            if (string.IsNullOrEmpty(LoginTB.Text.Trim()) || string.IsNullOrEmpty(PasswordAuth.Password.Trim()))
             {
                 MessageBox.Show("Введите логин и пароль!");
                 return;
             }
+            else { 
 
             using (var db = new AnimalShelterEntities())
             {
@@ -49,14 +50,14 @@ namespace AnimalShelter.Pages
                     return;
                 }
 
-                if (volunteer != null)
+                else if (volunteer != null)
                 {
                     MessageBox.Show($"Добро пожаловать, {volunteer.First_name} {volunteer.Patronymic}!");
                     NavigationService?.Navigate(new AnimalsPage());
                     return;
                 }
-
-                MessageBox.Show("Пользователь с такими данными не найден!");
+                else MessageBox.Show("Пользователь с такими данными не найден!");
+            }
             }
         }
 

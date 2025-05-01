@@ -30,10 +30,10 @@
                     <MenuItem Header="Журнал ухода" Click="Care_log_Click"/>
                     <Separator/>
                     <MenuItem Header="Породы" Click="Breeds_Click" Foreground="Green"/>
-                    <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click"/>
+                    <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click" Foreground="Green"/>
                 </MenuItem>
                 <MenuItem Header="Контрагенты" >
-                    <MenuItem Header="Контрагенты"  Click="Contractor_Click"/>
+                    <MenuItem Header="Контрагенты"  Click="Contractor_Click" Foreground="Orange"/>
                     <Separator/>
                     <MenuItem Header="Сотрудники" Click="Employee_Click"/>
                     <MenuItem Header="Волонтеры" Click="Volunteer_Click"/>

@@ -33,6 +33,8 @@ namespace AnimalShelter
         public MainWindow()
         {
             InitializeComponent();
+
+            //TODO: ПОСЛЕ РАЗРАБОТКИ изменить титлы страниц на русский язык согласно требованиям.
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
@@ -105,6 +107,8 @@ namespace AnimalShelter
         }
         private void Contractor_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new ContractorsPage());
+
             aaa.Text = "contr";
         }
         private void Employee_Click(object sender, RoutedEventArgs e)

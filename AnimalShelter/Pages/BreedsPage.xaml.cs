@@ -33,8 +33,7 @@ namespace AnimalShelter.Pages
         public BreedsPage()
         {
             InitializeComponent();
-            All_Species = AnimalShelterEntities.GetContext().Species.ToList();
-            Update();
+            Clear();
 
         }
         private void ListBreeds_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -164,18 +163,23 @@ namespace AnimalShelter.Pages
 
         private void But_Clear_Click(object sender, RoutedEventArgs e)
         {
+            Clear();
+        }
+        private void Clear()
+        {
             But_Sort_Name_species_Up.Background = PassiveBut;
             But_Sort_Name_species_Down.Background = PassiveBut;
+
+            But_Cats.Background = PassiveBut;
+            But_Dogs.Background = PassiveBut;
+            But_All.Background = ActiveBut;
+
             TB_Breed.Clear();
-            All_breeds = AnimalShelterEntities.GetContext().Breed.ToList();
-            ListBreeds.ItemsSource = All_breeds;
             az = false;
             za = false;
             _only_cat = false;
             _only_dog = false;
             Update();
-
-
         }
     }
 }

@@ -291,7 +291,7 @@ Text="{Binding AgeString}" />
                                 <Button Name="But_Sort_Nickname_Up" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Nickname_Up_Click" />
                                 <Button Name="But_Sort_Nickname_Down" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Nickname_Down_Click" />
                             </StackPanel>
-                            <TextBlock  Text="Возраст:" Margin="5,5,0,0"/>
+                            <TextBlock  Text="По возрасту:" Margin="5,5,0,0"/>
                             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Button Name="But_Sort_Age_Up" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Age_Up_Click" />
                                 <Button Name="But_Sort_Age_Down" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Age_Down_Click" />

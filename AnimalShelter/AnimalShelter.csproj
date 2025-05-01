@@ -142,6 +142,12 @@
     <Compile Include="Pages\BreedsPage.xaml.cs">
       <DependentUpon>BreedsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ContractorsPage.xaml.cs">
+      <DependentUpon>ContractorsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DonationsPage.xaml.cs">
+      <DependentUpon>DonationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SourceAddWindow.xaml.cs">
       <DependentUpon>SourceAddWindow.xaml</DependentUpon>
     </Compile>
@@ -208,6 +214,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\BreedsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ContractorsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DonationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -286,6 +300,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Res\CopyIcon.png" />
     <Resource Include="Res\icon.ico" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
