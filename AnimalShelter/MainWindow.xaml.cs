@@ -117,6 +117,8 @@ namespace AnimalShelter
         }
         private void Volunteer_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new VolunteersPage());
+
             aaa.Text = "volont";
         }
         private void New_owner_Click(object sender, RoutedEventArgs e)

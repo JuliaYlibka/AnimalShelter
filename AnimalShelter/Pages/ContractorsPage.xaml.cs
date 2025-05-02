@@ -27,6 +27,8 @@ namespace AnimalShelter.Pages
         private bool _only_EYR;
         private bool az;
         private bool za;
+        private AddContractorWindow _addContractorWindow; // Переменная для хранения текущего окна
+
 
         public ContractorsPage()
         {
@@ -88,7 +90,39 @@ namespace AnimalShelter.Pages
         }
         private void ListContractors_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO: изменение контрагента
+            try
+            {
+                if (ListContractors.SelectedItem != null)
+                {
+                    var Selected_contractor = ListContractors.SelectedItem as Contractor;
+
+                    if (Selected_contractor != null)
+                    {
+                        if (_addContractorWindow == null || !_addContractorWindow.IsVisible)
+                        {
+                            _addContractorWindow = new AddContractorWindow(Selected_contractor);
+                            _addContractorWindow.ContractorAdded += Update; // Подписываемся на событие
+                            _addContractorWindow.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Окно добавления контрагента уже открыто.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найден контрагент для изменения.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
 
         private void But_Email_Copy_Click(object sender, RoutedEventArgs e)
@@ -164,7 +198,17 @@ namespace AnimalShelter.Pages
 
         private void But_Add_contractor_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Создание контрагента
+            // Проверка, что окно не открыто
+            if (_addContractorWindow == null || !_addContractorWindow.IsVisible)
+            {
+                _addContractorWindow = new AddContractorWindow(null);
+                _addContractorWindow.ContractorAdded += Update; // Подписываемся на событие
+                _addContractorWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления контрагента уже открыто.");
+            }
         }
 
         private void But_Clear_Click(object sender, RoutedEventArgs e)
