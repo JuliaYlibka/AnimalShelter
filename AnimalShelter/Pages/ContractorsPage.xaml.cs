@@ -34,7 +34,6 @@ namespace AnimalShelter.Pages
         {
             InitializeComponent();
             var allTypes = AnimalShelterEntities.GetContext().Contractor_type.ToList();
-            ListContractors.ItemsSource = contractors;
             Clear();
 
         }

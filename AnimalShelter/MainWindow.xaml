@@ -33,10 +33,10 @@
                     <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click" Foreground="Green"/>
                 </MenuItem>
                 <MenuItem Header="Контрагенты" >
-                    <MenuItem Header="Контрагенты"  Click="Contractor_Click" Foreground="Orange"/>
+                    <MenuItem Header="Контрагенты"  Click="Contractor_Click" Foreground="Green"/>
                     <Separator/>
                     <MenuItem Header="Сотрудники" Click="Employee_Click"/>
-                    <MenuItem Header="Волонтеры" Click="Volunteer_Click"/>
+                    <MenuItem Header="Волонтеры" Click="Volunteer_Click" Foreground="Orange"/>
                     <MenuItem Header="Владельцы" Click="New_owner_Click"/>
                 </MenuItem>
                 <Separator />

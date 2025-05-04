@@ -34,7 +34,7 @@ namespace AnimalShelter
         {
             InitializeComponent();
 
-            //TODO: ПОСЛЕ РАЗРАБОТКИ изменить титлы страниц на русский язык согласно требованиям.
+            //TODO: ПОСЛЕ РАЗРАБОТКИ изменить титлы страниц на русский язык согласно требованиям. проверить разметку на страницах вывода списка, поле фильтрация немного бродит!
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
