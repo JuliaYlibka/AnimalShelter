@@ -136,6 +136,9 @@
     <Compile Include="Pages\AddContractorWindow.xaml.cs">
       <DependentUpon>AddContractorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddVolunteerWindow.xaml.cs">
+      <DependentUpon>AddVolunteerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AnimalPage.xaml.cs">
       <DependentUpon>AnimalPage.xaml</DependentUpon>
     </Compile>
@@ -208,6 +211,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddContractorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddVolunteerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

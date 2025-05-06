@@ -23,6 +23,7 @@ namespace AnimalShelter.Pages
         List<Volunteer> volunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
         SolidColorBrush PassiveBut = new SolidColorBrush(Colors.White);
         SolidColorBrush ActiveBut = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFAD50"));
+        AddVolunteerWindow _add_Window;
         private bool az;
         private bool za;
         private bool _only_M;
@@ -37,7 +38,39 @@ namespace AnimalShelter.Pages
 
         private void ListVolunteers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO: Изменение данных волонтера
+            try
+            {
+                if (ListVolunteers.SelectedItem != null)
+                {
+                    var Selected_volunteer = ListVolunteers.SelectedItem as Volunteer;
+
+                    if (Selected_volunteer != null)
+                    {
+                        if (_add_Window == null || !_add_Window.IsVisible)
+                        {
+                            _add_Window = new AddVolunteerWindow(Selected_volunteer);
+                            _add_Window.VolunteerAdded += Update; // Подписываемся на событие
+                            _add_Window.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Окно добавления волонтёра уже открыто.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найден волонтёр для изменения.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
 
         private void But_Email_Copy_Click(object sender, RoutedEventArgs e)
@@ -108,7 +141,17 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Добавление/регистрация волонтера
+            // Проверка, что окно не открыто
+            if (_add_Window == null || !_add_Window.IsVisible)
+            {
+                _add_Window = new AddVolunteerWindow(null);
+                _add_Window.VolunteerAdded += Update; // Подписываемся на событие
+                _add_Window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления волонтёра уже открыто.");
+            }
         }
         private void Clear()
         {

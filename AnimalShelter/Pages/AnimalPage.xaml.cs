@@ -22,6 +22,8 @@ namespace AnimalShelter.Pages
     public partial class AnimalPage : Page
     {
         private Animal _current_animal= new Animal();
+        AddVolunteerWindow _add_Window;
+
 
         public AnimalPage(Animal Selected_animal)
         {
@@ -41,6 +43,10 @@ namespace AnimalShelter.Pages
             CB_Source_of_receipt.ItemsSource    = All_sources_of_receipt;
             CB_Breed.ItemsSource= All_breeds;
             CB_Volunteer.ItemsSource = All_volunteers;
+
+            DP_Date_of_registration.SelectedDate = DateTime.Today; //TODO: разобраться почему не устанавливается сегодняшняя дата в дейтпикере
+            DP_Date_of_birth.SelectedDate = null;
+
             if (Selected_animal != null)
             {
                 _current_animal= Selected_animal;
@@ -93,6 +99,38 @@ namespace AnimalShelter.Pages
             else
             {
                 // TODO: реализовать открытие страницы определенного волонтера
+                try
+                {
+                    if (CB_Volunteer.SelectedItem != null)
+                    {
+                        var Selected_volunteer = CB_Volunteer.SelectedItem as Volunteer;
+
+                        if (Selected_volunteer != null)
+                        {
+                            if (_add_Window == null || !_add_Window.IsVisible)
+                            {
+                                _add_Window = new AddVolunteerWindow(Selected_volunteer);
+                                _add_Window.Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Окно  волонтёра уже открыто.");
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ошибка: Не найден волонтёр для просмотра.",
+                                            "Warning",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Warning);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла ошибка: {ex.Message}");
+                }
             }
 
         }
@@ -119,7 +157,7 @@ namespace AnimalShelter.Pages
                 _current_animal.Gender = (int)CB_Gender.SelectedValue;
 
             // Проверка на дату рождения
-            if (DP_Date_of_birth.SelectedDate == null)
+            if (DP_Date_of_birth.SelectedDate == null || DP_Date_of_birth.SelectedDate==DateTime.MinValue)
                 errors.AppendLine("Укажите дату рождения животного!");
             else if (DP_Date_of_birth.SelectedDate > DateTime.Today)
             {
@@ -129,7 +167,7 @@ namespace AnimalShelter.Pages
                 _current_animal.Date_of_birth = (DateTime)DP_Date_of_birth.SelectedDate;
 
             // Проверка на дату регистрации
-            if (DP_Date_of_registration.SelectedDate == null)
+            if (DP_Date_of_registration.SelectedDate == null || DP_Date_of_registration.SelectedDate == DateTime.MinValue)
             {
                 errors.AppendLine("Укажите дату регистрации животного!");
             }
