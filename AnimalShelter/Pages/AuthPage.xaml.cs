@@ -88,10 +88,5 @@ namespace AnimalShelter.Pages
                 ButAuth_Click(sender, e);
             }
         }
-
-        private void ButReg_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new RegistrationPage());
-        }
     }
 }
