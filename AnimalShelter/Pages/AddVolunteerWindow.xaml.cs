@@ -49,6 +49,7 @@ namespace AnimalShelter.Pages
                 TB_Email.Text = Selected_volunteer.Email;
                 TB_Password.Visibility = Visibility.Hidden;
                 Text_Password.Visibility = Visibility.Hidden;
+                TB_Login.IsReadOnly = true;
             }
 
             DataContext = _current_volunteer;

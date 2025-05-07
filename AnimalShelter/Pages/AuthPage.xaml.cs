@@ -24,6 +24,7 @@ namespace AnimalShelter.Pages
         {
             InitializeComponent();
             LoginTB.Focus();
+            //TODO: добавить изменение пароля пользователем. вариант 3. ссылка Изменить пароль? Ввод старого пароля, нового и сохранение в бд. Возможно добавить изменение логина, с тем же подходом.
         }
 
         private void ButAuth_Click(object sender, RoutedEventArgs e)

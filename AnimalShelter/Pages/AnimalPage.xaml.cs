@@ -98,7 +98,6 @@ namespace AnimalShelter.Pages
             if (CB_Volunteer.SelectedIndex == 0) return;
             else
             {
-                // TODO: реализовать открытие страницы определенного волонтера
                 try
                 {
                     if (CB_Volunteer.SelectedItem != null)

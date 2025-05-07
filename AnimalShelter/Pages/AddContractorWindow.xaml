@@ -2,6 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        
+                xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
+        
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalShelter.Pages"
         mc:Ignorable="d"
@@ -33,8 +37,8 @@
         <TextBox x:Name="TB_Name" Text="{Binding Name}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
         <TextBlock Text="Контактное лицо: " Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
         <TextBox x:Name="TB_Contact_percon" Text="{Binding Contact_person}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
-        <TextBlock Text="Телефон: " Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
-        <TextBox x:Name="TB_Phone_number" Text="{Binding Phone_number}" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"/>
+        <TextBlock Text="Телефон: " Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/> 
+        <xctk:MaskedTextBox x:Name="TB_Phone_number" Mask="8(999)000-00-00" Text="{Binding Phone_number}" Height="30" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"/>
         <TextBlock Text="Почта: " Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
         <TextBox x:Name="TB_Email" Text="{Binding Email}" Grid.Row="5" Grid.Column="2" VerticalAlignment="Center"/>
         <TextBlock Text="Адрес: " Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>

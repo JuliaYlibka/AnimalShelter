@@ -113,6 +113,7 @@ namespace AnimalShelter
         }
         private void Employee_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new EmployeesPage());
             aaa.Text = "empl";
         }
         private void Volunteer_Click(object sender, RoutedEventArgs e)

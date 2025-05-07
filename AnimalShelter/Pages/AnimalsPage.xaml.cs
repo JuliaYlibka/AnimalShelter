@@ -156,7 +156,7 @@ namespace AnimalShelter.Pages
             currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
             //CB_Status
             if (CB_Status.SelectedIndex != 0)
-                currentAnimals = currentAnimals = currentAnimals.Where(x => x.Animal_status == CB_Status.SelectedIndex).ToList();
+                currentAnimals = currentAnimals.Where(x => x.Animal_status == CB_Status.SelectedIndex).ToList();
             
             //TB_Nickname
             if (TB_Nickname.Text.Trim().Length != 0)

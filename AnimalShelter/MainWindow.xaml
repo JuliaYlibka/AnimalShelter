@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalShelter"
         mc:Ignorable="d"
@@ -35,12 +36,13 @@
                 <MenuItem Header="Контрагенты" >
                     <MenuItem Header="Контрагенты"  Click="Contractor_Click" Foreground="Green"/>
                     <Separator/>
-                    <MenuItem Header="Сотрудники" Click="Employee_Click"/>
-                    <MenuItem Header="Волонтеры" Click="Volunteer_Click" Foreground="Orange"/>
-                    <MenuItem Header="Владельцы" Click="New_owner_Click"/>
+                    <MenuItem Header="Сотрудники" Click="Employee_Click" Foreground="Orange"/>
+                    <MenuItem Header="Волонтеры" Click="Volunteer_Click"  Foreground="Green"/>
+                    <MenuItem Header="Владельцы" Click="New_owner_Click" />
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="Пожертвования" Click="Donation_Click"/>
+                <!--Добавлена страница пожертвований, пустая-->
+                <MenuItem Header="Пожертвования" Click="Donation_Click" Foreground="OrangeRed"  />
                 <MenuItem Header="Усыновления" Click="Adoption_Click"/>
                 <TextBox x:Name="aaa"/>
             </Menu>
