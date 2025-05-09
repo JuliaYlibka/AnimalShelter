@@ -46,7 +46,7 @@
             <TextBox x:Name="TB_First_name" Text="{Binding First_name}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <TextBox x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <ComboBox Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
-            <DatePicker Name="DP_Date_of_birth" SelectedDate="{Binding Date_of_birth}" VerticalAlignment="Center" Padding="0,5,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,10,10"/>
+            <DatePicker Name="DP_Date_of_birth" DisplayDateStart="2025-01-01" SelectedDate="{Binding Date_of_birth}" VerticalAlignment="Center" Padding="0,5,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,10,10"/>
             <ComboBox Name="CB_Position" DisplayMemberPath="Name_position" SelectedValuePath="ID_position" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
         </Grid>
 
@@ -114,7 +114,7 @@
                 <TextBlock Text="Дата найма:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBlock Text="Логин:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBlock x:Name="Text_Password" Text="Пароль:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-                <DatePicker x:Name="DP_Date_of_hire" SelectedDate="{Binding Date_of_hire}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,2" Padding="3" HorizontalAlignment="Stretch"/>
+                <DatePicker x:Name="DP_Date_of_hire" DisplayDateStart="2025-01-01" SelectedDate="{Binding Date_of_hire}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,2" Padding="3" HorizontalAlignment="Stretch"/>
                 <TextBox x:Name="TB_Login" Text="{Binding Login}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,10" Padding="3" HorizontalAlignment="Stretch"/>
                 <PasswordBox x:Name="TB_Password"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,10" Padding="3" HorizontalAlignment="Stretch"/>
 

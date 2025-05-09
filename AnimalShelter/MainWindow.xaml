@@ -36,9 +36,9 @@
                 <MenuItem Header="Контрагенты" >
                     <MenuItem Header="Контрагенты"  Click="Contractor_Click" Foreground="Green"/>
                     <Separator/>
-                    <MenuItem Header="Сотрудники" Click="Employee_Click" Foreground="Orange"/>
+                    <MenuItem Header="Сотрудники" Click="Employee_Click" Foreground="Green"/>
                     <MenuItem Header="Волонтеры" Click="Volunteer_Click"  Foreground="Green"/>
-                    <MenuItem Header="Владельцы" Click="New_owner_Click" />
+                    <MenuItem Header="Владельцы" Click="New_owner_Click"  Foreground="Orange"/>
                 </MenuItem>
                 <Separator />
                 <!--Добавлена страница пожертвований, пустая-->

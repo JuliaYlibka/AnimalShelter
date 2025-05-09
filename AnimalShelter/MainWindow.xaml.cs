@@ -124,6 +124,8 @@ namespace AnimalShelter
         }
         private void New_owner_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new OwnersPage());
+
             aaa.Text = "ownr";
         }
         private void Donation_Click(object sender, RoutedEventArgs e)

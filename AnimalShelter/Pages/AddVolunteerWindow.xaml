@@ -41,7 +41,7 @@
             <TextBlock Text="Дата рождения:" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox x:Name="TB_Surname" Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <TextBox x:Name="TB_First_name" Text="{Binding First_name}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
-            <TextBox x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <TextBox  x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <ComboBox Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <DatePicker Name="DP_Date_of_birth" SelectedDate="{Binding Date_of_birth}" VerticalAlignment="Center" Padding="0,5,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,10,10"/>
         </Grid>
@@ -75,7 +75,7 @@
                 <TextBlock Text="Номер телефона:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBlock Text="Email:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBlock Text="Адрес:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
-                <xctk:MaskedTextBox x:Name="TB_Phone_number" Mask="8(999)000-00-00" Text="{Binding Phone_number}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,10" Padding="3" HorizontalAlignment="Stretch"/>
+                <xctk:MaskedTextBox  x:Name="TB_Phone_number" Mask="8(999)000-00-00" Text="{Binding Phone_number}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,10" Padding="3" HorizontalAlignment="Stretch"/>
                 <TextBox x:Name="TB_Email" Text="{Binding Email}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,10" Padding="3" HorizontalAlignment="Stretch"/>
                 <TextBox x:Name="TB_Address" Text="{Binding Address}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,10,10" Padding="3" HorizontalAlignment="Stretch"/>
 
