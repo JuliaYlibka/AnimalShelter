@@ -42,7 +42,7 @@
             <TextBox x:Name="TB_Surname" Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <TextBox x:Name="TB_First_name" Text="{Binding First_name}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <TextBox  x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
-            <ComboBox Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <ComboBox Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3" Template="{DynamicResource ComboBoxBase}"/>
             <DatePicker Name="DP_Date_of_birth" SelectedDate="{Binding Date_of_birth}" VerticalAlignment="Center" Padding="0,5,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,10,10"/>
         </Grid>
 

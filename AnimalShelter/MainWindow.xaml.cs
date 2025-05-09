@@ -137,6 +137,8 @@ namespace AnimalShelter
         private void Adoption_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
             aaa.Text = "adopt";
+            MainFrame.Navigate(new AdoptionsPage());
+
         }
 
     }
