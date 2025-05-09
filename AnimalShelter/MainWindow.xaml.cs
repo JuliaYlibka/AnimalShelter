@@ -130,6 +130,8 @@ namespace AnimalShelter
         }
         private void Donation_Click(object sender, RoutedEventArgs e)
         {aaa.Text = string.Empty;
+            MainFrame.Navigate(new DonationsPage());
+
             aaa.Text = "donation";
         }
         private void Adoption_Click(object sender, RoutedEventArgs e)

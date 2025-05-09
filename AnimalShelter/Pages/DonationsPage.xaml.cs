@@ -23,6 +23,8 @@ namespace AnimalShelter.Pages
         public DonationsPage()
         {
             InitializeComponent();
+            var don= AnimalShelterEntities.GetContext().Donation.ToList();
+            sa.ItemsSource = don;
         }
     }
 }

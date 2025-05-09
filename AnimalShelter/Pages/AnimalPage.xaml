@@ -34,18 +34,18 @@
             <TextBox Grid.Row="0" Name="TB_Nickname" Text="{Binding Nickname}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
 
             <TextBlock Grid.Row="1" Text="Вид:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox Grid.Row="1" Name="CB_Species" DisplayMemberPath="Name_species" SelectedValuePath="ID_species" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox Grid.Row="1" Name="CB_Species" DisplayMemberPath="Name_species" SelectedValuePath="ID_species" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5" Template="{DynamicResource ComboBoxBase}"/>
 
             <TextBlock Grid.Row="2"  Text="Порода:"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox  Grid.Row="2" Name="CB_Breed" DisplayMemberPath="Name_breed" SelectedValuePath="ID_breed" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox  Grid.Row="2" Name="CB_Breed" DisplayMemberPath="Name_breed" SelectedValuePath="ID_breed" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5" Template="{DynamicResource ComboBoxBase}"/>
 
             <TextBlock Grid.Row="3" Text="Пол:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox  Grid.Row="3" Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox  Grid.Row="3" Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5" Template="{DynamicResource ComboBoxBase}"/>
 
             <TextBlock Grid.Row="4" Text="Источник поступления:" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Height="50"/>
-            <ComboBox Grid.Row="4" Name="CB_Source_of_receipt" DisplayMemberPath="Name_source_of_receipt" SelectedValuePath="ID_source_of_receipt" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,7,0,5"/>
+            <ComboBox Grid.Row="4" Name="CB_Source_of_receipt" DisplayMemberPath="Name_source_of_receipt" SelectedValuePath="ID_source_of_receipt" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,7,0,5" Template="{DynamicResource ComboBoxBase}"/>
             <TextBlock Grid.Row="5"  Text="Статус:" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <ComboBox  Grid.Row="5" Name="CB_Status" DisplayMemberPath="Name_animal_status" SelectedValuePath="ID_animal_status" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <ComboBox  Grid.Row="5" Name="CB_Status" DisplayMemberPath="Name_animal_status" SelectedValuePath="ID_animal_status" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5" Template="{DynamicResource ComboBoxBase}"/>
             <TextBlock Grid.Row="6" Text="Примечания:" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <TextBox Grid.Row="6" Name="TB_Note" VerticalAlignment="Stretch" Text="{Binding Note}" HorizontalAlignment="Stretch" Style="{DynamicResource TB_Defolt}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  Margin="0,20,0,10"/>
 

@@ -32,7 +32,7 @@
         <Image Grid.ColumnSpan="4" Grid.RowSpan="9" Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill" VerticalAlignment="Center"/>
         <TextBlock Name="TB_Title" Grid.Column="1" Grid.ColumnSpan="2" Text="simple" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Black"/>
         <TextBlock Text="Тип контрагента: " Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-        <ComboBox x:Name="CB_Contractor_type" DisplayMemberPath="Name_contractor_type" SelectedValuePath="ID_contractor_type" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+        <ComboBox x:Name="CB_Contractor_type" DisplayMemberPath="Name_contractor_type" SelectedValuePath="ID_contractor_type" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Template="{DynamicResource ComboBoxBase}"/>
         <TextBlock Text="Имя: " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
         <TextBox x:Name="TB_Name" Text="{Binding Name}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
         <TextBlock Text="Контактное лицо: " Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>

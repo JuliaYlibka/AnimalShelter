@@ -9,6 +9,18 @@
       Title="DonationsPage">
 
     <Grid>
-        
+        <ItemsControl Name="sa">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding ID_donation}" />
+                        <TextBlock Text="{Binding Date_of_donation}" />
+                        <TextBlock Text="{Binding Comment}" />
+                        <TextBlock Text="5555" />
+                        <Separator />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Page>
