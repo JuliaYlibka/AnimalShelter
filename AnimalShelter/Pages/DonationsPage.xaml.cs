@@ -24,7 +24,16 @@ namespace AnimalShelter.Pages
         {
             InitializeComponent();
             var don= AnimalShelterEntities.GetContext().Donation.ToList();
-            sa.ItemsSource = don;
+            var All_Contractors = AnimalShelterEntities.GetContext().Contractor.ToList();
+            var All_Volunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
+
+            DonationDataGrid.ItemsSource = don;
+            
+        }
+
+        private void DonationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

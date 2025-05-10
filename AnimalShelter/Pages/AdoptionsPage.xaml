@@ -107,25 +107,25 @@
                 <StackPanel  Grid.Row="0" Orientation="Vertical">
                         <TextBlock   Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
                         <TextBlock Text="Статус усыновления:" Margin="5,15,0,0"/>
-                        <ComboBox Name="CB_Status" HorizontalAlignment="Stretch" Margin="10,0,10,0" Template="{DynamicResource ComboBoxBase}"/>
+                        <ComboBox Name="CB_Status" HorizontalAlignment="Stretch" Margin="10,0,10,0" DisplayMemberPath="Name_adoption_status" SelectedValuePath="ID_adoption_status" Template="{DynamicResource ComboBoxBase}" SelectionChanged="CB_Status_SelectionChanged"/>
                     </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Vertical">
                     <TextBlock Text="Поиск:" Margin="5,5,0,0"/>
-                    <TextBox Name="TB_Search" HorizontalAlignment="Stretch" Cursor="Help" ToolTip="Поиск по всей информации усыновления." Margin="10,0,10,0" Padding="2" TextChanged="TB_Search_TextChanged"  />
+                    <TextBox Name="TB_Search" HorizontalAlignment="Stretch" Cursor="Help" ToolTip="Поиск по всей информации усыновления. Включает контактные данные владельца, его ФИО и кличку животного" Margin="10,0,10,0" Padding="2" TextChanged="TB_Search_TextChanged"  />
                 </StackPanel>
                 <TextBlock Grid.Row="2" Text="Сортировка" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20" Margin="0,-15,0,0"/>
                 <StackPanel Grid.Row="3" Orientation="Vertical" >
-                    <TextBlock  Text="По фамилии:" Margin="5,-15,0,0"/>
+                    <TextBlock  Text="По фамилии владельца:" Margin="5,-15,0,0"/>
 
                     <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Name="But_Sort_Up" Background="White" BorderBrush="#FFAD50" Padding="5" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Up_Click" />
                             <Button Name="But_Sort_Down" Background="White" BorderBrush="#FFAD50" Padding="5" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Down_Click" />
                     </StackPanel>
-                    <TextBlock  Text="По кличке:" Margin="5,2,0,0"/>
+                    <TextBlock  Text="По кличке животного:" Margin="5,2,0,0"/>
 
                     <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Name="But_Sort_Animal_Up" Background="White" BorderBrush="#FFAD50" Padding="5" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Up_Click" />
-                            <Button Name="But_Sort_Animal_Down" Background="White" BorderBrush="#FFAD50" Padding="5" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Down_Click" />
+                            <Button Name="But_Sort_Animal_Up" Background="White" BorderBrush="#FFAD50" Padding="5" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Animal_Up_Click" />
+                            <Button Name="But_Sort_Animal_Down" Background="White" BorderBrush="#FFAD50" Padding="5" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Animal_Down_Click" />
                     </StackPanel>
 
                     </StackPanel>
