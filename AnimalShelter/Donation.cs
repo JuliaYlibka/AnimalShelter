@@ -31,7 +31,7 @@ namespace AnimalShelter
             {
                 if (Volunteer1 != null)
                 {
-                    return "Волонтер"; // Предполагается, что у вас есть свойство LastName
+                    return "Волонтёр"; // Предполагается, что у вас есть свойство LastName
                 }
                 else if (Contractor1 != null)
                 {
