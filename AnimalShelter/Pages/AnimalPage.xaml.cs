@@ -84,13 +84,13 @@ namespace AnimalShelter.Pages
                 CollectionView cv = (CollectionView)CollectionViewSource.GetDefaultView(CB_Volunteer.ItemsSource);
                 cv.Filter = s =>
                 {
-                    var volunteer = s as Volunteer; // Замените Volunteer на вашу модель волонтера
+                    var volunteer = s as Volunteer;
                     return volunteer != null &&
                            (volunteer.First_name.IndexOf(CB_Volunteer.Text, StringComparison.CurrentCultureIgnoreCase) >= 0 ||
                             volunteer.Surname.IndexOf(CB_Volunteer.Text, StringComparison.CurrentCultureIgnoreCase) >= 0);
                 };
             }
-            //TODO: придумать как сделать так, чтобы комбобокс не открывался при открытии карточки животного. Из-за того, что из бд текст вставляется комбобокс думает что это поиск.
+            //TODO: придумать как сделать так, чтобы комбобокс не открывался при открытии карточки животного. Из-за того, что из бд текст вставляется комбобокс думает что это поиск. 
         }
 
         private void But_Volunteer_Click(object sender, RoutedEventArgs e)

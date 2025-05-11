@@ -30,7 +30,8 @@ namespace AnimalShelter.Pages
             All_Type_Donations.Insert(0, new Donation_type { Name_donation_type = "Все" });
             DonationDataGrid.ItemsSource = All_Donations;
             CB_Type_Donate.ItemsSource = All_Type_Donations;
-
+            CB_Type_Person.SelectedIndex = 0;
+            CB_Type_Donate.SelectedIndex = 0;
 
         }
 
@@ -52,6 +53,8 @@ namespace AnimalShelter.Pages
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
             //TODO: добавление пожертвования
+            AddDonationWindow addwindow = new AddDonationWindow();
+            addwindow.Show();
 
         }
 

@@ -151,6 +151,9 @@
     <Compile Include="Pages\AddContractorWindow.xaml.cs">
       <DependentUpon>AddContractorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddDonationWindow.xaml.cs">
+      <DependentUpon>AddDonationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddContractorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddDonationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -364,6 +371,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Res\Add_But.png" />
     <Resource Include="Res\Search.png" />
     <Resource Include="Res\Cancel_But.png" />
     <Resource Include="Res\More_Details_Donation.ico" />
