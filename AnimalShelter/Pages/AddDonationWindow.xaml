@@ -31,10 +31,10 @@
             <TextBlock Text="Сумма:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
             <TextBlock Text="Описание:" Grid.Row="3" Grid.Column="0" VerticalAlignment="top" />
 
-            <DatePicker Name="DP_Create_Donation" HorizontalAlignment="Stretch"  DisplayDate="01.01.2024" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+            <DatePicker Name="DP_Create_Donation" SelectedDate="{Binding Date_of_donation}" HorizontalAlignment="Stretch"  DisplayDate="01.01.2024" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
             <ComboBox Name="CB_Type_of_Donation" HorizontalAlignment="Stretch" Template="{DynamicResource ComboBoxBase}" VerticalAlignment="Center" DisplayMemberPath="Name_donation_type" SelectedValuePath="ID_donation_type" Grid.Row="1" Grid.Column="1" Margin="0 -5 0 0"/>
-            <TextBox x:Name="TB_Amount" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
-            <RichTextBox x:Name="TB_Description" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,5" Grid.Row="3" Grid.Column="1"/>
+            <TextBox x:Name="TB_Amount" Text="{Binding Amount}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
+            <TextBox x:Name="TB_Description" Text="{Binding Description}" Height="auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,5" Grid.Row="3" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Column="1"  Margin="10">
             <Grid.RowDefinitions >

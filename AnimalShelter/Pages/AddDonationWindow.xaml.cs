@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,16 +20,35 @@ namespace AnimalShelter.Pages
     /// </summary>
     public partial class AddDonationWindow : Window
     {
-        public AddDonationWindow()
+        private Donation _current_Donation = new Donation();
+        private Donation _selected_Donation;
+        public event Action DonationAdded;
+        public AddDonationWindow(Donation Selected_Donation)
         {
             //TODO: закончить локигу добавления
             InitializeComponent();
+            _selected_Donation = Selected_Donation;
             var All_type_of_Donations = AnimalShelterEntities.GetContext().Donation_type.ToList();
             var AllContractors = AnimalShelterEntities.GetContext().Contractor.ToList();
             var AllVolunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
             CB_Contractor.ItemsSource = AllContractors;
             CB_Volunteer.ItemsSource = AllVolunteers;
             CB_Type_of_Donation.ItemsSource = All_type_of_Donations;
+            CB_Contractor.SelectedIndex = 0;
+            CB_Volunteer.SelectedIndex = 0;
+
+            if (Selected_Donation != null)
+            {
+                _current_Donation = Selected_Donation;
+
+                CB_Volunteer.SelectedItem = Selected_Donation.Volunteer1;
+                CB_Contractor.SelectedItem = Selected_Donation.Contractor1;
+                CB_Type_of_Donation.SelectedItem = Selected_Donation.Donation_type1;
+                DP_Create_Donation.SelectedDate = Selected_Donation.Date_of_donation;
+                if(Selected_Donation.Amount!=null) TB_Amount.Text = Selected_Donation.Amount.ToString();
+                if (Selected_Donation.Description != null) TB_Description.Text = Selected_Donation.Description.ToString();
+            }
+            DataContext = _current_Donation;
         }
 
         private void CB_Volunteer_TextChanged(object sender, TextChangedEventArgs e)
@@ -91,7 +111,76 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder errors = new StringBuilder();
 
+            // Проверка на дату пожертвования
+            if (DP_Create_Donation.SelectedDate == null)
+                errors.AppendLine("Укажите дату пожертвования!");
+            else
+                _current_Donation.Date_of_donation = DP_Create_Donation.SelectedDate.Value;
+
+            // Проверка на тип пожертвования
+            if (CB_Type_of_Donation.SelectedValue == null)
+                errors.AppendLine("Укажите тип пожертвования!");
+            else
+                _current_Donation.Donation_type = (int)CB_Type_of_Donation.SelectedValue;
+
+            decimal amount=0;
+            // Проверка на сумму пожертвования
+            if (!string.IsNullOrWhiteSpace(TB_Amount.Text) && !decimal.TryParse(TB_Amount.Text, out amount) || amount <= 0)
+                errors.AppendLine("Укажите корректную сумму пожертвования!");
+            else
+                _current_Donation.Amount = amount;
+
+            
+                _current_Donation.Description = TB_Description.Text.Trim();
+
+            // Проверка на контрагента
+            if ((CB_Contractor.SelectedValue == null && CB_Volunteer.SelectedValue == null) ||
+                (CB_Contractor.SelectedValue != null && CB_Volunteer.SelectedValue != null))
+            {
+                errors.AppendLine("Инвестор должен быть заполнен. Это может быть либо волонтёр, либо контрагент!");
+            }
+            else
+            {
+                // Если вы выбрали волонтера, сохраняем его
+                if (CB_Volunteer.SelectedValue != null)
+                {
+                    _current_Donation.Volunteer = (int)CB_Volunteer.SelectedValue;
+                }
+                // Если вы выбрали контрагента, сохраняем его
+                else if (CB_Contractor.SelectedValue != null)
+                {
+                    _current_Donation.Contractor = (int)CB_Contractor.SelectedValue;
+                }
+            }
+            // Проверка на наличие ошибок
+            if (errors.Length > 0)
+            {
+                MessageBox.Show(errors.ToString());
+                return;
+            }
+
+            // Добавление нового пожертвования в базу данных
+            if (_current_Donation.ID_donation == 0)
+                AnimalShelterEntities.GetContext().Donation.Add(_current_Donation);
+
+            // Делаем попытку записи данных в БД о новом пожертвовании
+            try
+            {
+                AnimalShelterEntities.GetContext().SaveChanges();
+                MessageBox.Show("Данные успешно сохранены!");
+                DonationAdded?.Invoke();
+                Close();
+            }
+            catch (DbUpdateException dbEx)
+            {
+                MessageBox.Show($"Ошибка обновления: {dbEx.InnerException?.Message}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

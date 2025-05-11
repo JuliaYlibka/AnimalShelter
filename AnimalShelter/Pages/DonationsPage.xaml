@@ -81,7 +81,7 @@
         </Border>
         <Button x:Name="But_Add" Content="Добавить пожертвование" Width="250" Height="auto" Grid.Row="1" VerticalAlignment="Center" Margin="15,70,25,3" Foreground="Black" HorizontalAlignment="Right" Click="But_Add_Click"/>
 
-        <DataGrid Grid.Row="2" x:Name="DonationDataGrid" Background="Transparent" BorderThickness="0" MinRowHeight="40" CanUserResizeRows="False" CanUserResizeColumns="False" Margin="10,0,10,10" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DonationDataGrid_MouseDoubleClick">
+        <DataGrid Grid.Row="2" x:Name="DonationDataGrid" Background="Transparent" CanUserSortColumns="True" BorderThickness="0" MinRowHeight="40" CanUserResizeRows="False" CanUserResizeColumns="False" Margin="10,0,10,10" AutoGenerateColumns="False" IsReadOnly="True" MouseDoubleClick="DonationDataGrid_MouseDoubleClick">
             
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">

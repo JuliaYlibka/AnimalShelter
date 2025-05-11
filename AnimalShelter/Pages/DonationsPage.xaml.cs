@@ -20,6 +20,8 @@ namespace AnimalShelter.Pages
     /// </summary>
     public partial class DonationsPage : Page
     {
+        AddDonationWindow _add_Window;
+
         public DonationsPage()
         {
             InitializeComponent();
@@ -32,12 +34,44 @@ namespace AnimalShelter.Pages
             CB_Type_Donate.ItemsSource = All_Type_Donations;
             CB_Type_Person.SelectedIndex = 0;
             CB_Type_Donate.SelectedIndex = 0;
-
+            Update();
         }
 
         private void DonationDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO: изменение пожертвования
+            try
+            {
+                if (DonationDataGrid.SelectedItem != null)
+                {
+                    var Selected = DonationDataGrid.SelectedItem as Donation;
+
+                    if (Selected != null)
+                    {
+                        if (_add_Window == null || !_add_Window.IsVisible)
+                        {
+                            _add_Window = new AddDonationWindow(Selected);
+                            _add_Window.DonationAdded += Update; // Подписываемся на событие
+                            _add_Window.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Окно добавления пожертвования уже открыто.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найдено пожертвование для изменения.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
 
         private void DP_Start_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -52,9 +86,17 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: добавление пожертвования
-            AddDonationWindow addwindow = new AddDonationWindow();
-            addwindow.Show();
+            // Проверка, что окно не открыто
+            if (_add_Window == null || !_add_Window.IsVisible)
+            {
+                _add_Window = new AddDonationWindow(null);
+                _add_Window.DonationAdded += Update; // Подписываемся на событие
+                _add_Window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления пожертвования уже открыто.");
+            }
 
         }
 

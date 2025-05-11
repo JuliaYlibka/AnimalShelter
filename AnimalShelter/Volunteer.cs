@@ -53,6 +53,7 @@ namespace AnimalShelter
                 string initials = $"{firstInitial}. {patronymicInitial}.";
                 return $"{Surname} {initials}".Trim();
             }
+            set { }
         }
         public int Age
         {
