@@ -88,8 +88,8 @@ Text="{Binding AgeString}" />
                             <RowDefinition Height="3*"/>
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock  Grid.Row="0"  Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
-                    <StackPanel  Grid.Row="1"   Orientation="Vertical">
+                    <TextBlock  Grid.Row="0" Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
+                    <StackPanel  Grid.Row="1" Orientation="Vertical">
 
                         <StackPanel Orientation="Vertical">
                             <TextBlock  Margin="5,0,0,0"  Text="Статус:" />
@@ -97,7 +97,7 @@ Text="{Binding AgeString}" />
                         </StackPanel>
                         <StackPanel Grid.Row="2" Orientation="Vertical">
                             <TextBlock Text="Поиск по кличке:" Margin="5,15,0,0"/>
-                            <TextBox Name="TB_Nickname" HorizontalAlignment="Stretch" Margin="10,0,10,0" Padding="2" TextChanged="TB_Nickname_TextChanged"  />
+                            <TextBox Name="TB_Nickname" HorizontalAlignment="Stretch" Margin="10,-5,10,0" Padding="2" TextChanged="TB_Nickname_TextChanged"  />
                         </StackPanel>
                     </StackPanel>
                     <TextBlock Grid.Row="2" Text="Сортировка" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,0"/>
