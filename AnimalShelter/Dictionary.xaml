@@ -36,10 +36,10 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#e88b17"/>
+                            <Setter TargetName="border" Property="Background" Value="#FFDEAD"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#cc7a12"/>
+                            <Setter TargetName="border" Property="Background" Value="#FFDEAD"/>
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="Opacity" Value="0.5"/>
@@ -61,11 +61,13 @@
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Height" Value="30"/>
         <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     
     <Style TargetType="TextBox" x:Key="TB_Defolt">
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
 
     <Style TargetType="TextBlock">
@@ -301,6 +303,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    
     <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>

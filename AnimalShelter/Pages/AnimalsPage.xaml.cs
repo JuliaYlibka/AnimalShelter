@@ -137,8 +137,6 @@ namespace AnimalShelter.Pages
             _age_Up = false;
             _nick_Down = false;
             _nick_Up = false;
-            
-
         }
 
         private void TB_Nickname_TextChanged(object sender, TextChangedEventArgs e)

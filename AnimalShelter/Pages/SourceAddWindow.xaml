@@ -15,7 +15,7 @@
             
             <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                 <TextBlock Text="Название источника: " Margin="0,10,0,0" />
-                <TextBox x:Name="TB_Name" Text="{Binding Name_source_of_receipt}" Width="150"/>
+                <TextBox x:Name="TB_Name" Text="{Binding Name_source_of_receipt}" Width="250" Margin="10,0,0,0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,10,5"  Width="auto" Height="auto" Background="#ffff" BorderBrush="#FF9C1A">
