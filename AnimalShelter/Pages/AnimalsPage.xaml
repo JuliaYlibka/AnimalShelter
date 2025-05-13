@@ -83,10 +83,10 @@ Text="{Binding AgeString}" />
                     <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="5*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="3*"/>
-                        <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <TextBlock  Grid.Row="0" Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
                     <StackPanel  Grid.Row="1" Orientation="Vertical">
@@ -95,8 +95,12 @@ Text="{Binding AgeString}" />
                             <TextBlock  Margin="5,0,0,0"  Text="Статус:" />
                             <ComboBox SelectionChanged="CB_Status_SelectionChanged" Template="{DynamicResource ComboBoxBase}" Name="CB_Status" DisplayMemberPath="Name_animal_status" FontSize="12" SelectedValuePath="ID_animal_status" Background="Transparent" HorizontalAlignment="Stretch" Padding="3" Margin="10,0,10,0" />
                         </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock  Margin="5,0,0,0"  Text="Порода:" />
+                            <ComboBox SelectionChanged="CB_Breed_SelectionChanged" Template="{DynamicResource ComboBoxBase}" Name="CB_Breed" DisplayMemberPath="Name_breed" FontSize="12" SelectedValuePath="ID_breed" Background="Transparent" HorizontalAlignment="Stretch" Padding="3" Margin="10,0,10,0" />
+                        </StackPanel>
                         <StackPanel Grid.Row="2" Orientation="Vertical">
-                            <TextBlock Text="Поиск по кличке:" Margin="5,15,0,0"/>
+                            <TextBlock Text="Поиск по кличке:" Margin="5,5,0,0"/>
                             <TextBox Name="TB_Nickname" HorizontalAlignment="Stretch" Margin="10,-5,10,0" Padding="2" TextChanged="TB_Nickname_TextChanged"  />
                         </StackPanel>
                     </StackPanel>
@@ -108,11 +112,7 @@ Text="{Binding AgeString}" />
                                 <Button Name="But_Sort_Nickname_Up" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Nickname_Up_Click" />
                                 <Button Name="But_Sort_Nickname_Down" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Nickname_Down_Click" />
                             </StackPanel>
-                            <TextBlock  Text="По возрасту:" Margin="5,5,0,0"/>
-                            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Name="But_Sort_Age_Up" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="A → Я" Click="But_Sort_Age_Up_Click" />
-                                <Button Name="But_Sort_Age_Down" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="Я → A" Click="But_Sort_Age_Down_Click" />
-                            </StackPanel>
+                            
                     </StackPanel>
                     
                     
@@ -125,6 +125,7 @@ Text="{Binding AgeString}" />
                             <Button Name="But_Add_animal"  Content="Добавить животное" Width="200" Height="30" Click="But_Add_animal_Click" BorderThickness="0" Background="Transparent"  Padding="5"  />
                         </Border>
                     </StackPanel>
+                        
             </Grid>
                     
                    

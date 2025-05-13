@@ -31,10 +31,10 @@
             <TextBlock Text="Сумма:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
             <TextBlock Text="Описание:" Grid.Row="3" Grid.Column="0" VerticalAlignment="top" />
 
-            <DatePicker Name="DP_Create_Donation" SelectedDate="{Binding Date_of_donation}" HorizontalAlignment="Stretch"  DisplayDate="01.01.2024" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
-            <ComboBox Name="CB_Type_of_Donation" HorizontalAlignment="Stretch" Template="{DynamicResource ComboBoxBase}" VerticalAlignment="Center" DisplayMemberPath="Name_donation_type" SelectedValuePath="ID_donation_type" Grid.Row="1" Grid.Column="1" Margin="0 -5 0 0"/>
+            <DatePicker Name="DP_Create_Donation" SelectedDate="{Binding Date_of_donation}" HorizontalAlignment="Stretch"   Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+            <ComboBox Name="CB_Type_of_Donation" SelectionChanged="CB_Type_of_Donation_SelectionChanged" HorizontalAlignment="Stretch" Template="{DynamicResource ComboBoxBase}" VerticalAlignment="Center" DisplayMemberPath="Name_donation_type" SelectedValuePath="ID_donation_type" Grid.Row="1" Grid.Column="1" Margin="0 -5 0 0"/>
             <TextBox x:Name="TB_Amount" Text="{Binding Amount}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" />
-            <TextBox x:Name="TB_Description" Text="{Binding Description}" Height="auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,5" Grid.Row="3" Grid.Column="1"/>
+            <TextBox x:Name="TB_Description" Text="{Binding Description}" Height="auto"  HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="0,20,0,5" Grid.Row="3" Grid.Column="1"/>
         </Grid>
         <Grid Grid.Column="1"  Margin="10">
             <Grid.RowDefinitions >
@@ -56,28 +56,22 @@
                 Grid.Row="1" Grid.Column="1"
                 
                 HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                IsTextSearchEnabled="False"
                 DisplayMemberPath="FullNameWithInitials"
                 SelectedValuePath="ID_volunteer"
-                IsEditable="True"
-                TextBoxBase.TextChanged="CB_Volunteer_TextChanged">
+                >
             </ComboBox>
             <ComboBox 
                 Name="CB_Contractor" 
                 Grid.Row="0" Grid.Column="1"
     
                 HorizontalAlignment="Stretch" VerticalAlignment="Center"
-                IsTextSearchEnabled="False"
                 DisplayMemberPath="Name"
-                SelectedValuePath="ID_contractor"
-                IsEditable="True"
-                TextBoxBase.TextChanged="CB_Contractor_TextChanged">
-            </ComboBox>
+                SelectedValuePath="ID_contractor"/>
 
-            <Button x:Name="But_Add_Contractor" Grid.Row="0" Grid.Column="2" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0">
+            <Button x:Name="But_Add_Contractor" Grid.Row="0" Grid.Column="2" Click="But_Add_Contractor_Click" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0">
                 <Image Source="../Res/Add_But.png"/> 
             </Button>
-            <Button x:Name="But_Add_Volunteer" Grid.Row="1" Grid.Column="2" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0">
+            <Button x:Name="But_Add_Volunteer" Grid.Row="1" Grid.Column="2" Click="But_Add_Volunteer_Click" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0">
                 <Image Source="../Res/Add_But.png"/>
             </Button>
             <Border  CornerRadius="10" BorderThickness="2" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Width="auto" Height="auto" Background="#ffff" BorderBrush="#FF9C1A" Margin="0 0 0 20">

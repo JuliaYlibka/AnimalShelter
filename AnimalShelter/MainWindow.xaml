@@ -22,28 +22,27 @@
                 <Separator />
 
                 <MenuItem Header="Животные" >
-                    <MenuItem Header="Список животных" Click="Animals_Click" Foreground="Green"/>
+                    <MenuItem Header="Список животных" Click="Animals_Click"/>
                     <Separator/>
-                    <MenuItem Header="Вет осмотры" Click="Veterinary_examination_Click"/>
+                    <MenuItem Header="Вет осмотры" Click="Veterinary_examination_Click" Foreground="Orange"/>
 
                     <MenuItem Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
-                    <MenuItem Header="Журнал ухода" Click="Care_log_Click"/>
+                    <MenuItem Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
                     <Separator/>
-                    <MenuItem Header="Породы" Click="Breeds_Click" Foreground="Green"/>
-                    <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click" Foreground="Green"/>
+                    <MenuItem Header="Породы" Click="Breeds_Click" />
+                    <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click" />
                 </MenuItem>
                 <MenuItem Header="Контрагенты">
-                    <MenuItem Header="Контрагенты"  Click="Contractor_Click" Foreground="Green"/>
+                    <MenuItem Header="Контрагенты"  Click="Contractor_Click"/>
                     <Separator/>
-                    <MenuItem Header="Сотрудники" Click="Employee_Click" Foreground="Green"/>
-                    <MenuItem Header="Волонтеры" Click="Volunteer_Click"  Foreground="Green"/>
-                    <MenuItem Header="Владельцы" Click="New_owner_Click"  Foreground="Orange"/>
+                    <MenuItem Header="Сотрудники" Click="Employee_Click" />
+                    <MenuItem Header="Волонтеры" Click="Volunteer_Click"  />
+                    <MenuItem Header="Владельцы" Click="New_owner_Click"  />
                 </MenuItem>
                 <Separator />
                 <!--Добавлена страница пожертвований, пустая-->
-                <MenuItem Header="Пожертвования" Click="Donation_Click" Foreground="OrangeRed"  />
+                <MenuItem Header="Пожертвования" Click="Donation_Click"   />
                 <MenuItem Header="Усыновления" Click="Adoption_Click"/>
-                <TextBox x:Name="aaa"/>
             </Menu>
         </Border>
     </Grid>

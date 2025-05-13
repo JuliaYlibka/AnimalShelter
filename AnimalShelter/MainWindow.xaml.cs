@@ -70,84 +70,72 @@ namespace AnimalShelter
                 MainFrame.GoBack();
         }
 
-        private void Animals_Click(object sender, RoutedEventArgs e) {
-            aaa.Text = string.Empty;
+        private void Animals_Click(object sender, RoutedEventArgs e) 
+        {
             MainFrame.Navigate(new AnimalsPage());
-
-            aaa.Text = "animal";
         }
 
         private void Veterinary_examination_Click(object sender, RoutedEventArgs e)
         {
-            aaa.Text = string.Empty;
-
-            aaa.Text = "vet";
+            
         }
 
         private void Medical_record_Click(object sender, RoutedEventArgs e) {
-            aaa.Text = string.Empty;
+            
             MainFrame.Navigate(new MedicalRecordsPage());
-            aaa.Text = "med";
+            
         }
 
         private void Care_log_Click(object sender, RoutedEventArgs e)
         {
-            aaa.Text = string.Empty;
-
-            aaa.Text = "care";
+            
         }
 
         private void Breeds_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new BreedsPage());
 
-            aaa.Text = "breed";
         }
 
         private void Source_of_receipt_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new Source_of_receipt_Page());
 
-            aaa.Text = "source";
         }
 
         private void Contractor_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new ContractorsPage());
 
-            aaa.Text = "contr";
         }
 
         private void Employee_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new EmployeesPage());
-            aaa.Text = "empl";
+            
         }
 
         private void Volunteer_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new VolunteersPage());
 
-            aaa.Text = "volont";
         }
 
         private void New_owner_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new OwnersPage());
 
-            aaa.Text = "ownr";
         }
 
         private void Donation_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
+        {
             MainFrame.Navigate(new DonationsPage());
 
-            aaa.Text = "donation";
         }
 
         private void Adoption_Click(object sender, RoutedEventArgs e)
-        {aaa.Text = string.Empty;
-            aaa.Text = "adopt";
+        {
+            
             MainFrame.Navigate(new AdoptionsPage());
 
         }

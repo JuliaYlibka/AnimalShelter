@@ -23,19 +23,25 @@ namespace AnimalShelter.Pages
         private Donation _current_Donation = new Donation();
         private Donation _selected_Donation;
         public event Action DonationAdded;
+        private bool _ignore_Amount = false;
+        AddVolunteerWindow _add_Volunteer_Window;
+        AddContractorWindow _add_Contractor_Window;
+
         public AddDonationWindow(Donation Selected_Donation)
         {
-            //TODO: закончить локигу добавления
             InitializeComponent();
             _selected_Donation = Selected_Donation;
+            if (_current_Donation.Date_of_donation == DateTime.MinValue)
+            {
+                _current_Donation.Date_of_donation = DateTime.Today; 
+            }
             var All_type_of_Donations = AnimalShelterEntities.GetContext().Donation_type.ToList();
             var AllContractors = AnimalShelterEntities.GetContext().Contractor.ToList();
             var AllVolunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
             CB_Contractor.ItemsSource = AllContractors;
             CB_Volunteer.ItemsSource = AllVolunteers;
             CB_Type_of_Donation.ItemsSource = All_type_of_Donations;
-            CB_Contractor.SelectedIndex = 0;
-            CB_Volunteer.SelectedIndex = 0;
+            
 
             if (Selected_Donation != null)
             {
@@ -114,7 +120,7 @@ namespace AnimalShelter.Pages
             StringBuilder errors = new StringBuilder();
 
             // Проверка на дату пожертвования
-            if (DP_Create_Donation.SelectedDate == null)
+            if (DP_Create_Donation.SelectedDate == null || DP_Create_Donation.SelectedDate == DateTime.MinValue)
                 errors.AppendLine("Укажите дату пожертвования!");
             else
                 _current_Donation.Date_of_donation = DP_Create_Donation.SelectedDate.Value;
@@ -124,16 +130,22 @@ namespace AnimalShelter.Pages
                 errors.AppendLine("Укажите тип пожертвования!");
             else
                 _current_Donation.Donation_type = (int)CB_Type_of_Donation.SelectedValue;
-
+           
             decimal amount=0;
-            // Проверка на сумму пожертвования
-            if (!string.IsNullOrWhiteSpace(TB_Amount.Text) && !decimal.TryParse(TB_Amount.Text, out amount) || amount <= 0)
-                errors.AppendLine("Укажите корректную сумму пожертвования!");
-            else
-                _current_Donation.Amount = amount;
+            if (!_ignore_Amount)
+            {
+                if (string.IsNullOrWhiteSpace(TB_Amount.Text) || !decimal.TryParse(TB_Amount.Text, out amount) || amount <= 0)
+                {
+                    errors.AppendLine("Укажите корректную сумму пожертвования!");
+                }
+                else
+                {
+                    _current_Donation.Amount = amount;
+                }
+            }
+            else _current_Donation.Amount = null;
 
-            
-                _current_Donation.Description = TB_Description.Text.Trim();
+            _current_Donation.Description = TB_Description.Text.Trim();
 
             // Проверка на контрагента
             if ((CB_Contractor.SelectedValue == null && CB_Volunteer.SelectedValue == null) ||
@@ -181,6 +193,58 @@ namespace AnimalShelter.Pages
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void But_Add_Volunteer_Click(object sender, RoutedEventArgs e)
+        {
+
+            // Проверка, что окно не открыто
+            if (_add_Volunteer_Window == null || !_add_Volunteer_Window.IsVisible)
+            {
+                _add_Volunteer_Window = new AddVolunteerWindow(null);
+                _add_Volunteer_Window.VolunteerAdded += Update; // Подписываемся на событие
+                _add_Volunteer_Window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления волонтёра уже открыто.");
+            }
+        }
+
+        private void But_Add_Contractor_Click(object sender, RoutedEventArgs e)
+        {
+            if (_add_Contractor_Window == null || !_add_Contractor_Window.IsVisible)
+            {
+                _add_Contractor_Window = new AddContractorWindow(null);
+                _add_Contractor_Window.ContractorAdded += Update; // Подписываемся на событие
+                _add_Contractor_Window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления контрагента уже открыто.");
+            }
+        }
+
+        private void CB_Type_of_Donation_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(CB_Type_of_Donation.SelectedIndex != 0)
+            {
+                TB_Amount.Cursor = Cursors.No;
+                TB_Amount.IsReadOnly = true;
+                _ignore_Amount=true;
+            }
+            else
+            {
+                TB_Amount.Cursor = Cursors.Arrow; TB_Amount.IsReadOnly = false; _ignore_Amount = false;
+            }
+        }
+        private void Update()
+        {
+            // Обновление списков волонтеров и контрагентов
+            var AllContractors = AnimalShelterEntities.GetContext().Contractor.ToList();
+            var AllVolunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
+            CB_Contractor.ItemsSource = AllContractors;
+            CB_Volunteer.ItemsSource = AllVolunteers;
         }
     }
 }

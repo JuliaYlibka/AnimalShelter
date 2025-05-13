@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,21 +24,24 @@ namespace AnimalShelter.Pages
         SolidColorBrush PassiveBut = new SolidColorBrush(Colors.White);
         SolidColorBrush ActiveBut = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFAD50"));
         System.Collections.Generic.List<AnimalShelter.Animal> currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
+        List<Breed> currentBreeds = AnimalShelterEntities.GetContext().Breed.ToList();
         private bool _nick_Up;
-        private bool _age_Up;
         private bool _nick_Down;
-        private bool _age_Down;
 
         public AnimalsPage()
         {
             InitializeComponent();
             var currentStatuses = AnimalShelterEntities.GetContext().Animal_status.ToList();
             currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
-            currentStatuses.Insert(0, new Animal_status { Name_animal_status = "Все статусы" }); 
+            currentBreeds = AnimalShelterEntities.GetContext().Breed.ToList();
+            currentStatuses.Insert(0, new Animal_status { Name_animal_status = "Все статусы" });
+            currentBreeds.Insert(0, new Breed {Name_breed = "Все породы" }); 
 
             ListAnimals.ItemsSource = currentAnimals;
             CB_Status.ItemsSource = currentStatuses;
+            CB_Breed.ItemsSource = currentBreeds;
             CB_Status.SelectedIndex = 1;
+            CB_Breed.SelectedIndex = 0;
             
             
         }
@@ -73,10 +77,7 @@ namespace AnimalShelter.Pages
         {
             But_Sort_Nickname_Up.Background = ActiveBut; 
             But_Sort_Nickname_Down.Background = PassiveBut;
-            But_Sort_Age_Up.Background = PassiveBut;
-            But_Sort_Age_Down.Background = PassiveBut;
-            _age_Down = false;
-            _age_Up = false;
+            
             _nick_Down = false;
             _nick_Up = true;
             Update();
@@ -87,10 +88,7 @@ namespace AnimalShelter.Pages
         {
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = ActiveBut;
-            But_Sort_Age_Up.Background = PassiveBut;
-            But_Sort_Age_Down.Background = PassiveBut;
-            _age_Down = false;
-            _age_Up = false;
+            
             _nick_Down = true;
             _nick_Up = false;
             Update();
@@ -100,10 +98,7 @@ namespace AnimalShelter.Pages
         {
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = PassiveBut;
-            But_Sort_Age_Up.Background =ActiveBut ;
-            But_Sort_Age_Down.Background = PassiveBut;
-            _age_Down = false;
-            _age_Up = true;
+            
             _nick_Down = false;
             _nick_Up = false;
             Update();
@@ -113,10 +108,7 @@ namespace AnimalShelter.Pages
         {
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = PassiveBut;
-            But_Sort_Age_Up.Background = PassiveBut;
-            But_Sort_Age_Down.Background =ActiveBut ;
-            _age_Down = true;
-            _age_Up = false;
+            
             _nick_Down = false;
             _nick_Up = false;
             Update();
@@ -126,17 +118,14 @@ namespace AnimalShelter.Pages
         {
             But_Sort_Nickname_Up.Background = PassiveBut;
             But_Sort_Nickname_Down.Background = PassiveBut;
-            But_Sort_Age_Up.Background = PassiveBut;
-            But_Sort_Age_Down.Background = PassiveBut;
-            CB_Status.SelectedIndex = 0;
+            CB_Breed.SelectedIndex = 0;
+            CB_Status.SelectedIndex = 1;
             TB_Nickname.Clear();
-            currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
-
-            ListAnimals.ItemsSource = currentAnimals;
-            _age_Down = false;
-            _age_Up = false;
+            
             _nick_Down = false;
             _nick_Up = false;
+
+            Update();
         }
 
         private void TB_Nickname_TextChanged(object sender, TextChangedEventArgs e)
@@ -155,6 +144,8 @@ namespace AnimalShelter.Pages
             //CB_Status
             if (CB_Status.SelectedIndex != 0)
                 currentAnimals = currentAnimals.Where(x => x.Animal_status == CB_Status.SelectedIndex).ToList();
+            if (CB_Breed.SelectedIndex != 0)
+                currentAnimals = currentAnimals.Where(x => x.Breed == CB_Breed.SelectedIndex).ToList();
             
             //TB_Nickname
             if (TB_Nickname.Text.Trim().Length != 0)
@@ -164,13 +155,16 @@ namespace AnimalShelter.Pages
             ListAnimals.ItemsSource = currentAnimals;
             if(_nick_Up) ListAnimals.ItemsSource = currentAnimals.OrderBy(x => x.Nickname).ToList();
             if (_nick_Down) ListAnimals.ItemsSource = currentAnimals.OrderByDescending(x => x.Nickname).ToList();
-            if (_age_Up) ListAnimals.ItemsSource = currentAnimals.OrderBy(x => x.Age).ToList();
-            if (_age_Down) ListAnimals.ItemsSource = currentAnimals.OrderByDescending(x => x.Age).ToList();
         }
 
         private void But_Add_animal_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new AnimalPage(null));
+        }
+
+        private void CB_Breed_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
         }
     }
 }
