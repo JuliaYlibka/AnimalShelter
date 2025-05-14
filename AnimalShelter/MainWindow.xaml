@@ -21,28 +21,38 @@
                 </MenuItem>
                 <Separator />
 
-                <MenuItem Header="Животные" >
-                    <MenuItem Header="Список животных" Click="Animals_Click"/>
+                <MenuItem Name="AnimalsMenu" Header="Животные" >
+                    <MenuItem Name="Animals" Header="Список животных" Click="Animals_Click"/>
                     <Separator/>
-                    <MenuItem Header="Вет осмотры" Click="Veterinary_examination_Click" Foreground="Orange"/>
+                    <MenuItem Name="Veterinary_examination" Header="Вет осмотры" Click="Veterinary_examination_Click" Foreground="Orange"/>
 
-                    <MenuItem Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
-                    <MenuItem Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
+                    <MenuItem Name="Medical_record" Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
+                    <MenuItem Name="Care_log" Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
                     <Separator/>
-                    <MenuItem Header="Породы" Click="Breeds_Click" />
-                    <MenuItem Header="Источники поступления" Click="Source_of_receipt_Click" />
+                    <MenuItem Name="Breeds" Header="Породы" Click="Breeds_Click" />
+                    <MenuItem Name="Source_of_receipt" Header="Источники поступления" Click="Source_of_receipt_Click" />
                 </MenuItem>
-                <MenuItem Header="Контрагенты">
-                    <MenuItem Header="Контрагенты"  Click="Contractor_Click"/>
+                <MenuItem Name="ContractorsMenu" Header="Контрагенты">
+                    <MenuItem Name="Contractor" Header="Контрагенты"  Click="Contractor_Click"/>
                     <Separator/>
-                    <MenuItem Header="Сотрудники" Click="Employee_Click" />
-                    <MenuItem Header="Волонтеры" Click="Volunteer_Click"  />
-                    <MenuItem Header="Владельцы" Click="New_owner_Click"  />
+                    <MenuItem Name="Employee" Header="Сотрудники" Click="Employee_Click" />
+                    <MenuItem Name="Volunteer" Header="Волонтеры" Click="Volunteer_Click"  />
+                    <MenuItem Name="New_owner" Header="Владельцы" Click="New_owner_Click"  />
                 </MenuItem>
                 <Separator />
-                <!--Добавлена страница пожертвований, пустая-->
-                <MenuItem Header="Пожертвования" Click="Donation_Click"   />
-                <MenuItem Header="Усыновления" Click="Adoption_Click"/>
+                
+                
+                <MenuItem Name="Donation" Header="Пожертвования" Click="Donation_Click"   />
+                <MenuItem Name="Adoption" Header="Усыновления" Click="Adoption_Click"/>
+                
+                <!-- для ветеринаров отдельное меню -->
+                <MenuItem Padding="6" Name="Animals_VET" Header="Список животных" Click="Animals_Click"/>
+                <MenuItem Padding="6" Name="Volunteer_VET" Header="Волонтеры" Click="Volunteer_Click"  />
+
+                <MenuItem Padding="6" Name="Veterinary_examination_VET" Header="Вет осмотры" Click="Veterinary_examination_Click" Foreground="Orange"/>
+
+                <MenuItem Padding="6" Name="Medical_record_VET" Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
+                <MenuItem Padding="6" Name="Care_log_VET" Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
             </Menu>
         </Border>
     </Grid>

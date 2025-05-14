@@ -44,6 +44,8 @@ namespace AnimalShelter.Pages
             CB_Breed.ItemsSource= All_breeds;
             CB_Volunteer.ItemsSource = All_volunteers;
 
+
+
             DP_Date_of_registration.SelectedDate = DateTime.Today; //TODO: разобраться почему не устанавливается сегодняшняя дата в дейтпикере
             DP_Date_of_birth.SelectedDate = null;
 
@@ -63,8 +65,30 @@ namespace AnimalShelter.Pages
             }
 
             DataContext = _current_animal;
+            if (UserSession.UserPosition == "Волонтёр")
+            {
+                TB_Nickname.IsReadOnly = true;
+                CB_Species.IsEnabled = false;
+                CB_Breed.IsEnabled = false; 
+                CB_Gender.IsEnabled = false;
+                CB_Source_of_receipt.IsEnabled = false;
+                CB_Status.IsEnabled = false;
+                DP_Date_of_birth.PreviewMouseDown += DatePicker_PreviewMouseDown;
+                DP_Date_of_registration.PreviewMouseDown += DatePicker_PreviewMouseDown;
+                CB_Volunteer.IsEnabled = false;
+                But_Volunteer.Visibility=Visibility.Hidden;
+                But_Medical_record.Visibility=Visibility.Collapsed;
+                But_Add_photo.Visibility=Visibility.Collapsed;
+                But_Delete_photo.Visibility = Visibility.Collapsed;
+            }
+
+
         }
 
+        private void DatePicker_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true; // Запретить взаимодействие
+        }
         private void CB_Volunteer_TextChanged(object sender, TextChangedEventArgs e) 
         {
             var tb = (TextBox)e.OriginalSource;

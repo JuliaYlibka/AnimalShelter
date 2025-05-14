@@ -28,12 +28,14 @@ namespace AnimalShelter
         {
             if(MessageBox.Show("Вы действительно хотите выйти из приложения?", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.Cancel)
                 e.Cancel = true;
+
         }
 
         public MainWindow()
         {
             InitializeComponent();
 
+            
             //TODO: ПОСЛЕ РАЗРАБОТКИ изменить титлы страниц на русский язык согласно требованиям. проверить разметку на страницах вывода списка, поле фильтрация немного бродит!
         }
 
@@ -61,6 +63,84 @@ namespace AnimalShelter
 
             }
             //ButReturn.Visibility = Visibility.Visible;
+            if (!(e.Content is AuthPage))
+            {
+                switch (UserSession.UserPosition)
+                {
+                    case "Ветеринар":
+                        AnimalsMenu.Visibility = Visibility.Collapsed;
+                        ContractorsMenu.Visibility = Visibility.Collapsed;
+                        Donation.Visibility = Visibility.Collapsed;
+                        Adoption.Visibility = Visibility.Collapsed;
+                        Animals_VET.Visibility = Visibility.Collapsed;
+                        Volunteer_VET.Visibility = Visibility.Collapsed;
+                        Medical_record_VET.Visibility = Visibility.Visible;
+                        Veterinary_examination_VET.Visibility = Visibility.Visible;
+
+
+
+                        break;
+                    case "Ассистент ветеринара":
+                        AnimalsMenu.Visibility = Visibility.Collapsed;
+                        ContractorsMenu.Visibility = Visibility.Collapsed;
+                        Donation.Visibility = Visibility.Collapsed;
+                        Adoption.Visibility = Visibility.Collapsed;
+                        Animals_VET.Visibility = Visibility.Collapsed;
+                        Volunteer_VET.Visibility = Visibility.Collapsed;
+
+
+                        Medical_record_VET.Visibility = Visibility.Visible;
+                        Veterinary_examination_VET.Visibility = Visibility.Visible;
+
+
+                        break;
+                    case "Куратор":
+                        AnimalsMenu.Visibility = Visibility.Collapsed;
+                        ContractorsMenu.Visibility = Visibility.Collapsed;
+                        Donation.Visibility = Visibility.Collapsed;
+                        Adoption.Visibility = Visibility.Collapsed;
+
+
+                        Animals_VET.Visibility = Visibility.Visible;
+                        Care_log_VET.Visibility = Visibility.Visible;
+                        Volunteer_VET.Visibility= Visibility.Visible;
+
+                        Medical_record_VET.Visibility = Visibility.Collapsed;
+                        Veterinary_examination_VET.Visibility = Visibility.Collapsed;
+
+                        break;
+                    case "Волонтёр":
+                        AnimalsMenu.Visibility = Visibility.Collapsed;
+                        ContractorsMenu.Visibility = Visibility.Collapsed;
+                        Donation.Visibility = Visibility.Collapsed;
+                        Adoption.Visibility = Visibility.Collapsed;
+
+
+                        Animals_VET.Visibility = Visibility.Visible;
+                        Care_log_VET.Visibility = Visibility.Visible;
+                        Volunteer_VET.Visibility= Visibility.Collapsed;
+
+                        Medical_record_VET.Visibility = Visibility.Collapsed;
+                        Veterinary_examination_VET.Visibility = Visibility.Collapsed;
+
+                        break;
+                    default:
+                        AnimalsMenu.Visibility = Visibility.Visible;
+                        ContractorsMenu.Visibility = Visibility.Visible;
+                        Donation.Visibility = Visibility.Visible;
+                        Adoption.Visibility = Visibility.Visible;
+
+                        Animals_VET.Visibility = Visibility.Collapsed;
+
+                        Medical_record_VET.Visibility = Visibility.Collapsed;
+                        Veterinary_examination_VET.Visibility = Visibility.Collapsed;
+                        Care_log_VET.Visibility = Visibility.Collapsed;
+                        Volunteer_VET.Visibility = Visibility.Collapsed;
+                        break;
+
+
+                }
+            }
         }
 
 

@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <Image Grid.ColumnSpan="2" Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill"/>
 
-        <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent"  Name="ListAnimals" Margin="0,60,0,0" MouseDoubleClick="ListAnimals_MouseDoubleClick" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"  HorizontalContentAlignment="Center">
+        <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent"  Name="ListAnimals" Margin="0,60,0,0" MouseDoubleClick="ListAnimals_MouseDoubleClick" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible"  HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate >
                     <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>

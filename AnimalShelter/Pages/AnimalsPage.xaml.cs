@@ -32,16 +32,18 @@ namespace AnimalShelter.Pages
         {
             InitializeComponent();
             var currentStatuses = AnimalShelterEntities.GetContext().Animal_status.ToList();
-            currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
             currentBreeds = AnimalShelterEntities.GetContext().Breed.ToList();
             currentStatuses.Insert(0, new Animal_status { Name_animal_status = "Все статусы" });
             currentBreeds.Insert(0, new Breed {Name_breed = "Все породы" }); 
 
-            ListAnimals.ItemsSource = currentAnimals;
             CB_Status.ItemsSource = currentStatuses;
             CB_Breed.ItemsSource = currentBreeds;
             CB_Status.SelectedIndex = 1;
             CB_Breed.SelectedIndex = 0;
+            if (UserSession.UserPosition == "Волонтёр")
+                But_Add_animal.Visibility= Visibility.Hidden;
+
+                Update();
             
             
         }
@@ -139,8 +141,14 @@ namespace AnimalShelter.Pages
         }
         private  void Update()
         {
+
+            //проверка роли на волонтера для отображения только его животных.
+            
             //загружаем всех пользователей в список
             currentAnimals = AnimalShelterEntities.GetContext().Animal.ToList();
+            if(UserSession.UserPosition== "Волонтёр")
+                currentAnimals = currentAnimals.Where(x => x.Volunteer == UserSession.IDVolunteer).ToList();
+
             //CB_Status
             if (CB_Status.SelectedIndex != 0)
                 currentAnimals = currentAnimals.Where(x => x.Animal_status == CB_Status.SelectedIndex).ToList();

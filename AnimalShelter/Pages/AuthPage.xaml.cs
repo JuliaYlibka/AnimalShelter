@@ -47,13 +47,18 @@ namespace AnimalShelter.Pages
                 if (employee != null)
                 {
                     MessageBox.Show($"Добро пожаловать, {employee.First_name} {employee.Patronymic}!");
-                    NavigationService?.Navigate(new AnimalsPage());
+                    UserSession.UserPosition = employee.Position1.Name_position; 
+                        //TODO: открытие разных страниц вместо животных для разных ролей.
+                        if(UserSession.UserPosition== "Ветеринар" || UserSession.UserPosition == "Ассистент ветеринара") NavigationService?.Navigate(new MedicalRecordsPage());
+                        else NavigationService?.Navigate(new AnimalsPage());
                     return;
                 }
 
                 else if (volunteer != null)
                 {
                     MessageBox.Show($"Добро пожаловать, {volunteer.First_name} {volunteer.Patronymic}!");
+                    UserSession.UserPosition = "Волонтёр";
+                    UserSession.IDVolunteer = volunteer.ID_volunteer;
                     NavigationService?.Navigate(new AnimalsPage());
                     return;
                 }
