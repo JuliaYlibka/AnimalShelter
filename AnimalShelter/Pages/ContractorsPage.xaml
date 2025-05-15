@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AnimalShelter.Pages"
         mc:Ignorable="d" 
         d:DesignHeight="550" d:DesignWidth="800"
-        Title="ContractorsPage">
+        Title="Список контрагентов">
 
     <Grid>
         <Grid.ColumnDefinitions>
