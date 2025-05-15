@@ -23,6 +23,7 @@ namespace AnimalShelter.Pages
     {
         private Animal _current_animal= new Animal();
         AddVolunteerWindow _add_Window;
+        private bool _isLoading = true; // Flag to prevent opening on load
 
 
         public AnimalPage(Animal Selected_animal)
@@ -43,8 +44,7 @@ namespace AnimalShelter.Pages
             CB_Source_of_receipt.ItemsSource    = All_sources_of_receipt;
             CB_Breed.ItemsSource= All_breeds;
             CB_Volunteer.ItemsSource = All_volunteers;
-
-
+                
 
             DP_Date_of_registration.SelectedDate = DateTime.Today; //TODO: разобраться почему не устанавливается сегодняшняя дата в дейтпикере
             DP_Date_of_birth.SelectedDate = null;
@@ -80,11 +80,19 @@ namespace AnimalShelter.Pages
                 But_Medical_record.Visibility=Visibility.Collapsed;
                 But_Add_photo.Visibility=Visibility.Collapsed;
                 But_Delete_photo.Visibility = Visibility.Collapsed;
+                Border_Add.Visibility = Visibility.Collapsed;
+                Border_Delete.Visibility = Visibility.Collapsed;
             }
+            _isLoading = false;
 
+            this.Loaded += AnimalPage_Loaded;
 
         }
-
+        private void AnimalPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Закрываем выпадающий список, если он открыт
+            CB_Volunteer.IsDropDownOpen = false;
+        }
         private void DatePicker_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             e.Handled = true; // Запретить взаимодействие
@@ -92,19 +100,23 @@ namespace AnimalShelter.Pages
         private void CB_Volunteer_TextChanged(object sender, TextChangedEventArgs e) 
         {
             var tb = (TextBox)e.OriginalSource;
+
+            if (_isLoading) return; // Prevent action if loading
+
             if (tb.SelectionStart != 0)
             {
-                CB_Volunteer.SelectedItem = null; // Если набирается текст сбросить выбранный элемент
-            }
-            if (tb.SelectionStart == 0 && CB_Volunteer.SelectedItem == null)
-            {
-                CB_Volunteer.IsDropDownOpen = false; // Если сбросили текст и элемент не выбран, сбросить фокус выпадающего списка
+                CB_Volunteer.SelectedItem = null; // Reset selected item if typing
             }
 
-            CB_Volunteer.IsDropDownOpen = true;
+            if ((tb.SelectionStart == 0 && CB_Volunteer.SelectedItem == null) || CB_Volunteer.SelectedItem == _current_animal.Volunteer1)
+            {
+                CB_Volunteer.IsDropDownOpen = false; // Close dropdown if no selection
+            }
+
+            CB_Volunteer.IsDropDownOpen = true; // Open dropdown if item is not selected
             if (CB_Volunteer.SelectedItem == null)
             {
-                // Если элемент не выбран менять фильтр
+                // Filter the items based on the text
                 CollectionView cv = (CollectionView)CollectionViewSource.GetDefaultView(CB_Volunteer.ItemsSource);
                 cv.Filter = s =>
                 {
@@ -119,9 +131,8 @@ namespace AnimalShelter.Pages
 
         private void But_Volunteer_Click(object sender, RoutedEventArgs e)
         {
-            if (CB_Volunteer.SelectedIndex == 0) return;
-            else
-            {
+            
+            
                 try
                 {
                     if (CB_Volunteer.SelectedItem != null)
@@ -154,7 +165,7 @@ namespace AnimalShelter.Pages
                 {
                     MessageBox.Show($"Произошла ошибка: {ex.Message}");
                 }
-            }
+            
 
         }
 

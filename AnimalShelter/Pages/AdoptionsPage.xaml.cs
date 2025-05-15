@@ -79,6 +79,7 @@ namespace AnimalShelter.Pages
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
             //TODO: Создание усыновления
+            NavigationService?.Navigate(new AddAdoptionPage());
         }
         private void Update()
         {

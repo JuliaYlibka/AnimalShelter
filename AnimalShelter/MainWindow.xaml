@@ -53,6 +53,13 @@
 
                 <MenuItem Padding="6" Name="Medical_record_VET" Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
                 <MenuItem Padding="6" Name="Care_log_VET" Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
+                <Separator />
+
+                <MenuItem Name="Log_out_But" HorizontalAlignment="Right" Header="Выйти" Click="Log_out_But_Click" Padding="6">
+                    <MenuItem.Icon>
+                        <Image Source="Res/LogoutImage.png" Height="auto " />
+                    </MenuItem.Icon>
+                </MenuItem>
             </Menu>
         </Border>
     </Grid>

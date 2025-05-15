@@ -220,5 +220,12 @@ namespace AnimalShelter
 
         }
 
+        private void Log_out_But_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AuthPage());
+            UserSession.UserPosition = string.Empty;
+            UserSession.IDVolunteer = null;
+
+        }
     }
 }

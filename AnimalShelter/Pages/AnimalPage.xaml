@@ -81,7 +81,7 @@
                 <Image Source="../Res/tab.png"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stretch="UniformToFill" />
             </Button>
             <Button Grid.Row="3" Name="But_Medical_record" Click="But_Medical_record_Click" Margin="20,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Медицинская карта" Width="170" Background="#FFFFFF" Foreground="#FF9C1A" FontWeight="Black"/>
-            <Button Grid.Row="4" Name="But_Care_log" Click="But_Care_log_Click" Margin="20,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Журнал ухода" Width="170" Background="#FFFFFF" Foreground="#FF9C1A" FontWeight="Black"/>
+            <Button Grid.Row="4" Name="But_Care_log" Click="But_Care_log_Click" Margin="20,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Журнал ухода" Width="170" Background="#FFFFFF" Foreground="#FF9C1A" Padding="3" FontWeight="Black"/>
         </Grid>
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Margin="20,10,10,10">
             <Border  BorderThickness="2"  Width="auto" Height="auto" Background="#ffffff" BorderBrush="#FF9C1A" >
@@ -97,11 +97,11 @@
                     </Image.Source>
                 </Image>
             </Border>
-            <Border  CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Stretch" Margin="10,10,10,10" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+            <Border  Name="Border_Add" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Stretch" Margin="10,10,10,10" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
                 <Button Name="But_Add_photo" BorderThickness="0" Height="25" Background="Transparent" Click="But_Add_photo_Click" Content="Загрузить фотографию" Padding="2" Margin="0,0,0,0"  Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
             </Border>
 
-            <Border  CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Center" Margin="20,0,10,20" Height="auto" Width="auto" Background="#ffffff" BorderBrush="#FF9C1A" >
+            <Border Name="Border_Delete" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Center" Margin="20,0,10,20" Height="auto" Width="auto" Background="#ffffff" BorderBrush="#FF9C1A" >
                 <Button Name="But_Delete_photo" BorderThickness="0" Height="25" Click="But_Delete_photo_Click" Background="Transparent" Foreground="red" FontWeight="Black" Content="   Удалить фотографию   " Padding="2" Width="auto" Margin="0,0,0,0"  Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
             </Border>
 
