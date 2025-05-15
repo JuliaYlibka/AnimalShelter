@@ -153,6 +153,12 @@ namespace AnimalShelter.Pages
                     var sourceToDelete = listViewItem.Content as Source_of_receipt;
                     if (sourceToDelete != null)
                     {
+                        var animalsUsingBreed = AnimalShelterEntities.GetContext().Animal.Where(a => a.Source_of_receipt == sourceToDelete.ID_source_of_receipt).ToList();
+                        if (animalsUsingBreed.Any())
+                        {
+                            MessageBox.Show("Ошибка удаления: Данный источник уже используется в системе, удалить его нельзя.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return; // Прекращаем выполнение метода, если порода используется
+                        }
                         // Подтверждаем удаление
                         MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить источник: {sourceToDelete.Name_source_of_receipt}?", "Подтверждение удаления", MessageBoxButton.YesNo);
                         if (result == MessageBoxResult.Yes)
