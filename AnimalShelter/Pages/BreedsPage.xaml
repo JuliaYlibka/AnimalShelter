@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AnimalShelter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="576" d:DesignWidth="800"
-      Title="BreedsPage">
+      Title="Список пород">
 
     <Grid>
         <Grid.RowDefinitions>

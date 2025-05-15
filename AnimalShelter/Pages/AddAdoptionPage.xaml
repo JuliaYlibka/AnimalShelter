@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AnimalShelter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AddAdoptionPage">
+      Title="Оформление усыновления">
 
     <Grid>
         <Grid.ColumnDefinitions>
