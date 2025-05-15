@@ -41,7 +41,10 @@ namespace AnimalShelter.Pages
             CB_Status.ItemsSource = statuses;
             DP_Date_of_adoption.SelectedDate = DateTime.Now;
 
-
+            if (_current_adoption.Date_of_adoption == DateTime.MinValue)
+            {
+                _current_adoption.Date_of_adoption = DateTime.Today;
+            }
             if (Selected_adoption != null)
             {
                 _current_adoption = Selected_adoption;

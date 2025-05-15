@@ -33,6 +33,12 @@ namespace AnimalShelter.Pages
             var All_positions = AnimalShelterEntities.GetContext().Position.ToList();
             CB_Gender.ItemsSource = All_genders;
             CB_Position.ItemsSource = All_positions;
+
+            if (_current_employee.Date_of_hire == DateTime.MinValue)
+            {
+                _current_employee.Date_of_hire = DateTime.Today;
+            }
+
             if (Selected_employee != null)
             {
                 _current_employee = Selected_employee;
@@ -53,7 +59,7 @@ namespace AnimalShelter.Pages
 
 
             }
-
+        
             DataContext = _current_employee;
         }
 

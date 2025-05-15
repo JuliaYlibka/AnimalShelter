@@ -34,6 +34,11 @@ namespace AnimalShelter.Pages
             CB_Gender.ItemsSource = All_genders;
             DP_Date_of_birth.SelectedDate = null;
             DP_Date_of_hire.SelectedDate = null;
+
+            if (_current_volunteer.Date_of_hire == DateTime.MinValue)
+            {
+                _current_volunteer.Date_of_hire = DateTime.Today;
+            }
             if (Selected_volunteer != null)
             {
                 _current_volunteer = Selected_volunteer;

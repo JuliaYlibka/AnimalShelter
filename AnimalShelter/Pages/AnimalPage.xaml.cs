@@ -24,9 +24,9 @@ namespace AnimalShelter.Pages
         private Animal _current_animal= new Animal();
         AddVolunteerWindow _add_Window;
         private bool _isLoading = true; // Flag to prevent opening on load
+        
 
-
-        public AnimalPage(Animal Selected_animal)
+    public AnimalPage(Animal Selected_animal)
         {
             InitializeComponent();
             var All_volunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
@@ -48,7 +48,10 @@ namespace AnimalShelter.Pages
 
             DP_Date_of_registration.SelectedDate = DateTime.Today; //TODO: разобраться почему не устанавливается сегодняшняя дата в дейтпикере
             DP_Date_of_birth.SelectedDate = null;
-
+            if (_current_animal.Date_of_registration == DateTime.MinValue)
+            {
+                _current_animal.Date_of_registration = DateTime.Today;
+            }
             if (Selected_animal != null)
             {
                 _current_animal= Selected_animal;
