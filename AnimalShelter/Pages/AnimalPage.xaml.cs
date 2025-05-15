@@ -126,7 +126,6 @@ namespace AnimalShelter.Pages
                             volunteer.Surname.IndexOf(CB_Volunteer.Text, StringComparison.CurrentCultureIgnoreCase) >= 0);
                 };
             }
-            //TODO: придумать как сделать так, чтобы комбобокс не открывался при открытии карточки животного. Из-за того, что из бд текст вставляется комбобокс думает что это поиск. 
         }
 
         private void But_Volunteer_Click(object sender, RoutedEventArgs e)
@@ -331,6 +330,11 @@ namespace AnimalShelter.Pages
                 _current_animal.Photo = null; // Сбрасываем путь к фотографии в объекте
                 Image_Animal.Source = new BitmapImage(new Uri("/Res/DefaultPhoto.png", UriKind.Relative));
             }
+        }
+
+        private void But_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.GoBack();
         }
     }
 }

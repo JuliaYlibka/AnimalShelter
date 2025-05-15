@@ -62,10 +62,10 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Дата рождения:" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left"/>
             <TextBlock Grid.Row="1" Text="Дата регистрации:" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left" />
-            <DatePicker Grid.Row="0" SelectedDate="{Binding Date_of_birth}" Name="DP_Date_of_birth" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0" HorizontalAlignment="Stretch" >
+            <DatePicker Grid.Row="0" SelectedDate="{Binding Date_of_birth}" Name="DP_Date_of_birth" DisplayDate="01.01.2025" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0" HorizontalAlignment="Stretch" >
             </DatePicker>
-            <DatePicker Grid.Row="1" SelectedDate="{Binding Date_of_registration}" Name="DP_Date_of_registration" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0"  HorizontalAlignment="Stretch" />
-            <TextBlock Grid.Row="2" Text="Волонтёр:" VerticalAlignment="Bottom" Margin="0,5,0,5" HorizontalAlignment="Left"/>
+            <DatePicker Grid.Row="1" SelectedDate="{Binding Date_of_registration}" Name="DP_Date_of_registration" DisplayDate="01.01.2025" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0"  HorizontalAlignment="Stretch" />
+            <TextBlock Grid.Row="2" Text="Волонтёр:" VerticalAlignment="Bottom" Margin="0,5,0,5"  HorizontalAlignment="Left"/>
             <ComboBox 
                 Name="CB_Volunteer" 
                 Grid.Row="2"
@@ -109,6 +109,9 @@
 
         <Border Grid.Column="2" Grid.Row="1" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,10,10,10"  Height="auto" Background="#ffffff" BorderBrush="#00810f">
             <Button Name="But_Save" Click="But_Save_Click" BorderThickness="0" Background="Transparent" Content="Сохранить" Padding="0,10,0,0" Foreground="#00810f" Margin="0,0,0,0" FontWeight="Black" Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" CornerRadius="10" BorderThickness="2" Cursor="Hand" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="180,0,0,10"  Height="40" Background="#ffffff" BorderBrush="red">
+            <Button Name="But_Cancel" Click="But_Cancel_Click" BorderThickness="0" Background="Transparent" Content="Отмена" Padding="0,10,0,0" Foreground="red" Margin="0,0,0,0" FontWeight="Black" Style="{DynamicResource But_Defoult}" HorizontalAlignment="Stretch" />
         </Border>
     </Grid>
 </Page>

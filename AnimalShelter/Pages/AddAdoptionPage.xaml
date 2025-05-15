@@ -49,16 +49,16 @@
     
                 VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,45,5"
                 IsTextSearchEnabled="False"
-                DisplayMemberPath="Nickname"
-                SelectedValuePath="ID_animal"
+                DisplayMemberPath="FullNameWithInitials"
+                SelectedValuePath="ID_new_owner"
                 IsEditable="True"
                 TextBoxBase.TextChanged="CB_Owner_TextChanged"/>
             <Button x:Name="But_Add_Owner" Grid.Row="1" Grid.Column="2" Click="But_Add_Owner_Click" VerticalAlignment="Center" Margin="10,0,7,5" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0" HorizontalAlignment="Right">
                 <Image Source="../Res/Add_But.png"/>
             </Button>
             <DatePicker Name="DP_Date_of_adoption" SelectedDate="{Binding Date_of_adoption}" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="0 0 10 0"/>
-            <ComboBox Name="CB_Status" Grid.Column="1" Grid.Row="3" Margin="0,0,10,5" VerticalAlignment="Center" DisplayMemberPath="Name_adoption_status" SelectedValuePath="ID_adoption_status" SelectionChanged="CB_Status_SelectionChanged" Template="{DynamicResource ComboBoxBase}"  />
-            <TextBox x:Name="TB_Comment" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="auto" Margin="0 0 10 10" Text="{Binding Comment}" />
+            <ComboBox Name="CB_Status" Grid.Column="1" Grid.Row="3" Margin="0,0,10,5" VerticalAlignment="Center" DisplayMemberPath="Name_adoption_status" SelectedValuePath="ID_adoption_status" Template="{DynamicResource ComboBoxBase}"  />
+            <TextBox x:Name="TB_Comment" Grid.Column="1"  Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Stretch" Height="auto" Margin="0 0 10 10" Text="{Binding Comment}" />
         </Grid>
         <Grid Grid.Column="1"  Margin="10 60 10 10">
             <Grid.RowDefinitions>

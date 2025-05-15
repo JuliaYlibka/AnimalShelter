@@ -181,5 +181,64 @@ namespace AnimalShelter.Pages
             _only_dog = false;
             Update();
         }
+
+        private void But_Delete_Source_of_recipe_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+            if (parentObject == null) return null;
+
+            T parent = parentObject as T;
+            return parent ?? FindParent<T>(parentObject);
+        }
+
+        private void But_Delete_Breed_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем кнопку, которая была нажата
+            Button deleteButton = sender as Button;
+            if (deleteButton != null)
+            {
+                // Находим родительский элемент ListViewItem
+                var listViewItem = FindParent<ListViewItem>(deleteButton);
+                if (listViewItem != null)
+                {
+                    var breedToDelete = listViewItem.Content as Breed;
+                    if (breedToDelete != null)
+                    {
+                        // Проверяем, есть ли животные с данной породой
+                        var animalsUsingBreed = AnimalShelterEntities.GetContext().Animal.Where(a => a.Breed == breedToDelete.ID_breed).ToList();
+                        if (animalsUsingBreed.Any())
+                        {
+                            MessageBox.Show("Ошибка удаления: Данная порода уже используется в системе, удалить её нельзя.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return; // Прекращаем выполнение метода, если порода используется
+                        }
+
+                        // Подтверждаем удаление
+                        MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить породу: {breedToDelete.Name_breed}?", "Подтверждение удаления", MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            try
+                            {
+                                // Удаляем из базы данных
+                                var context = AnimalShelterEntities.GetContext();
+                                context.Breed.Remove(breedToDelete);
+                                context.SaveChanges();
+
+                                Update();
+                            }
+                            catch (Exception ex)
+                            {
+                                // Обработка других возможных исключений
+                                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

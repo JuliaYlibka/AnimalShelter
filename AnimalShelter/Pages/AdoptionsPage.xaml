@@ -40,7 +40,7 @@
                             <Grid  Margin="0,0,30,0"  Grid.RowSpan="2" Grid.Column="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                 <TextBlock  TextAlignment="Left" Width="auto" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding ID_adoption, StringFormat='№ {0}'}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                                    <Image Name="Image_Animal" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="50" Stretch="Uniform" >
+                                    <Image Name="Image_Animal" Margin="10 15 10 0" Height="125" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinHeight="50" Stretch="Uniform" >
                                         <Image.Source>
                                             <Binding Path="Animal1.Photo">
                                                 <Binding.TargetNullValue>

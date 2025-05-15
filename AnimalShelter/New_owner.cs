@@ -71,6 +71,19 @@ namespace AnimalShelter
                     }
                 }
             }
+
+        }
+
+        public string FullNameWithInitials
+        {
+            get
+            {
+                string firstInitial = !string.IsNullOrEmpty(First_name) ? First_name.Substring(0, 1) : string.Empty;
+                string patronymicInitial = !string.IsNullOrEmpty(Patronymic) ? Patronymic.Substring(0, 1) : string.Empty;
+                string initials = $"{firstInitial}. {patronymicInitial}.";
+                return $"{Surname} {initials}".Trim();
+            }
+            set { }
         }
     }
 }

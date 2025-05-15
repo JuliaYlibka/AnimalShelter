@@ -121,7 +121,7 @@ Text="{Binding AgeString}" />
                         <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,0"  Width="auto" Height="auto" Background="#ffffff" BorderBrush="#FF9C1A">
                             <Button Name="But_Clear"  Content="Сбросить фильтры" Width="200" Height="30" Padding="5" Click="But_Clear_Click" BorderThickness="0" Background="Transparent" Foreground="#FF9C1A" FontWeight="Bold"    />
                         </Border>
-                        <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,5"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+                        <Border x:Name="Border_Add" CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,5"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
                             <Button Name="But_Add_animal"  Content="Добавить животное" Width="200" Height="30" Click="But_Add_animal_Click" BorderThickness="0" Background="Transparent"  Padding="5"  />
                         </Border>
                     </StackPanel>

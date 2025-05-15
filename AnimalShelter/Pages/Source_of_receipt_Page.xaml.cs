@@ -139,5 +139,57 @@ namespace AnimalShelter.Pages
             TB_Source.Clear();
             Update();
         }
+
+        private void But_Delete_Source_of_recipe_Click(object sender, RoutedEventArgs e)
+        {
+            // Получаем кнопку, которая была нажата
+            Button deleteButton = sender as Button;
+            if (deleteButton != null)
+            {
+                // Находим родительский элемент ListViewItem
+                var listViewItem = FindParent<ListViewItem>(deleteButton);
+                if (listViewItem != null)
+                {
+                    var sourceToDelete = listViewItem.Content as Source_of_receipt;
+                    if (sourceToDelete != null)
+                    {
+                        // Подтверждаем удаление
+                        MessageBoxResult result = MessageBox.Show($"Вы уверены, что хотите удалить источник: {sourceToDelete.Name_source_of_receipt}?", "Подтверждение удаления", MessageBoxButton.YesNo);
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            try
+                            {
+                                // Удаляем из базы данных
+                                var context = AnimalShelterEntities.GetContext();
+                                context.Source_of_receipt.Remove(sourceToDelete);
+                                context.SaveChanges(); 
+
+                                Update();
+                            }
+                            catch (InvalidOperationException ex)
+                            {
+                                // Обработка исключения, если источник связан с другими записями
+                                MessageBox.Show($"Ошибка удаления: Данный источник уже используется в системе, удалить его нельзя. ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            catch (Exception ex)
+                            {
+                                // Обработка других возможных исключений
+                                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private T FindParent<T>(DependencyObject child) where T : DependencyObject
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+            if (parentObject == null) return null;
+
+            T parent = parentObject as T;
+            return parent ?? FindParent<T>(parentObject);
+        }
+
     }
 }

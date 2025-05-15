@@ -40,10 +40,11 @@ namespace AnimalShelter.Pages
             CB_Breed.ItemsSource = currentBreeds;
             CB_Status.SelectedIndex = 1;
             CB_Breed.SelectedIndex = 0;
-            if (UserSession.UserPosition == "Волонтёр")
+            if (UserSession.UserPosition == "Волонтёр") { 
                 But_Add_animal.Visibility= Visibility.Hidden;
-
-                Update();
+                Border_Add.Visibility = Visibility.Hidden;
+            }
+            Update();
             
             
         }

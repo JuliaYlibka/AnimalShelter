@@ -34,16 +34,42 @@ namespace AnimalShelter.Pages
         public AdoptionsPage()
         {
             InitializeComponent();
+            Owners = AnimalShelterEntities.GetContext().New_owner.ToList();
+            Animals = AnimalShelterEntities.GetContext().Animal.ToList();
+
             ListAdoptions.ItemsSource = Adoptions;
             Statuses.Insert(0, new Adoption_status { Name_adoption_status = "Все статусы" });
             CB_Status.ItemsSource = Statuses;
+            
             Clear();
 
         }
 
         private void ListAdoptions_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO: изменение усыновления
+            try
+            {
+                if (ListAdoptions.SelectedItem != null)
+                {
+                    var Selected_adoption = ListAdoptions.SelectedItem as Adoption;
+
+                    if (Selected_adoption != null)
+                    {
+                        NavigationService?.Navigate(new AddAdoptionPage(Selected_adoption));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найдено усыновление.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
 
         private void TB_Search_TextChanged(object sender, TextChangedEventArgs e)
@@ -78,8 +104,8 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Создание усыновления
-            NavigationService?.Navigate(new AddAdoptionPage());
+            
+            NavigationService?.Navigate(new AddAdoptionPage(null));
         }
         private void Update()
         {

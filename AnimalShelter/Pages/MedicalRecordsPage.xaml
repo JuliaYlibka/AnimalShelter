@@ -105,7 +105,7 @@
                         <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <TextBlock  Grid.Row="0"  Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
-                    <StackPanel  Grid.Row="1" Orientation="Vertical">
+                    <!--<StackPanel  Grid.Row="1" Orientation="Vertical">
 
                         <Button Name="But_All" Cursor="Hand" Background="White" Padding="0,7,0,0" BorderBrush="#FFAD50" Margin="5,0,5,0" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}" Content="Все типы контрагентов"  />
 
@@ -118,27 +118,27 @@
                             <Button Name="But_EYR" Background="White" Cursor="Hand" Grid.Column="1" BorderBrush="#FFAD50" Padding="0,7,0,0" Margin="5" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}"  Content="Юр. лицо"  />
                         </Grid>
 
-                    </StackPanel>
+                    </StackPanel>-->
                     <StackPanel Grid.Row="2" Orientation="Vertical">
                         <TextBlock Text="Поиск:" Margin="5,15,0,0"/>
-                        <TextBox Name="TB_Search" HorizontalAlignment="Stretch" Cursor="Help" ToolTip="Поиск по всей информации о контрагенте." Margin="10,0,10,0" Padding="2"   />
+                        <TextBox Name="TB_Search" HorizontalAlignment="Stretch" Cursor="Help" ToolTip="Поиск мед карты по кличке животного" Margin="10,0,10,0" Padding="2" TextChanged="TB_Search_TextChanged"  />
                     </StackPanel>
                     <TextBlock Grid.Row="3" Text="Сортировка" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20" Margin="0,0,0,0"/>
                     <StackPanel Grid.Row="4" Orientation="Vertical">
-                        <TextBlock  Text="По названию:" Margin="5,0,0,0"/>
+                        <TextBlock  Text="По кличке:" Margin="5,0,0,0" />
 
                         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
-                            <Button Name="But_Sort_Up" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="A → Я" />
-                            <Button Name="But_Sort_Down" Background="White" BorderBrush="#FFAD50" Padding="0" Margin="0,0,0,0" Content="Я → A"  />
+                            <Button Name="But_Sort_Up" Background="White" BorderBrush="#FFAD50" Click="But_Sort_Up_Click" Padding="0" Margin="0,0,0,0" Content="A → Я" />
+                            <Button Name="But_Sort_Down" Background="White" BorderBrush="#FFAD50" Click="But_Sort_Down_Click" Padding="0" Margin="0,0,0,0" Content="Я → A"  />
                         </StackPanel>
 
                     </StackPanel>
                     <StackPanel Grid.Row="5" VerticalAlignment="Bottom"  Orientation="Vertical">
                         <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,0"  Width="auto" Height="auto" Background="#ffffff" BorderBrush="#FF9C1A">
-                            <Button Name="But_Clear"  Content="Сбросить фильтры" Width="200" Height="30" Padding="5"  BorderThickness="0" Background="Transparent" Foreground="#FF9C1A" FontWeight="Bold"    />
+                            <Button Name="But_Clear" Click="But_Clear_Click"  Content="Сбросить фильтры" Width="200" Height="30" Padding="5"  BorderThickness="0" Background="Transparent" Foreground="#FF9C1A" FontWeight="Bold"    />
                         </Border>
                         <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,5"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
-                            <Button Name="But_Add_contractor"  Content="Добавить контрагента" Width="200" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  />
+                            <Button Name="But_Add"  Content="Добавить мед карту" Width="200" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  Click="But_Add_Click" />
                         </Border>
                     </StackPanel>
                 </Grid>

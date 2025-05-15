@@ -31,9 +31,13 @@
                 <DataTemplate>
                     <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
                         <Grid Width="300" Height="60" Background="Transparent" >
+                            
                             <TextBlock VerticalAlignment="Center" Margin="0,10,0,0" TextAlignment="Left" Width="auto"  TextWrapping="Wrap" Text="{Binding ID_breed, StringFormat=' {0}'}" HorizontalAlignment="Left"  />
-                            <TextBlock VerticalAlignment="top" Margin="0,10,10,10" FontStyle="Italic" TextAlignment="Right" Width="auto" TextWrapping="Wrap" Text="{Binding Species1.Name_species}" HorizontalAlignment="Right"  />
-                            <TextBlock VerticalAlignment="Center" Margin="0,10,0,0"    TextAlignment="Center" Width="150"  HorizontalAlignment="Center" Text="{Binding Name_breed}" FontWeight="Black" />
+                            <TextBlock VerticalAlignment="top" Margin="0,5,0,10" FontStyle="Italic" TextAlignment="Center" Width="auto" TextWrapping="Wrap" Text="{Binding Species1.Name_species}" HorizontalAlignment="Center"  />
+                            <TextBlock VerticalAlignment="Center" Margin="0,35,0,0"    TextAlignment="Center" Width="150"  HorizontalAlignment="Center" Text="{Binding Name_breed}" FontWeight="Black" />
+                            <Button x:Name="But_Delete_Breed" Click="But_Delete_Breed_Click" Height="25" Background="Transparent"  BorderThickness="0" Width="30" Style="{DynamicResource But_Defoult}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="10,0,0,10" >
+                                <Image Source="../Res/Cancel_But.png"/>
+                            </Button>
                         </Grid>
                     </Border>
                 </DataTemplate>
