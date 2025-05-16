@@ -5,34 +5,80 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AnimalShelter.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="576" d:DesignWidth="1020"
+      d:DesignHeight="576" d:DesignWidth="1020"  MinHeight="576" MinWidth="800"
       Title="Авторизация">
 
     <Grid>
-        <Image Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill"/>
-        <Grid VerticalAlignment="Center" Margin="20" HorizontalAlignment="Center" MinHeight="150" MinWidth="150">
-            
-            <Viewbox Stretch="Uniform" Width="Auto" Height="Auto">
-                <Image Source="/Res/BackgroundAuth.png" 
-               Stretch="Uniform" 
-               />
-            </Viewbox>
-
-        </Grid>
-        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,-135,220,0" Text="Логин"   Foreground="DarkGray" FontSize="15"   FontStyle="Oblique" FontWeight="DemiBold"  Height="30" Width="200" />
-        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" Margin="0,15,220,0" Text="Пароль" FontSize="15" Foreground="DarkGray" FontStyle="Oblique" FontWeight="DemiBold"  Height="31" Width="200" />
-        <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Top" Padding="0" Margin="0,130,125,0"  FontSize="20pt" Text="Авторизация" TextAlignment="Center"  Width="300" Background="Transparent" />
-
-        <TextBlock Text=" Введите логин.." HorizontalAlignment="Right" Padding="5,10,5,5"  VerticalAlignment="Center" Margin="0,-90,120,0" FontSize="16" Height="35" Width="300" Foreground="Gray" Name="txtHintLogin"/>
-        <TextBlock Text=" Введите пароль.." FontSize="16" HorizontalAlignment="Right" Padding="5,10,5,5" VerticalAlignment="Center" Height="35" Margin="0,60,120,0" Width="300" Foreground="Gray" x:Name="txtHintPassword"  Grid.Column="2" Grid.Row="0" />
-
-
-        <TextBox KeyDown="Input_KeyDown" x:Name="LoginTB" TextChanged="LoginTB_TextChanged" Background="Transparent" HorizontalAlignment="Right" Padding="5,10,5,5" VerticalAlignment="Center" Margin="0,-90,120,0" Text="" FontSize="16" Height="35" Width="300" />
-        <PasswordBox KeyDown="Input_KeyDown" x:Name="PasswordAuth" PasswordChanged="PasswordAuth_PasswordChanged" Background="Transparent" FontSize="16" HorizontalAlignment="Right" Padding="5,10,5,5" VerticalAlignment="Center" Height="35" Margin="0,60,120,0" Width="300"  />
-
-
-        <Border CornerRadius="10" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="450,220,0,0"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
-            <Button Name="ButAuth" Padding="5" Content="Вход" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButAuth_Click"  VerticalAlignment="Stretch" Height="30" Width="130"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Image Source="../res/background_clear.png" Grid.ColumnSpan="3" Grid.RowSpan="3" Stretch="Fill"/>
+        <Border  Grid.Column="1" CornerRadius="50" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  BorderThickness="5" BorderBrush="Transparent">
+            <Border.Background>
+                <VisualBrush>
+                    <VisualBrush.Visual>
+                        <Rectangle Width="200" Height="200" Fill="Gray"/>
+                    </VisualBrush.Visual>
+                </VisualBrush>
+            </Border.Background>
+            <Border.Effect>
+                <BlurEffect Radius="50"/>
+            </Border.Effect>
         </Border>
+        <Grid Grid.Row="1" Grid.Column="1"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="../res/CardAuth.png" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill"/>
+            <Grid Grid.Column="1" Margin="20 0 30 30" >
+
+
+
+                <Border CornerRadius="30" BorderThickness="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0,39,0,0"  Background="#fff" BorderBrush="#EB8E23">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Center"  VerticalAlignment="Top" Padding="0" Grid.Row="0" Margin="0,20,0,0"  FontSize="20pt" Text="Авторизация" TextAlignment="Center"  Width="300" Background="Transparent" />
+                        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="20 0 20 0">
+                            <TextBlock  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,0,0,0" Text="Логин"   Foreground="DarkGray" FontSize="15"   FontStyle="Oblique" FontWeight="DemiBold"  Height="30" Width="200" />
+                            <TextBlock Text=" Введите логин.."  HorizontalAlignment="Left" Padding="5,5,5,5"  VerticalAlignment="Center" Margin="0 -5 0 0" FontSize="16" Height="35" Width="300" Foreground="Gray" Name="txtHintLogin"/>
+                            <TextBox KeyDown="Input_KeyDown"  x:Name="LoginTB" TextChanged="LoginTB_TextChanged" Background="Transparent" HorizontalAlignment="Stretch" Padding="5,10,5,5" VerticalAlignment="Center" Margin="0,-40,0,0" Text="" FontSize="16" Height="35"  />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="20 0 20 0">
+                            <TextBlock  VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" Margin="0,0,0,0" Text="Пароль"   Foreground="DarkGray" FontSize="15"   FontStyle="Oblique" FontWeight="DemiBold"  Height="30" Width="200" />
+                            <TextBlock Text=" Введите пароль.." FontSize="16" HorizontalAlignment="Left" Padding="5,5,5,5" VerticalAlignment="Center" Height="35" Margin="0 -5 0 0" Width="300" Foreground="Gray" x:Name="txtHintPassword"  Grid.Column="2" Grid.Row="0" />
+                            <PasswordBox KeyDown="Input_KeyDown" x:Name="PasswordAuth" PasswordChanged="PasswordAuth_PasswordChanged" Background="Transparent" FontSize="16" HorizontalAlignment="Stretch" Padding="5,10,5,5" VerticalAlignment="Center" Margin="0,-40,0,0" Height="35"   />
+                        </StackPanel>
+                        <Border CornerRadius="10" Grid.Row="3" BorderThickness="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+                            <Button Name="ButAuth" Padding="5" Content="Вход" FontSize="18"  HorizontalAlignment="Stretch" Background="Transparent" BorderThickness="0" Click="ButAuth_Click"  VerticalAlignment="Stretch" Height="30" Width="130"/>
+                        </Border>
+
+                    </Grid>
+                </Border>
+
+                <Image Source="../res/DogsInLine.png" Stretch="Uniform" VerticalAlignment="Top" Margin="0 -49 0 0 " Width="390"/>
+
+            </Grid>
+            <Grid Grid.Column="0" >
+                <Image Source="../res/PawImage_Auth.png" Stretch="Uniform" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="200 0 0 0 "/>
+                <Image Source="../res/volunteer.png" Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 100 100 0 "/>
+
+            </Grid>
+        </Grid>
+
+
     </Grid>
 </Page>

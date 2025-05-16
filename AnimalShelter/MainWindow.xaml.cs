@@ -50,16 +50,12 @@ namespace AnimalShelter
             if (e.Content is AuthPage)
             {
                 MenuBar.Visibility = Visibility.Hidden;
-                this.Width = 1020;
-                this.Height = 576;
-                this.ResizeMode = ResizeMode.NoResize;
 
             }
             //if (page is Pages.AuthPage)
             //    ButReturn.Visibility = Visibility.Hidden;
             else {
                 MenuBar.Visibility= Visibility.Visible;
-                this.ResizeMode = ResizeMode.CanResize;
 
             }
             //ButReturn.Visibility = Visibility.Visible;
@@ -156,8 +152,10 @@ namespace AnimalShelter
         }
 
         private void Veterinary_examination_Click(object sender, RoutedEventArgs e)
+
         {
-            
+            train train= new train();
+            train.Show();
         }
 
         private void Medical_record_Click(object sender, RoutedEventArgs e) {

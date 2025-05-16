@@ -204,6 +204,9 @@
     <Compile Include="Pages\Source_of_receipt_Page.xaml.cs">
       <DependentUpon>Source_of_receipt_Page.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\train.xaml.cs">
+      <DependentUpon>train.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VolunteersPage.xaml.cs">
       <DependentUpon>VolunteersPage.xaml</DependentUpon>
     </Compile>
@@ -327,6 +330,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\train.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\VolunteersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -391,6 +398,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Res\volunteer.png" />
+    <Resource Include="Res\PawImage_Auth.png" />
+    <Resource Include="Res\CardAuth.png" />
+    <Resource Include="Res\Background_clear.png" />
     <Resource Include="Res\LogoutImage.png" />
     <Resource Include="Res\Add_But.png" />
     <Resource Include="Res\Search.png" />
