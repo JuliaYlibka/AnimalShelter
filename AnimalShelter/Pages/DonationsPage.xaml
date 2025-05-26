@@ -144,7 +144,6 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-
                 <DataGridTemplateColumn Width="150" Header="Тип пожертвования">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

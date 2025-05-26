@@ -23,6 +23,7 @@ namespace AnimalShelter
         public int ID_breed { get; set; }
         public int Species { get; set; }
         public string Name_breed { get; set; }
+        
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Animal> Animal { get; set; }

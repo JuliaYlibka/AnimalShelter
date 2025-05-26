@@ -1,18 +1,19 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Xceed.Words.NET;
+using static Xceed.Words.NET.DocX;
+using DocumentFormat.OpenXml.Math;
 
 namespace AnimalShelter.Pages
 {
@@ -213,6 +214,44 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(ex.Message.ToString());
             }
 
+        }
+
+        private void But_Path_contract_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "All Files (*.*)|*.*"; 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _current_adoption.Contract = openFileDialog.FileName;
+
+                MessageBox.Show("Путь к файлу контракта успешно сохранен:\n" + _current_adoption.Contract);
+            }
+
+        }
+
+        private void But_Open_contract_Click(object sender, RoutedEventArgs e)
+        {
+            if(_current_adoption.Contract!= null) 
+            OpenFile(_current_adoption.Contract);
+
+        }
+
+        private void But_Generate_contract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void OpenFile(string filePath)
+        {
+            if (!string.IsNullOrWhiteSpace(filePath) && System.IO.File.Exists(filePath))
+            {
+                // Создаем новый процесс для открытия файла
+                Process.Start(new ProcessStartInfo(filePath) { UseShellExecute = true });
+            }
+            else
+            {
+                MessageBox.Show("Файл не найден или путь к файлу неверный.");
+            }
         }
     }
 }

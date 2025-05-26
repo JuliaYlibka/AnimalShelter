@@ -67,10 +67,10 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <TextBlock  Grid.Row="0" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Контракт: "/>
-            <Button x:Name="But_Generate_contract" Content="Генерировать" HorizontalAlignment="Right" Grid.Row="1" Padding="5"/>
-            <Button x:Name="But_Open_contract" Content="Открыть" HorizontalAlignment="Center" Grid.Row="1" Padding="5"/>
-            <Button x:Name="But_Path_contract" Content="Выбрать файл" HorizontalAlignment="Left" Width="auto" Grid.Row="1" Padding="5"/>
+            <TextBlock  Grid.Row="0" Width="auto" Height="auto" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Договор: "/>
+            <Button x:Name="But_Generate_contract" Content="Генерировать" HorizontalAlignment="Right" Grid.Row="1" Padding="5" Click="But_Generate_contract_Click"/>
+            <Button x:Name="But_Open_contract" Content="Открыть" HorizontalAlignment="Center" Grid.Row="1" Padding="5" Click="But_Open_contract_Click"/>
+            <Button x:Name="But_Path_contract" Content="Выбрать файл" HorizontalAlignment="Left" Width="auto" Grid.Row="1" Padding="5" Click="But_Path_contract_Click"/>
             <Border  CornerRadius="10" BorderThickness="2" Grid.Row="4"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A" Margin="0 0 0 0">
                 <Button Name="But_Add"  Content="Сохранить" Width="200" Click="But_Add_Click" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  />
             </Border>
