@@ -34,6 +34,7 @@ namespace AnimalShelter.Pages
             CB_Gender.ItemsSource = All_genders;
             DP_Date_of_birth.SelectedDate = null;
             DP_Date_of_hire.SelectedDate = null;
+            CB_Active.IsChecked = true;
 
             if (_current_volunteer.Date_of_hire == DateTime.MinValue)
             {
@@ -55,6 +56,7 @@ namespace AnimalShelter.Pages
                 TB_Password.Visibility = Visibility.Hidden;
                 Text_Password.Visibility = Visibility.Hidden;
                 TB_Login.IsReadOnly = true;
+                CB_Active.IsChecked = Selected_volunteer.Active;
             }
 
             DataContext = _current_volunteer;
@@ -143,7 +145,14 @@ namespace AnimalShelter.Pages
             else _current_volunteer.Password = _selected_volunteer.Password;
 
 
-
+            if(CB_Active.IsChecked == true)
+            {
+                _current_volunteer.Active= true;
+            }
+            if(CB_Active.IsChecked==false)
+            {
+                _current_volunteer.Active = false;
+            }
             _current_volunteer.Patronymic = TB_Patronymic.Text.Trim();
 
             // Проверка на наличие ошибок

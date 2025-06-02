@@ -35,7 +35,15 @@ namespace AnimalShelter
         public string Login { get; set; }
         public string Password { get; set; }
         public bool Active { get; set; }
-    
+
+        public string ActiveText 
+        {
+            get
+            {
+                return Active ? "Активен" : "Не активен";
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Animal> Animal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

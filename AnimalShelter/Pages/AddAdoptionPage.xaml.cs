@@ -9,6 +9,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Microsoft.Office.Interop.Word;
+using System.Windows.Xps.Packaging;
+using System.IO;
+using System.Windows.Xps;
 
 namespace AnimalShelter.Pages
 {
@@ -27,6 +30,8 @@ namespace AnimalShelter.Pages
         public AddAdoptionPage(Adoption Selected_adoption)
         {
             InitializeComponent();
+            But_Generate_contract.IsEnabled = true;
+
             adoptions = AnimalShelterEntities.GetContext().Adoption.ToList();
             owners = AnimalShelterEntities.GetContext().New_owner.ToList();
             
@@ -53,6 +58,7 @@ namespace AnimalShelter.Pages
             DataContext = _current_adoption;
             this.Loaded += Page_Loaded;
             _isLoading = false;
+            ShowDocument();
 
 
         }
@@ -234,8 +240,15 @@ namespace AnimalShelter.Pages
 
         private void But_Generate_contract_Click(object sender, RoutedEventArgs e)
         {
-            
-            string fileName = "C:\\Users\\acer\\Desktop\\AnimalsShelterDocuments\\Сгенерированный договор усыновления" + _current_adoption.Animal1.ID_animal +"_"+ _current_adoption.Animal1.Nickname + ".docx";
+            But_Generate_contract.IsEnabled = false;
+            var currentOwner = _current_adoption.New_owner1;
+            string fileName = "C:\\Users\\acer\\Desktop\\AnimalsShelterDocuments\\Сгенерированный договор усыновления_ID_" + _current_adoption.ID_adoption + "_" + _current_adoption.Animal1.Nickname + ".docx";
+            // Проверяем, открыт ли файл, и закрываем его, если да
+            if (IsFileOpen(fileName))
+            {
+                // Закрываем файл
+                CloseFile(fileName);
+            }
             Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
 
             // Создаем новый документ
@@ -251,13 +264,13 @@ namespace AnimalShelter.Pages
 
             // Добавляем дату
             Paragraph dateDoc = doc.Content.Paragraphs.Add();
-            dateDoc.Alignment = WdParagraphAlignment.wdAlignParagraphRight;
-            dateDoc.LineSpacingRule = WdLineSpacing.wdLineSpaceSingle;
 
             // Получаем текущую дату
-           
+
             string dateText = $"\"{_current_adoption.Date_of_adoption:dd}\" {_current_adoption.Date_of_adoption:MM} {_current_adoption.Date_of_adoption:yyyy} г.";
             dateDoc.Range.Text = dateText;
+            dateDoc.Alignment = WdParagraphAlignment.wdAlignParagraphRight;
+
             dateDoc.Range.InsertParagraphAfter();
 
             // Добавляем информацию о приюте
@@ -266,6 +279,30 @@ namespace AnimalShelter.Pages
             AddParagraph(doc, "и:", WdParagraphAlignment.wdAlignParagraphJustify);
 
 
+            //Добавляем информацию о новом владельце
+            string fio = currentOwner.Surname + " " + currentOwner.First_name + " " + currentOwner.Patronymic;
+
+            //Для физических лиц:
+            if (_current_adoption.New_owner1.Contractor_type == 1)
+            {
+                AddParagraph(doc, "Для физических лиц:", WdParagraphAlignment.wdAlignParagraphJustify);
+
+                AddParagraph(doc, "ФИО: " + fio + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "Адрес: " + currentOwner.Address + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "Телефон: " + currentOwner.Phone_number + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "Паспортные данные: _________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "Адрес, по которому будет проживать животное: _________________________________________________________________________________________________________,", WdParagraphAlignment.wdAlignParagraphJustify);
+            }
+            //Для юридических лиц:
+            else
+            {
+                AddParagraph(doc, "Для юридических лиц:", WdParagraphAlignment.wdAlignParagraphJustify);
+
+                AddParagraph(doc, "Организация ________________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "Адрес: " + currentOwner.Address + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "Телефон: " + currentOwner.Phone_number + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "В лице руководителя и (ФИО): " + fio + ",", WdParagraphAlignment.wdAlignParagraphJustify);
+            }
 
 
 
@@ -297,6 +334,80 @@ namespace AnimalShelter.Pages
             AddParagraph(doc, "7. Получатель обязуется в случае невозможности дальнейшего содержания животного, ни при каких обстоятельствах не выбрасывать животное, не усыплять, а в случае передачи новым владельцам известить Приют для переоформления договора;", WdParagraphAlignment.wdAlignParagraphLeft);
             AddParagraph(doc, "8. Прекращение настоящего Договора не освобождает Стороны от ответственности за его нарушение, а также от выполнения обязательств, возникших до момента такого прекращения.", WdParagraphAlignment.wdAlignParagraphLeft);
 
+            //Данные о животном:
+            var _currentAnimal = _current_adoption.Animal1;
+            AddParagraph(doc, "Данные о животном: ", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Вид животного: " + _currentAnimal.Species1.Name_species + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+            if( _currentAnimal.Breed!=null)
+            AddParagraph(doc, "Порода: " + _currentAnimal.Breed1.Name_breed + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Окрас:_____________________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Пол: " + _currentAnimal.Gender1.Name_gender + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Особые приметы:____________________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Дата рождения(приблизительно): " + _currentAnimal.Date_of_birth.ToString("dd.MM.yyyy") + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Кличка(на момент заключения настоящего Договора): " + _currentAnimal.Nickname + ";", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Номер чипа(если есть): _____________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Клеймо / несмываемые метки(если есть):\n____________________________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Наличие ветеринарных показаний к кормлению: \n_______________________________________________________________________________________________________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "Особенности характера и особые условия содержания и ухода: \n________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________;", WdParagraphAlignment.wdAlignParagraphJustify);
+
+            
+            Paragraph para = doc.Content.Paragraphs.Add();
+            para.Range.InsertBreak(WdBreakType.wdPageBreak);
+
+            AddParagraph(doc, "Передал в собственность: ", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "(Название организации)", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "(Адрес)", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "(Телефон)", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "(ФИО руководителя)", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "(ФИО исполнителя)", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "(Подпись)", WdParagraphAlignment.wdAlignParagraphCenter);
+
+
+            //Для физических лиц:
+            if (_current_adoption.New_owner1.Contractor_type == 1)
+            {
+                AddParagraph(doc, "Для физических лиц: ", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(ФИО)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Адрес)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Телефон)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Паспортные данные)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Подпись)", WdParagraphAlignment.wdAlignParagraphCenter);
+
+
+            }
+            //Для юридических лиц:
+            else
+            {
+                AddParagraph(doc, "Для юридических лиц: ", WdParagraphAlignment.wdAlignParagraphJustify);
+
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Название организации)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Адрес)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Телефон)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(ФИО руководителя)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(ФИО исполнителя)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "___________________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+                AddParagraph(doc, "(Подпись)", WdParagraphAlignment.wdAlignParagraphCenter);
+                AddParagraph(doc, "М.П.", WdParagraphAlignment.wdAlignParagraphCenter);
+
+            }
+
+
             // Сохраняем документ
             object fileNameObj = fileName;
             doc.SaveAs2(ref fileNameObj);
@@ -305,8 +416,34 @@ namespace AnimalShelter.Pages
 
             Console.WriteLine("Документ успешно создан!");
             _current_adoption.Contract = fileName;
+            But_Generate_contract.IsEnabled = true;
             Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
         }
+        //private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
+        //{
+        //    Microsoft.Office.Interop.Word.Application wordApplication = new Microsoft.Office.Interop.Word.Application();
+        //    Document doc = null;
+
+        //    try
+        //    {
+        //        doc = wordApplication.Documents.Open(wordDocName);
+        //        doc.SaveAs2(xpsDocName, WdSaveFormat.wdFormatXPS);
+        //        return new XpsDocument(xpsDocName, FileAccess.Read);
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        MessageBox.Show($"Ошибка при конвертации: {exp.Message}");
+        //    }
+        //    finally
+        //    {
+        //        if (doc != null)
+        //        {
+        //            doc.Close(false);
+        //        }
+        //        wordApplication.Quit();
+        //    }
+        //    return null;
+        //}
 
         // Метод для добавления абзаца
         static void AddParagraph(Document doc, string text, WdParagraphAlignment alignment)
@@ -318,7 +455,43 @@ namespace AnimalShelter.Pages
             paragraph.Range.InsertParagraphAfter();
         
         }
-        private void OpenFile(string filePath)
+        private bool IsFileOpen(string fileName)
+        {
+            try
+            {
+                // Получаем открытую версию Word
+                var wordApp = (Microsoft.Office.Interop.Word.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Word.Application");
+
+                // Проверяем открытые документы
+                foreach (Document doc in wordApp.Documents)
+                {
+                    if (doc.FullName.Equals(fileName, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return true; // Файл открыт
+                    }
+                }
+            }
+            catch
+            {
+                // Word не запущен
+            }
+            return false; // Файл не открыт
+        }
+
+        private void CloseFile(string fileName)
+        {
+            var wordApp = (Microsoft.Office.Interop.Word.Application)System.Runtime.InteropServices.Marshal.GetActiveObject("Word.Application");
+            foreach (Document doc in wordApp.Documents)
+            {
+                if (doc.FullName.Equals(fileName, StringComparison.OrdinalIgnoreCase))
+                {
+                    doc.Close(WdSaveOptions.wdSaveChanges);
+                    break; // Закрываем и выходим
+                }
+            }
+        }
+
+            private void OpenFile(string filePath)
         {
             if (!string.IsNullOrWhiteSpace(filePath) && System.IO.File.Exists(filePath))
             {
@@ -330,5 +503,76 @@ namespace AnimalShelter.Pages
                 MessageBox.Show("Файл не найден или путь к файлу неверный.");
             }
         }
+        private void ShowDocument()
+        {
+            string fileName = _current_adoption.Contract;
+            if (string.IsNullOrEmpty(fileName) || !File.Exists(fileName))
+            {
+                MessageBox.Show("Файл документа не найден.");
+                return;
+            }
+
+            // Определите расширение файла
+            string extension = Path.GetExtension(fileName).ToLower();
+            string xpsFileName = fileName.Replace(extension, ".xps");
+
+            // Закрытие открытого файла, если он уже открыт
+            if (IsFileOpen(fileName))
+            {
+                CloseFile(fileName);
+            }
+
+            // Конвертация документа
+            try
+            {
+                if (extension == ".docx")
+                {
+                    ConvertWordDocToXPSDoc(fileName, xpsFileName);
+                }
+                
+
+                // Открытие XPS-документа в DocumentViewer
+                using (XpsDocument xpsDoc = new XpsDocument(xpsFileName, FileAccess.Read))
+                {
+                    var fixedDocSeq = xpsDoc.GetFixedDocumentSequence();
+                    DV_Contract.Document = fixedDocSeq; // Устанавливаем документ в DocumentViewer
+                }
+                DV_Contract.Visibility = Visibility.Visible;
+            }
+            catch (Exception ex)
+            {
+                DV_Contract.Visibility = Visibility.Hidden;
+
+            }
+        }
+
+
+
+        private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
+        {
+            Microsoft.Office.Interop.Word.Application wordApplication = new Microsoft.Office.Interop.Word.Application();
+            Document doc = null;
+
+            try
+            {
+                doc = wordApplication.Documents.Open(wordDocName);
+                doc.SaveAs2(xpsDocName, WdSaveFormat.wdFormatXPS);
+                return new XpsDocument(xpsDocName, System.IO.FileAccess.Read);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show($"Ошибка при конвертации: {exp.Message}");
+            }
+            finally
+            {
+                if (doc != null)
+                {
+                    doc.Close(false);
+                }
+                wordApplication.Quit();
+            }
+            return null;
+        }
+
     }
 }

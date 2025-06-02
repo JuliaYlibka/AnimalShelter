@@ -28,7 +28,7 @@ namespace AnimalShelter.Pages
         private bool za;
         private bool _only_M;
         private bool _only_W;
-
+        private bool ActiveVolunteer;
         public VolunteersPage()
         {
             InitializeComponent(); 
@@ -167,7 +167,12 @@ namespace AnimalShelter.Pages
 
             TB_Search.Clear();
             az = false;
+            
             za = false;
+            CB_Active.IsChecked = false;
+            ActiveVolunteer = false;
+
+
             Update();
         }
         private void Update()
@@ -178,7 +183,9 @@ namespace AnimalShelter.Pages
                 volunteers = volunteers.Where(x => x.Gender == 1).ToList();
             else if (_only_M)
                 volunteers = volunteers.Where(x => x.Gender == 2).ToList();
-
+            if(ActiveVolunteer)
+                volunteers = volunteers.Where(x => x.Active == true).ToList();
+            
             // Поиск по введенному тексту
             if (!string.IsNullOrWhiteSpace(TB_Search.Text))
             {
@@ -226,6 +233,21 @@ namespace AnimalShelter.Pages
             But_M.Background = PassiveBut;
             But_All.Background = ActiveBut;
             _only_M = false; _only_W = false;
+            Update();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            ActiveVolunteer = true;
+
+            Update();
+
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ActiveVolunteer = false;
+
             Update();
         }
     }

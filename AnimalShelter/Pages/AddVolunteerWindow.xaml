@@ -32,6 +32,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Общая информация" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Black" />
             <TextBlock Text="Фамилия:" Grid.Row="1" VerticalAlignment="Center"/>
@@ -39,11 +40,14 @@
             <TextBlock Text="Отчество:" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBlock Text="Пол:" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBlock Text="Дата рождения:" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBlock Text="Активен:" Grid.Row="6" VerticalAlignment="Center"/>
+            
             <TextBox x:Name="TB_Surname" Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <TextBox x:Name="TB_First_name" Text="{Binding First_name}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <TextBox  x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <ComboBox Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3" Template="{DynamicResource ComboBoxBase}"/>
             <DatePicker Name="DP_Date_of_birth" SelectedDate="{Binding Date_of_birth}" DisplayDate="01.01.2024" VerticalAlignment="Center" Padding="0,5,0,0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,0,10,10"/>
+            <CheckBox x:Name="CB_Active" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
 
         <Border  Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="15" BorderThickness="5" BorderBrush="Transparent">
