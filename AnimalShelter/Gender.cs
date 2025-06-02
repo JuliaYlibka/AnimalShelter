@@ -19,6 +19,7 @@ namespace AnimalShelter
         {
             this.Animal = new HashSet<Animal>();
             this.Employee = new HashSet<Employee>();
+            this.New_owner = new HashSet<New_owner>();
             this.Volunteer = new HashSet<Volunteer>();
         }
     
@@ -29,6 +30,8 @@ namespace AnimalShelter
         public virtual ICollection<Animal> Animal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Employee> Employee { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<New_owner> New_owner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Volunteer> Volunteer { get; set; }
     }

@@ -32,6 +32,5 @@ namespace AnimalShelter
         public virtual Contractor_type Contractor_type1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donation> Donation { get; set; }
-
     }
 }

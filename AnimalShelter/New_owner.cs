@@ -29,61 +29,13 @@ namespace AnimalShelter
         public string Phone_number { get; set; }
         public string Email { get; set; }
         public int Housing_type { get; set; }
+        public int Gender { get; set; }
+        public int Contractor_type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adoption> Adoption { get; set; }
+        public virtual Contractor_type Contractor_type1 { get; set; }
+        public virtual Gender Gender1 { get; set; }
         public virtual Housing_type Housing_type1 { get; set; }
-        public int Age
-        {
-            get
-            {
-                var today = DateTime.Today;
-                int age = today.Year - Date_of_birth.Year;
-                if (Date_of_birth.Date > today.AddYears(-age)) age--;
-                return age;
-            }
-        }
-        public string AgeString
-        {
-            get
-            {
-                var today = DateTime.Today;
-                int months = (today.Year - Date_of_birth.Year) * 12 + today.Month - Date_of_birth.Month;
-
-                if (months < 12)
-                {
-                    return $"{months} {(months % 10 == 1 && months % 100 != 11 ? "месяц" : months % 10 >= 2 && months % 10 <= 4 && (months % 100 < 10 || months % 100 >= 20) ? "месяца" : "месяцев")}";
-                }
-                else
-                {
-                    int age = Age;
-                    if (age % 10 == 1 && age % 100 != 11)
-                    {
-                        return $"{age} год";
-                    }
-                    else if (age % 10 >= 2 && age % 10 <= 4 && (age % 100 < 10 || age % 100 >= 20))
-                    {
-                        return $"{age} года";
-                    }
-                    else
-                    {
-                        return $"{age} лет";
-                    }
-                }
-            }
-
-        }
-
-        public string FullNameWithInitials
-        {
-            get
-            {
-                string firstInitial = !string.IsNullOrEmpty(First_name) ? First_name.Substring(0, 1) : string.Empty;
-                string patronymicInitial = !string.IsNullOrEmpty(Patronymic) ? Patronymic.Substring(0, 1) : string.Empty;
-                string initials = $"{firstInitial}. {patronymicInitial}.";
-                return $"{Surname} {initials}".Trim();
-            }
-            set { }
-        }
     }
 }

@@ -14,6 +14,12 @@ namespace AnimalShelter
     
     public partial class Medical_record
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Medical_record()
+        {
+            this.Veterinary_examination = new HashSet<Veterinary_examination>();
+        }
+    
         public int ID_medical_record { get; set; }
         public int Animal { get; set; }
         public System.DateTime Last_update_date { get; set; }
@@ -27,5 +33,7 @@ namespace AnimalShelter
         public string Care_recommendation { get; set; }
     
         public virtual Animal Animal1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Veterinary_examination> Veterinary_examination { get; set; }
     }
 }

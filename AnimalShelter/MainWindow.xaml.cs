@@ -154,8 +154,6 @@ namespace AnimalShelter
         private void Veterinary_examination_Click(object sender, RoutedEventArgs e)
 
         {
-            train train= new train();
-            train.Show();
         }
 
         private void Medical_record_Click(object sender, RoutedEventArgs e) {

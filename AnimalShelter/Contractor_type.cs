@@ -18,6 +18,7 @@ namespace AnimalShelter
         public Contractor_type()
         {
             this.Contractor = new HashSet<Contractor>();
+            this.New_owner = new HashSet<New_owner>();
         }
     
         public int ID_contractor_type { get; set; }
@@ -25,5 +26,7 @@ namespace AnimalShelter
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contractor> Contractor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<New_owner> New_owner { get; set; }
     }
 }

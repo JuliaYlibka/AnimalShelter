@@ -34,6 +34,7 @@ namespace AnimalShelter
         public System.DateTime Date_of_hire { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Animal> Animal { get; set; }
@@ -42,7 +43,6 @@ namespace AnimalShelter
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donation> Donation { get; set; }
         public virtual Gender Gender1 { get; set; }
-
         // Метод для получения полного имени в формате "Фамилия И.О."
         public string FullNameWithInitials
         {
