@@ -48,7 +48,6 @@ namespace AnimalShelter.Pages
                 {
                     MessageBox.Show($"Добро пожаловать, {employee.First_name} {employee.Patronymic}!");
                     UserSession.UserPosition = employee.Position1.Name_position; 
-                        //TODO: открытие разных страниц вместо животных для разных ролей.
                         if(UserSession.UserPosition== "Ветеринар" || UserSession.UserPosition == "Ассистент ветеринара") NavigationService?.Navigate(new MedicalRecordsPage());
                         else NavigationService?.Navigate(new AnimalsPage());
                     return;

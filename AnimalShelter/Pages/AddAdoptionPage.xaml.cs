@@ -8,19 +8,14 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Xceed.Words.NET;
-using static Xceed.Words.NET.DocX;
-using DocumentFormat.OpenXml.Math;
+using Microsoft.Office.Interop.Word;
 
 namespace AnimalShelter.Pages
 {
     /// <summary>
     /// Логика взаимодействия для AddAdoptionPage.xaml
     /// </summary>
-    public partial class AddAdoptionPage : Page
+    public partial class AddAdoptionPage : System.Windows.Controls.Page
     {
         private bool _isLoading = true; // Flag to prevent opening on load
         List<Adoption> adoptions = AnimalShelterEntities.GetContext().Adoption.ToList();
@@ -239,7 +234,89 @@ namespace AnimalShelter.Pages
 
         private void But_Generate_contract_Click(object sender, RoutedEventArgs e)
         {
+            
+            string fileName = "C:\\Users\\acer\\Desktop\\AnimalsShelterDocuments\\Сгенерированный договор усыновления" + _current_adoption.Animal1.ID_animal +"_"+ _current_adoption.Animal1.Nickname + ".docx";
+            Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
 
+            // Создаем новый документ
+            Document doc = wordApp.Documents.Add();
+            doc.Content.Font.Name = "Courier New"; // Устанавливаем шрифт
+            doc.Content.Font.Size = 10; // Размер шрифта
+
+            // Добавляем абзацы с заголовком и датой
+            AddParagraph(doc, "ДОГОВОР N ______", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "ПЕРЕДАЧИ ЖИВОТНОГО ИЗ ПРИЮТА ДЛЯ", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "ЖИВОТНЫХ В СОБСТВЕННОСТЬ", WdParagraphAlignment.wdAlignParagraphCenter);
+            AddParagraph(doc, "(ЗАПОЛНЯЕТСЯ НА КАЖДОЕ ЖИВОТНОЕ)", WdParagraphAlignment.wdAlignParagraphCenter);
+
+            // Добавляем дату
+            Paragraph dateDoc = doc.Content.Paragraphs.Add();
+            dateDoc.Alignment = WdParagraphAlignment.wdAlignParagraphRight;
+            dateDoc.LineSpacingRule = WdLineSpacing.wdLineSpaceSingle;
+
+            // Получаем текущую дату
+           
+            string dateText = $"\"{_current_adoption.Date_of_adoption:dd}\" {_current_adoption.Date_of_adoption:MM} {_current_adoption.Date_of_adoption:yyyy} г.";
+            dateDoc.Range.Text = dateText;
+            dateDoc.Range.InsertParagraphAfter();
+
+            // Добавляем информацию о приюте
+            AddParagraph(doc, "Приют _____________________________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "в лице руководителя _______________________________________________________", WdParagraphAlignment.wdAlignParagraphJustify);
+            AddParagraph(doc, "и:", WdParagraphAlignment.wdAlignParagraphJustify);
+
+
+
+
+
+
+
+
+
+
+
+            AddParagraph(doc, "именуемый(ая) в дальнейшем \"Получатель\", с другой стороны, договорились о нижеследующем:", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "1. Приют безвозмездно передает в собственность Получателю животное.", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "2. Вместе с животным Приют передает Получателю ветеринарный паспорт животного.", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "3. К договору прилагаются фотографии передаваемого животного, которые содержатся в Приложении 1 к настоящему Договору и являются его неотъемлемой частью.", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4. Получатель обязуется:", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4.1. Нести все расходы по содержанию животного (включая, помимо прочего, расходы на ветеринарное обслуживание и, при необходимости, лечение животного);", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4.2. Обеспечить животному условия содержания, соответствующие санитарным и ветеринарным требованиям, законодательству и особенностям данного животного (в том числе особенностям его здоровья), включая:", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "A. Ежедневное правильное питание;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "B. Круглосуточный доступ животного к воде;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "C. Выгул не менее 1 (одного) раза в сутки, физическую и умственную активность в объеме, необходимом животному.", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4.3. Не оставлять животное без ухода, присмотра и попечения на срок более одних суток;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4.4. По требованию Приюта направлять Приюту фотографии и видео животного;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4.5. Не допускать жестокого обращения с животным;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "4.6. Возвратить животное Приюту в случае отказа от настоящего Договора.", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "5. Приют обязуется:", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "5.1. Сообщить Получателю известные Приюту сведения о животном, необходимые для его содержания и ухода за ним, в том числе состояние здоровья животного, особенности его содержания, характера и поведения, информацию о видах и сроках проведения необходимой вакцинации животного и обработках против паразитов;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "5.2. По просьбе Получателя безвозмездно консультировать получателя по вопросам содержания и воспитания животного;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "5.3. Принять животное от Получателя в случае отказа Получателем от настоящего Договора.", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "6. Во всех случаях неисполнения обязательств по настоящему Договору Стороны несут ответственность в соответствии с законодательством Российской Федерации;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "7. Получатель обязуется в случае невозможности дальнейшего содержания животного, ни при каких обстоятельствах не выбрасывать животное, не усыплять, а в случае передачи новым владельцам известить Приют для переоформления договора;", WdParagraphAlignment.wdAlignParagraphLeft);
+            AddParagraph(doc, "8. Прекращение настоящего Договора не освобождает Стороны от ответственности за его нарушение, а также от выполнения обязательств, возникших до момента такого прекращения.", WdParagraphAlignment.wdAlignParagraphLeft);
+
+            // Сохраняем документ
+            object fileNameObj = fileName;
+            doc.SaveAs2(ref fileNameObj);
+            doc.Close();
+            wordApp.Quit();
+
+            Console.WriteLine("Документ успешно создан!");
+            _current_adoption.Contract = fileName;
+            Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
+        }
+
+        // Метод для добавления абзаца
+        static void AddParagraph(Document doc, string text, WdParagraphAlignment alignment)
+        {
+            Paragraph paragraph = doc.Content.Paragraphs.Add();
+            paragraph.Range.Text = text;
+            paragraph.Alignment = alignment;
+            paragraph.LineSpacingRule = WdLineSpacing.wdLineSpaceSingle;
+            paragraph.Range.InsertParagraphAfter();
+        
         }
         private void OpenFile(string filePath)
         {
