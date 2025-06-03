@@ -21,6 +21,7 @@ namespace AnimalShelter
         public string Conclusion { get; set; }
         public string Recommendation { get; set; }
     
+        public virtual Employee Employee { get; set; }
         public virtual Medical_record Medical_record1 { get; set; }
     }
 }

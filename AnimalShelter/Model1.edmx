@@ -16,6 +16,7 @@
           <Property Name="Contract" Type="varchar" MaxLength="255" />
           <Property Name="Adoption_status" Type="int" Nullable="false" />
           <Property Name="Comment" Type="text" />
+          <Property Name="ContractPDF" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Adoption_status">
           <Key>
@@ -546,6 +547,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Veterinary_examination_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Veterinary_examination" Type="Self.Veterinary_examination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_employee" />
+            </Principal>
+            <Dependent Role="Veterinary_examination">
+              <PropertyRef Name="Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Veterinary_examination_Medical_record">
           <End Role="Medical_record" Type="Self.Medical_record" Multiplicity="1" />
           <End Role="Veterinary_examination" Type="Self.Veterinary_examination" Multiplicity="*" />
@@ -694,6 +707,10 @@
             <End Role="Housing_type" EntitySet="Housing_type" />
             <End Role="New_owner" EntitySet="New_owner" />
           </AssociationSet>
+          <AssociationSet Name="FK_Veterinary_examination_Employee" Association="Self.FK_Veterinary_examination_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Veterinary_examination" EntitySet="Veterinary_examination" />
+          </AssociationSet>
           <AssociationSet Name="FK_Veterinary_examination_Medical_record" Association="Self.FK_Veterinary_examination_Medical_record">
             <End Role="Medical_record" EntitySet="Medical_record" />
             <End Role="Veterinary_examination" EntitySet="Veterinary_examination" />
@@ -719,6 +736,7 @@
           <Property Name="Contract" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Adoption_status" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ContractPDF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Adoption_status1" Relationship="Self.FK_Adoption_Adoption_status" FromRole="Adoption" ToRole="Adoption_status" />
           <NavigationProperty Name="Animal1" Relationship="Self.FK_Adoption_Animal" FromRole="Adoption" ToRole="Animal" />
           <NavigationProperty Name="New_owner1" Relationship="Self.FK_Adoption_New_owner" FromRole="Adoption" ToRole="New_owner" />
@@ -868,6 +886,7 @@
           <NavigationProperty Name="Care_log" Relationship="Self.FK_Care_log_Employee" FromRole="Employee" ToRole="Care_log" />
           <NavigationProperty Name="Gender1" Relationship="Self.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
           <NavigationProperty Name="Position1" Relationship="Self.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="Veterinary_examination" Relationship="Self.FK_Veterinary_examination_Employee" FromRole="Employee" ToRole="Veterinary_examination" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -979,6 +998,7 @@
           <Property Name="Veterinarian" Type="Int32" Nullable="false" />
           <Property Name="Conclusion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Recommendation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Veterinary_examination_Employee" FromRole="Veterinary_examination" ToRole="Employee" />
           <NavigationProperty Name="Medical_record1" Relationship="Self.FK_Veterinary_examination_Medical_record" FromRole="Veterinary_examination" ToRole="Medical_record" />
         </EntityType>
         <EntityType Name="Volunteer">
@@ -1279,6 +1299,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Veterinary_examination_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Veterinary_examination" Type="Self.Veterinary_examination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID_employee" />
+            </Principal>
+            <Dependent Role="Veterinary_examination">
+              <PropertyRef Name="Veterinarian" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_New_owner_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="New_owner" Type="Self.New_owner" Multiplicity="*" />
@@ -1443,6 +1475,10 @@
             <End Role="Position" EntitySet="Position" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
+          <AssociationSet Name="FK_Veterinary_examination_Employee" Association="Self.FK_Veterinary_examination_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Veterinary_examination" EntitySet="Veterinary_examination" />
+          </AssociationSet>
           <AssociationSet Name="FK_New_owner_Gender" Association="Self.FK_New_owner_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="New_owner" EntitySet="New_owner" />
@@ -1476,6 +1512,7 @@
                 <ScalarProperty Name="Contract" ColumnName="Contract" />
                 <ScalarProperty Name="Adoption_status" ColumnName="Adoption_status" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ContractPDF" ColumnName="ContractPDF" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

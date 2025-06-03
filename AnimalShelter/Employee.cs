@@ -18,6 +18,7 @@ namespace AnimalShelter
         public Employee()
         {
             this.Care_log = new HashSet<Care_log>();
+            this.Veterinary_examination = new HashSet<Veterinary_examination>();
         }
     
         public int ID_employee { get; set; }
@@ -38,44 +39,7 @@ namespace AnimalShelter
         public virtual ICollection<Care_log> Care_log { get; set; }
         public virtual Gender Gender1 { get; set; }
         public virtual Position Position1 { get; set; }
-        public int Age
-        {
-            get
-            {
-                var today = DateTime.Today;
-                int age = today.Year - Date_of_birth.Year;
-                if (Date_of_birth.Date > today.AddYears(-age)) age--;
-                return age;
-            }
-        }
-        public string AgeString
-        {
-            get
-            {
-                var today = DateTime.Today;
-                int months = (today.Year - Date_of_birth.Year) * 12 + today.Month - Date_of_birth.Month;
-
-                if (months < 12)
-                {
-                    return $"{months} {(months % 10 == 1 && months % 100 != 11 ? "месяц" : months % 10 >= 2 && months % 10 <= 4 && (months % 100 < 10 || months % 100 >= 20) ? "месяца" : "месяцев")}";
-                }
-                else
-                {
-                    int age = Age;
-                    if (age % 10 == 1 && age % 100 != 11)
-                    {
-                        return $"{age} год";
-                    }
-                    else if (age % 10 >= 2 && age % 10 <= 4 && (age % 100 < 10 || age % 100 >= 20))
-                    {
-                        return $"{age} года";
-                    }
-                    else
-                    {
-                        return $"{age} лет";
-                    }
-                }
-            }
-        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Veterinary_examination> Veterinary_examination { get; set; }
     }
 }

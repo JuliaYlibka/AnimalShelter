@@ -21,6 +21,7 @@ namespace AnimalShelter
         public string Contract { get; set; }
         public int Adoption_status { get; set; }
         public string Comment { get; set; }
+        public string ContractPDF { get; set; }
     
         public virtual Adoption_status Adoption_status1 { get; set; }
         public virtual Animal Animal1 { get; set; }

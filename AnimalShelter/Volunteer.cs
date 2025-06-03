@@ -35,15 +35,7 @@ namespace AnimalShelter
         public string Login { get; set; }
         public string Password { get; set; }
         public bool Active { get; set; }
-
-        public string ActiveText 
-        {
-            get
-            {
-                return Active ? "Активен" : "Не активен";
-            }
-        }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Animal> Animal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -51,56 +43,5 @@ namespace AnimalShelter
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Donation> Donation { get; set; }
         public virtual Gender Gender1 { get; set; }
-        // Метод для получения полного имени в формате "Фамилия И.О."
-        public string FullNameWithInitials
-        {
-            get
-            {
-                string firstInitial = !string.IsNullOrEmpty(First_name) ? First_name.Substring(0, 1) : string.Empty;
-                string patronymicInitial = !string.IsNullOrEmpty(Patronymic) ? Patronymic.Substring(0, 1) : string.Empty;
-                string initials = $"{firstInitial}. {patronymicInitial}.";
-                return $"{Surname} {initials}".Trim();
-            }
-            set { }
-        }
-        public int Age
-        {
-            get
-            {
-                var today = DateTime.Today;
-                int age = today.Year - Date_of_birth.Year;
-                if (Date_of_birth.Date > today.AddYears(-age)) age--;
-                return age;
-            }
-        }
-        public string VolunteerAgeString
-        {
-            get
-            {
-                var today = DateTime.Today;
-                int months = (today.Year - Date_of_birth.Year) * 12 + today.Month - Date_of_birth.Month;
-
-                if (months < 12)
-                {
-                    return $"{months} {(months % 10 == 1 && months % 100 != 11 ? "месяц" : months % 10 >= 2 && months % 10 <= 4 && (months % 100 < 10 || months % 100 >= 20) ? "месяца" : "месяцев")}";
-                }
-                else
-                {
-                    int age = Age;
-                    if (age % 10 == 1 && age % 100 != 11)
-                    {
-                        return $"{age} год";
-                    }
-                    else if (age % 10 >= 2 && age % 10 <= 4 && (age % 100 < 10 || age % 100 >= 20))
-                    {
-                        return $"{age} года";
-                    }
-                    else
-                    {
-                        return $"{age} лет";
-                    }
-                }
-            }
-        }
     }
 }
