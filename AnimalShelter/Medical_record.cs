@@ -30,6 +30,14 @@ namespace AnimalShelter
         public string Allergy { get; set; }
         public string Vaccination { get; set; }
         public bool Sterilized { get; set; }
+        public string SterilizedString
+        {
+            get
+            {
+                if (Sterilized == true) return "Стерилизован";
+                else return "Не стерилизован";
+            }
+        }
         public string Care_recommendation { get; set; }
     
         public virtual Animal Animal1 { get; set; }

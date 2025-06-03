@@ -25,5 +25,35 @@ namespace AnimalShelter
         public virtual Contractor Contractor1 { get; set; }
         public virtual Donation_type Donation_type1 { get; set; }
         public virtual Volunteer Volunteer1 { get; set; }
+        public string Type
+        {
+            get
+            {
+                if (Volunteer1 != null)
+                {
+                    return "Волонтёр"; // Предполагается, что у вас есть свойство LastName
+                }
+                else if (Contractor1 != null)
+                {
+                    return "Контрагент"; // Предполагается, что у вас есть свойство Name
+                }
+                return "Нет информации";
+            }
+        }
+        public string PersonName
+        {
+            get
+            {
+                if (Volunteer1 != null)
+                {
+                    return Volunteer1.FullNameWithInitials; // Возвращаем фамилию волонтера
+                }
+                else if (Contractor1 != null)
+                {
+                    return Contractor1.Name; // Возвращаем фамилию контрагента
+                }
+                return "Нет информации"; // Если нет ни волонтера, ни контрагента
+            }
+        }
     }
 }
