@@ -124,6 +124,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\AddMedicalRecordWindow.xaml.cs">
+      <DependentUpon>AddMedicalRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Adoption.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -226,9 +229,6 @@
     <Compile Include="Pages\EmployeesPage.xaml.cs">
       <DependentUpon>EmployeesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MedicalRecordPage.xaml.cs">
-      <DependentUpon>MedicalRecordPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\MedicalRecordsPage.xaml.cs">
       <DependentUpon>MedicalRecordsPage.xaml</DependentUpon>
     </Compile>
@@ -240,6 +240,9 @@
     </Compile>
     <Compile Include="Pages\Source_of_receipt_Page.xaml.cs">
       <DependentUpon>Source_of_receipt_Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VeterinaryExaminationsPage.xaml.cs">
+      <DependentUpon>VeterinaryExaminationsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VolunteersPage.xaml.cs">
       <DependentUpon>VolunteersPage.xaml</DependentUpon>
@@ -266,6 +269,10 @@
     <Compile Include="Volunteer.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\AddMedicalRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -338,10 +345,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MedicalRecordPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\MedicalRecordsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -355,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Source_of_receipt_Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VeterinaryExaminationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Image Grid.ColumnSpan="2" Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill"/>
 
-        <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent"  Name="ListRecords" Margin="0,60,0,0"  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"  HorizontalContentAlignment="Center">
+        <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent"  Name="ListRecords" Margin="0,60,0,0"  Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ListRecords_MouseDoubleClick"  HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate >
                     <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -26,15 +26,15 @@
                 <DataTemplate>
                     <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
 
-                        <Grid Width="550" Height="150" Background="Transparent">
+                        <Grid Width="400" Height="150" Background="Transparent">
                             <Grid Width="550" Height="150">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Orientation="Vertical" Margin="5,10,0,0" VerticalAlignment="Center">
-                                    <Image Width="110" Height="110" Stretch="UniformToFill">
+                                <StackPanel Orientation="Vertical" Margin="5,10,10,0" VerticalAlignment="Center">
+                                    <Image Width="110" Height="110"  Stretch="Uniform">
                                         <Image.Source>
                                             <Binding Path="Animal1.Photo">
                                                 <Binding.TargetNullValue>
@@ -49,7 +49,7 @@
                                 <!--разделяющая вертикальная линия  слева-->
                                 <Line X1="10" Y1="0" X2="10" Y2="150" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
                                 <!--разделяющая горизонтальная линия-->
-                                <Line X1="-180" Y1="35" X2="70" Y2="35" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+                                <Line X1="-426" Y1="35" X2="0" Y2="35" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
 
                                 <StackPanel Grid.Column="1" Margin="10" VerticalAlignment="Center">
                                     <TextBlock>
@@ -66,8 +66,8 @@
                             <Run Text="{Binding Weight}"/>
                             <Run Text=" кг"/>
                                     </TextBlock>
-                                    <TextBlock>
-                                    </TextBlock>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding SterilizedString}"/>
+
                                 </StackPanel>
                             </Grid>
                         </Grid>
@@ -101,24 +101,16 @@
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
+                        <RowDefinition Height="4*"/>
                         <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <TextBlock  Grid.Row="0"  Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
-                    <!--<StackPanel  Grid.Row="1" Orientation="Vertical">
+                    <StackPanel  Grid.Row="1" Orientation="Vertical" >
 
-                        <Button Name="But_All" Cursor="Hand" Background="White" Padding="0,7,0,0" BorderBrush="#FFAD50" Margin="5,0,5,0" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}" Content="Все типы контрагентов"  />
-
-                        <Grid HorizontalAlignment="Stretch" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Button Name="But_FIZ" Background="White" Cursor="Hand" Grid.Column=" 0" BorderBrush="#FFAD50" Padding="0,7,0,0"  HorizontalAlignment="Stretch"  Style="{DynamicResource  But_Defoult}" Margin="5" Content="Физ. лицо" />
-                            <Button Name="But_EYR" Background="White" Cursor="Hand" Grid.Column="1" BorderBrush="#FFAD50" Padding="0,7,0,0" Margin="5" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}"  Content="Юр. лицо"  />
-                        </Grid>
-
-                    </StackPanel>-->
+                        <CheckBox x:Name="CB_Castr" Content="Только cтерилизованные" Margin="10 20 0 0" Checked="CB_Castr_Checked" Unchecked="CB_Castr_Unchecked"/>
+                        <CheckBox x:Name="CB_NotCastr" Content="Только не cтерилизованные" Margin="10 20 0 0" Checked="CB_NotCastr_Checked" Unchecked="CB_NotCastr_Unchecked"/>
+                        
+                    </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Vertical">
                         <TextBlock Text="Поиск:" Margin="5,15,0,0"/>
                         <TextBox Name="TB_Search" HorizontalAlignment="Stretch" Cursor="Help" ToolTip="Поиск мед карты по кличке животного" Margin="10,0,10,0" Padding="2" TextChanged="TB_Search_TextChanged"  />
@@ -130,6 +122,12 @@
                         <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
                             <Button Name="But_Sort_Up" Background="White" BorderBrush="#FFAD50" Click="But_Sort_Up_Click" Padding="0" Margin="0,0,0,0" Content="A → Я" />
                             <Button Name="But_Sort_Down" Background="White" BorderBrush="#FFAD50" Click="But_Sort_Down_Click" Padding="0" Margin="0,0,0,0" Content="Я → A"  />
+                        </StackPanel>
+                        <TextBlock  Text="По дате обновления:" Margin="5,0,0,0" />
+
+                        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button Name="But_Sort_Date_Up" Background="White" BorderBrush="#FFAD50" Click="But_Sort_Date_Up_Click" Padding="0" Margin="0,0,0,0" Content="A → Я" />
+                            <Button Name="But_Sort_Date_Down" Background="White" BorderBrush="#FFAD50" Click="But_Sort_Date_Down_Click" Padding="0" Margin="0,0,0,0" Content="Я → A"  />
                         </StackPanel>
 
                     </StackPanel>

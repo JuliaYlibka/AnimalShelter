@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AnimalShelter.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MedicalRecordPage.xaml
+    /// Логика взаимодействия для VeterinaryExaminationsPage.xaml
     /// </summary>
-    public partial class MedicalRecordPage : Page
+    public partial class VeterinaryExaminationsPage : Page
     {
-        public MedicalRecordPage()
+        public VeterinaryExaminationsPage()
         {
             InitializeComponent();
         }

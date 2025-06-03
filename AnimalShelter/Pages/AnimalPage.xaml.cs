@@ -24,9 +24,11 @@ namespace AnimalShelter.Pages
         private Animal _current_animal= new Animal();
         AddVolunteerWindow _add_Window;
         private bool _isLoading = true; // Flag to prevent opening on load
-        
+        private AddMedicalRecordWindow _addMedicalRecordWindow; // Переменная для хранения текущего окна медицинской карты
 
-    public AnimalPage(Animal Selected_animal)
+
+
+        public AnimalPage(Animal Selected_animal)
         {
             InitializeComponent();
             var All_volunteers = AnimalShelterEntities.GetContext().Volunteer.ToList();
@@ -36,6 +38,7 @@ namespace AnimalShelter.Pages
             var All_sources_of_receipt = AnimalShelterEntities.GetContext().Source_of_receipt.ToList();
             var All_breeds = AnimalShelterEntities.GetContext().Breed.ToList();
             All_breeds.Insert(0, new Breed { ID_breed = 0, Name_breed = "Не указано" });
+
 
             CB_Volunteer.ItemsSource= All_volunteers;
             CB_Species.ItemsSource= All_species;
@@ -268,15 +271,39 @@ namespace AnimalShelter.Pages
         
 
         private void But_Medical_record_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Реализовать переход на определенную медицинскую книгу
+        {   
+            try
+            {
+                // Находим медицинскую карту для текущего животного
+                var medicalRecord = AnimalShelterEntities.GetContext().Medical_record
+                    .FirstOrDefault(record => record.Animal == _current_animal.ID_animal);
+
+                // Проверяем, есть ли медицинская карта для животного
+                if (medicalRecord != null)
+                {
+                    // Если карта найдена, переходим на страницу медицинской карты
+                    if (_addMedicalRecordWindow == null || !_addMedicalRecordWindow.IsVisible)
+                    {
+                        _addMedicalRecordWindow = new AddMedicalRecordWindow(medicalRecord);
+                        _addMedicalRecordWindow.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Окно редактирования медицинской карты уже открыто.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("У этого животного еще нет медицинской карты.", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
+
         }
 
-        private void But_Care_log_Click(object sender, RoutedEventArgs e)
-        {
-            // TODO: Реализовать переход на определенный журнал ухода
-
-        }
 
         private void But_Add_photo_Click(object sender, RoutedEventArgs e)
         {
