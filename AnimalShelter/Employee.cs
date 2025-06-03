@@ -80,5 +80,22 @@ namespace AnimalShelter
                 }
             }
         }
+        public bool IsAllEmployees { get; set; } // Добавьте это свойство
+
+        public string FullNameWithInitials
+        {
+            get
+            {
+                if (IsAllEmployees) return "Все"; // Возвращаем "Все" для комбобокса
+
+                string firstInitial = !string.IsNullOrEmpty(First_name) ? First_name.Substring(0, 1) : string.Empty;
+                string patronymicInitial = !string.IsNullOrEmpty(Patronymic) ? Patronymic.Substring(0, 1) : string.Empty;
+                string initials = $"{firstInitial}. {patronymicInitial}.";
+                return $"{Surname} {initials}".Trim();
+            }
+            set { }
+        }
     }
+
 }
+

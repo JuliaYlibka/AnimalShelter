@@ -1,0 +1,51 @@
+﻿<Window x:Class="AnimalShelter.Pages.AddVetExaminationxaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalShelter.Pages"
+        mc:Ignorable="d"
+        Title="Ветеринарный осмотр" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Image Grid.ColumnSpan="4" Grid.RowSpan="5" Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill" VerticalAlignment="Center"/>
+
+
+        
+        <TextBlock Text="Животное:" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock Text="Заключение:" Grid.Column="1" Grid.Row="2"/>
+        <TextBlock Text="Рекомендации: " Grid.Column="1" Grid.Row="3"/>
+
+        <ComboBox 
+    Name="CB_Animal" 
+    Grid.Row="1" Grid.Column="2"
+    
+    VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,5"
+    IsTextSearchEnabled="False"
+    DisplayMemberPath="Nickname"
+    SelectedValuePath="ID_animal"
+    IsEditable="True"
+    TextBoxBase.TextChanged="CB_Animal_TextChanged"/>
+        <TextBox x:Name="TB_Conclusion" Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" Text="{Binding Conclusion}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Style="{DynamicResource TB_Defolt}" Margin="10 10 10 10"/>
+        <TextBox x:Name="TB_Recommendation" Grid.Row="3" Grid.Column="2" VerticalAlignment="Stretch" Text="{Binding Recommendation}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Style="{DynamicResource TB_Defolt}" Margin="10 10 10 10"/>
+        <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,10,5" Grid.Row="4" Grid.Column="1"  Width="auto" Height="auto" Background="#ffff" BorderBrush="#FF9C1A">
+            <Button Name="But_Cancel"  Content="Отмена" Click="But_Cancel_Click" Width="auto" Height="30"  BorderThickness="0" Background="Transparent"  Padding="5"  />
+        </Border>
+        <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10,10,0,5"  Width="auto" Height="auto" Grid.Row="4" Grid.Column="2" Background="#FF9C1A" BorderBrush="#FF9C1A">
+            <Button Name="But_Add"  Content="Сохранить" Width="200" Click="But_Add_Click" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  />
+        </Border>
+
+    </Grid>
+</Window>

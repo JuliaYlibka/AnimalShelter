@@ -205,6 +205,9 @@
     <Compile Include="Pages\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddVetExaminationxaml.xaml.cs">
+      <DependentUpon>AddVetExaminationxaml.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddVolunteerWindow.xaml.cs">
       <DependentUpon>AddVolunteerWindow.xaml</DependentUpon>
     </Compile>
@@ -306,6 +309,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AddVetExaminationxaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

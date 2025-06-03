@@ -10,6 +10,7 @@ namespace AnimalShelter
     {
         public static string UserPosition { get; set; } 
         public static int? IDVolunteer { get; set;}
+        public static int? IDUser { get; set; }
         
     }
 }

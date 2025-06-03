@@ -154,6 +154,7 @@ namespace AnimalShelter
         private void Veterinary_examination_Click(object sender, RoutedEventArgs e)
 
         {
+            MainFrame.Navigate(new VeterinaryExaminationsPage());
         }
 
         private void Medical_record_Click(object sender, RoutedEventArgs e) {

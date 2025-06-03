@@ -3,6 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      
+      xmlns:xctk ="http://schemas.xceed.com/wpf/xaml/toolkit"
+
       xmlns:local="clr-namespace:AnimalShelter.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -17,7 +20,43 @@
         </Grid.RowDefinitions>
         <Image  Margin="0" Grid.RowSpan="3" Source="/Res/WaveBackground.png" Stretch="Fill" />
 
-        <DataGrid Grid.Row="2" x:Name="VetDataGrid" Background="Transparent" CanUserSortColumns="True" BorderThickness="0" MinRowHeight="40" CanUserResizeRows="False" CanUserResizeColumns="False" Margin="10,0,10,10" AutoGenerateColumns="False" IsReadOnly="True" >
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10 0 10 0" >
+            
+
+            <Border CornerRadius="10" BorderThickness="2" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="0,-50,0,0"  Width="auto" Height="70" Background="#ffffff" BorderBrush="#FF9C1A">
+                <Grid HorizontalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Фильтры:" HorizontalAlignment="Center" FontStyle="Italic"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,0,0,0">
+                        <TextBlock Text="Животное:" />
+                        <ComboBox Name="CB_Animal" Width="120" DisplayMemberPath="Nickname" SelectedValuePath="ID_animal" SelectionChanged="CB_Animal_SelectionChanged" Template="{DynamicResource ComboBoxBase}"  Margin="10,0,0,10"/>
+                        
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="250,0,0,0">
+                        <TextBlock Text="Ветеринар:" />
+                        <ComboBox Name="CB_Employee" SelectionChanged="CB_Employee_SelectionChanged" Width="120" Template="{DynamicResource ComboBoxBase}" HorizontalAlignment="Right" Margin="10,0,0,10" DisplayMemberPath="FullNameWithInitials" SelectedValuePath="ID_employee"/>
+                        <Button Name="But_Clear_CB" Height="30" Background="Transparent" Click="But_Clear_CB_Click" BorderThickness="0" Width="30" Style="{DynamicResource But_Defoult}" VerticalAlignment="Center" Margin="10,0,5,10" >
+                            <Image Source="../Res/Cancel_But.png"/>
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border CornerRadius="10" BorderThickness="2"  Width="250" Height="25"   Grid.Row="1" VerticalAlignment="Center" Margin="15,70,10,5" HorizontalAlignment="Left" Background="#ffffff" BorderBrush="#FF9C1A">
+
+            <StackPanel Orientation="Horizontal">
+                <Image Source="../Res/Search.png"/>
+                <xctk:MaskedTextBox TextChanged="TB_Search_TextChanged" Background="Transparent" BorderThickness="0" Padding="4" x:Name="TB_Search" Watermark="Найти..." Width="200"/>
+
+            </StackPanel>
+        </Border>
+        <Button x:Name="But_Add" Content="Добавить пожертвование" Width="250" Height="auto" Grid.Row="1" VerticalAlignment="Center" Margin="15,70,25,3" Foreground="Black" HorizontalAlignment="Right" Click="But_Add_Click"/>
+
+        <DataGrid Grid.Row="2" VerticalAlignment="top" x:Name="VetDataGrid" Background="Transparent" CanUserSortColumns="True" BorderThickness="0" MinRowHeight="40" CanUserResizeRows="False" CanUserResizeColumns="False" Margin="10,0,10,10" AutoGenerateColumns="False" IsReadOnly="True" >
 
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
@@ -68,32 +107,32 @@
                 <DataGridTemplateColumn Width="*" Header="Животное">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Medical_record.Animal.Nickname}" TextWrapping="Wrap" Height="auto" Padding="5 0 0 0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Medical_record1.Animal1.Nickname}" TextWrapping="Wrap" Height="auto" Padding="5 0 0 0" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="150" Header="Тип пожертвования">
+                <DataGridTemplateColumn Width="150" Header="Ветеринар">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Donation_type1.Name_donation_type}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Padding="5 5 0 5 "/>
+                            <TextBlock Text="{Binding Employee.FullNameWithInitials}" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Padding="5 5 0 5 "/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Header="Сумма"  Width="auto">
+                <DataGridTemplateColumn Header="Заключение"  Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Amount}" HorizontalAlignment="Center" TextAlignment="Center" Width="auto" Height="auto" Padding="0 0 0 0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Conclusion}" HorizontalAlignment="Center" TextWrapping="Wrap"  Width="auto" Height="auto" Padding="0 0 0 0" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <!-- Столбец "Description" с текстовым переносом -->
 
-                <DataGridTemplateColumn Header="Описание" Width="*">
+                <DataGridTemplateColumn Header="Рекомендации" Width="2*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Height="auto" Padding="5 0 0 0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Recommendation}" TextWrapping="Wrap" Height="auto" Padding="5 0 0 0" VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
