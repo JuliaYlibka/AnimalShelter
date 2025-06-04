@@ -26,7 +26,7 @@ namespace AnimalShelter.Pages
         private bool _isLoading = true; // Flag to prevent opening on load
         private AddMedicalRecordWindow _addMedicalRecordWindow; // Переменная для хранения текущего окна медицинской карты
 
-
+        DateTime mindate= DateTime.Today.AddYears(-50);
 
         public AnimalPage(Animal Selected_animal)
         {
@@ -47,10 +47,10 @@ namespace AnimalShelter.Pages
             CB_Source_of_receipt.ItemsSource    = All_sources_of_receipt;
             CB_Breed.ItemsSource= All_breeds;
             CB_Volunteer.ItemsSource = All_volunteers;
-                
-
+            if(DP_Date_of_birth.SelectedDate==DateTime.MinValue) 
+            DP_Date_of_birth.DisplayDate = mindate;
+            
             DP_Date_of_registration.SelectedDate = DateTime.Today; //TODO: разобраться почему не устанавливается сегодняшняя дата в дейтпикере
-            DP_Date_of_birth.SelectedDate = null;
             if (_current_animal.Date_of_registration == DateTime.MinValue)
             {
                 _current_animal.Date_of_registration = DateTime.Today;
@@ -65,8 +65,6 @@ namespace AnimalShelter.Pages
                 CB_Gender.SelectedItem=Selected_animal.Gender1;
                 if(Selected_animal.Breed1 != null) CB_Breed.SelectedItem=Selected_animal.Breed1;
                 if(Selected_animal.Breed1==null) CB_Breed.SelectedIndex=0;
-                //TODO: Настроить показ пород в зависимости от вида. надо или нет?
-                //TODO: Добавить обозначение обязательных полей
 
             }
 

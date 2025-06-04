@@ -98,7 +98,7 @@
                 <Grid >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="4*"/>
                         <RowDefinition Height="3*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="4*"/>
@@ -107,9 +107,12 @@
                     <TextBlock  Grid.Row="0"  Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
                     <StackPanel  Grid.Row="1" Orientation="Vertical" >
 
-                        <CheckBox x:Name="CB_Castr" Content="Только cтерилизованные" Margin="10 20 0 0" Checked="CB_Castr_Checked" Unchecked="CB_Castr_Unchecked"/>
-                        <CheckBox x:Name="CB_NotCastr" Content="Только не cтерилизованные" Margin="10 20 0 0" Checked="CB_NotCastr_Checked" Unchecked="CB_NotCastr_Unchecked"/>
-                        
+                        <CheckBox x:Name="CB_Castr" Content="Только cтерилизованные" Margin="10 5 0 0" Checked="CB_Castr_Checked" Unchecked="CB_Castr_Unchecked"/>
+                        <CheckBox x:Name="CB_NotCastr" Content="Только не cтерилизованные" Margin="10 -2 0 0" Checked="CB_NotCastr_Checked" Unchecked="CB_NotCastr_Unchecked"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock  Margin="5,0,0,0"  Text="Статус:" />
+                            <ComboBox SelectionChanged="CB_Status_SelectionChanged" Template="{DynamicResource ComboBoxBase}" Name="CB_Status" DisplayMemberPath="Name_animal_status" FontSize="12" SelectedValuePath="ID_animal_status" Background="Transparent" HorizontalAlignment="Stretch" Padding="3" Margin="10,0,10,0" />
+                        </StackPanel>
                     </StackPanel>
                     <StackPanel Grid.Row="2" Orientation="Vertical">
                         <TextBlock Text="Поиск:" Margin="5,15,0,0"/>

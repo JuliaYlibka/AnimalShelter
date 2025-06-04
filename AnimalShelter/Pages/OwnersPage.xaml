@@ -110,7 +110,7 @@
                     </Grid.RowDefinitions>
                     <StackPanel  Grid.Row="0"   Orientation="Vertical">
                         <TextBlock   Text="Фильтры" FontWeight="Bold" HorizontalAlignment="Center" FontSize="20"/>
-                        <Button Name="But_All" Cursor="Hand" Background="White" Padding="0,7,0,0" BorderBrush="#FFAD50" Margin="5,0,5,0" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}" Content="Все волонтеры" Click="But_All_Click" />
+                        <Button Name="But_All" Cursor="Hand" Background="White" Padding="0,7,0,0" BorderBrush="#FFAD50" Margin="5,0,5,0" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}" Content="Все владельцы" Click="But_All_Click" />
 
                         <Grid HorizontalAlignment="Stretch" >
                             <Grid.ColumnDefinitions>

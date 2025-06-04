@@ -1,0 +1,94 @@
+﻿<Window x:Class="AnimalShelter.Pages.AddcareLogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimalShelter.Pages"
+        mc:Ignorable="d"
+        Title="AddcareLogWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Grid.ColumnSpan="4" Grid.RowSpan="9" Margin="0" Source="/Res/WaveBackground.png" Stretch="Fill" VerticalAlignment="Center"/>
+
+        <Grid Grid.Column="0" Margin="10" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Животное:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock Text="Вид ухода:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" />
+            <TextBlock Text="Статус:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" />
+            <TextBlock Text="Комментарий:" Grid.Row="3" Grid.Column="0" VerticalAlignment="top" />
+
+            <ComboBox 
+    Name="CB_Animal" 
+    Grid.Row="0" Grid.Column="1"
+    
+    VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0,0,10,5"
+    IsTextSearchEnabled="False"
+    DisplayMemberPath="Nickname"
+    SelectedValuePath="ID_animal"
+    IsEditable="True"
+    TextBoxBase.TextChanged="CB_Animal_TextChanged"/>
+            <ComboBox Name="CB_Care_type" HorizontalAlignment="Stretch" Template="{DynamicResource ComboBoxBase}" VerticalAlignment="Center" DisplayMemberPath="Name_care_type" SelectedValuePath="ID_care_type" Grid.Row="1" Grid.Column="1" Margin="0 -5 0 0"/>
+            <ComboBox Name="CB_Task_status" HorizontalAlignment="Stretch" Template="{DynamicResource ComboBoxBase}" VerticalAlignment="Center" DisplayMemberPath="Name_task_status" SelectedValuePath="ID_task_status" Grid.Row="2" Grid.Column="1" Margin="0 -5 0 0"/>
+            <TextBox x:Name="TB_Description" Text="{Binding Comment}" Height="auto"  HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalAlignment="Stretch" Margin="0,20,0,5" Grid.Row="3" Grid.Column="1"/>
+        </Grid>
+        <Grid Grid.Column="1"  Margin="10">
+            <Grid.RowDefinitions >
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="Label_Contractor" Text="Сотрудник:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+            <TextBlock x:Name="Label_Volunteer" Text="Волонтер:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+
+            <ComboBox 
+            Name="CB_Volunteer" 
+            Grid.Row="1" Grid.Column="1"
+            
+            HorizontalAlignment="Stretch" VerticalAlignment="Center"
+            DisplayMemberPath="FullNameWithInitials"
+            SelectedValuePath="ID_volunteer"
+            >
+            </ComboBox>
+            <ComboBox 
+            Name="CB_Employee" 
+            Grid.Row="0" Grid.Column="1"
+
+            HorizontalAlignment="Stretch" VerticalAlignment="Center"
+            DisplayMemberPath="FullNameWithInitials"
+            SelectedValuePath="ID_employee"/>
+
+            <Button x:Name="But_Add_Employee" Grid.Row="0" Grid.Column="2" Click="But_Add_Employee_Click" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0">
+                <Image Source="../Res/Add_But.png"/>
+            </Button>
+            <Button x:Name="But_Add_Volunteer" Grid.Row="1" Grid.Column="2" Click="But_Add_Volunteer_Click" Height="35" Width="35" Style="{DynamicResource But_Defoult}" Background="Transparent" BorderThickness="0">
+                <Image Source="../Res/Add_But.png"/>
+            </Button>
+            <Border  CornerRadius="10" BorderThickness="2" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Left"  Width="auto" Height="auto" Background="#ffff" BorderBrush="#FF9C1A" Margin="0 0 0 20">
+                <Button Name="But_Cancel"  Content="Отмена" Click="But_Cancel_Click" Width="125" Height="30"  BorderThickness="0" Background="Transparent"   Padding="5"  />
+            </Border>
+            <Border  CornerRadius="10" BorderThickness="2" Grid.Row="2" Grid.ColumnSpan="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A" Margin="0 0 0 20">
+                <Button Name="But_Add"  Content="Сохранить" Width="200" Click="But_Add_Click" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  />
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

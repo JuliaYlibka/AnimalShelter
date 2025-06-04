@@ -165,7 +165,8 @@ namespace AnimalShelter
 
         private void Care_log_Click(object sender, RoutedEventArgs e)
         {
-            
+            MainFrame.Navigate(new CareLogsPage());
+
         }
 
         private void Breeds_Click(object sender, RoutedEventArgs e)

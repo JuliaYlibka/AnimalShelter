@@ -187,6 +187,9 @@
     <Compile Include="New_owner.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddcareLogWindow.xaml.cs">
+      <DependentUpon>AddcareLogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddMedicalRecordWindow.xaml.cs">
       <DependentUpon>AddMedicalRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -205,6 +208,9 @@
     <Compile Include="Pages\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AddNewOwnerWindow.xaml.cs">
+      <DependentUpon>AddNewOwnerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AddVetExaminationxaml.xaml.cs">
       <DependentUpon>AddVetExaminationxaml.xaml</DependentUpon>
     </Compile>
@@ -222,6 +228,9 @@
     </Compile>
     <Compile Include="Pages\BreedsPage.xaml.cs">
       <DependentUpon>BreedsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CareLogsPage.xaml.cs">
+      <DependentUpon>CareLogsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ContractorsPage.xaml.cs">
       <DependentUpon>ContractorsPage.xaml</DependentUpon>
@@ -272,6 +281,10 @@
     <Compile Include="Volunteer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="Pages\AddcareLogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AddMedicalRecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -312,6 +325,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\AddNewOwnerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AddVetExaminationxaml.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -337,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\BreedsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CareLogsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

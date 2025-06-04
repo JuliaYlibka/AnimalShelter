@@ -38,13 +38,12 @@ namespace AnimalShelter.Pages
             All_Animals.Insert(0, new Animal { Nickname = "Все" });
             All_Employees.Insert(0, new Employee { FullNameWithInitials = "Все", IsAllEmployees = true });
             // Устанавливаем источник данных для DataGrid
-            VetDataGrid.ItemsSource = All_Veterinary_examinations;
             CB_Employee.ItemsSource = All_Employees;
             CB_Animal.ItemsSource = All_Animals;
             CB_Animal.SelectedIndex = 0;
             CB_Employee.SelectedIndex = 0;
 
-        Update();
+            Update();
 
         }
 
@@ -54,7 +53,7 @@ namespace AnimalShelter.Pages
             // Загружаем все пожертвования в список
             All_Veterinary_examinations = AnimalShelterEntities.GetContext()
                             .Veterinary_examination
-                            .OrderByDescending(x => x.Date_of_veterinary_examination)
+                            .OrderByDescending(x => x.ID_veterinary_examination)
                             .ToList();
 
 
@@ -112,7 +111,6 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
-            //todo add vetex
             // Проверка, что окно не открыто
             if (_addWindow == null || !_addWindow.IsVisible)
             {

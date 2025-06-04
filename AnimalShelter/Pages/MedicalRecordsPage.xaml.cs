@@ -34,9 +34,16 @@ namespace AnimalShelter.Pages
         private AddMedicalRecordWindow _addWindow; // Переменная для хранения текущего окна
 
 
+
         public MedicalRecordsPage()
         {
             InitializeComponent();
+            var currentStatuses = AnimalShelterEntities.GetContext().Animal_status.ToList();
+
+            currentStatuses.Insert(0, new Animal_status { Name_animal_status = "Все статусы" });
+            CB_Status.ItemsSource = currentStatuses;
+            CB_Status.SelectedIndex = 1;
+
             Clear();
 
         }
@@ -113,7 +120,9 @@ namespace AnimalShelter.Pages
             currentRecords = AnimalShelterEntities.GetContext().Medical_record.ToList();
 
             if (Only_castr) currentRecords = currentRecords.Where(x => x.Sterilized == true).ToList(); 
-            if (Only_Not_castr) currentRecords = currentRecords.Where(x => x.Sterilized == false).ToList(); 
+            if (Only_Not_castr) currentRecords = currentRecords.Where(x => x.Sterilized == false).ToList();
+            if (CB_Status.SelectedIndex != 0)
+                currentRecords = currentRecords.Where(x => x.Animal1.Animal_status == CB_Status.SelectedIndex).ToList();
             //TB_Nickname
             if (!string.IsNullOrWhiteSpace(TB_Search.Text))
             {
@@ -227,6 +236,12 @@ namespace AnimalShelter.Pages
             {
                 MessageBox.Show($"Произошла ошибка: {ex.Message}");
             }
+        }
+
+        private void CB_Status_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+
         }
     }
 }

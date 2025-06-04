@@ -20,6 +20,8 @@ namespace AnimalShelter.Pages
     /// </summary>
     public partial class AddAdoptionPage : System.Windows.Controls.Page
     {
+        AddNewOwnerWindow _add_Window;
+
         private bool _isLoading = true; // Flag to prevent opening on load
         List<Adoption> adoptions = AnimalShelterEntities.GetContext().Adoption.ToList();
         List<New_owner> owners = AnimalShelterEntities.GetContext().New_owner.ToList();
@@ -140,7 +142,15 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Owner_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: добавление нового владельца
+            if (_add_Window == null || !_add_Window.IsVisible)
+            {
+                _add_Window = new AddNewOwnerWindow(null);
+                _add_Window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления нового владельца уже открыто.");
+            }
         }
 
         

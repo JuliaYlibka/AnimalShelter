@@ -23,6 +23,8 @@ namespace AnimalShelter.Pages
         List<New_owner> New_owners = AnimalShelterEntities.GetContext().New_owner.ToList();
         SolidColorBrush PassiveBut = new SolidColorBrush(Colors.White);
         SolidColorBrush ActiveBut = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFAD50"));
+        AddNewOwnerWindow _add_Window;
+
         //AddVolunteerWindow _add_Window;
         private bool az;
         private bool za;
@@ -33,14 +35,46 @@ namespace AnimalShelter.Pages
             InitializeComponent();
             New_owners = AnimalShelterEntities.GetContext().New_owner.ToList();
             List_new_owners.ItemsSource = New_owners;
-            //TODO: добавить фильтр по типу жилья ?
 
 
         }
 
         private void List_new_owners_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO: изменение нового владельца
+
+            try
+            {
+                if (List_new_owners.SelectedItem != null)
+                {
+                    var Selected = List_new_owners.SelectedItem as New_owner;
+
+                    if (Selected != null)
+                    {
+                        if (_add_Window == null || !_add_Window.IsVisible)
+                        {
+                            _add_Window = new AddNewOwnerWindow(Selected);
+                            _add_Window.Added += Update; // Подписываемся на событие
+                            _add_Window.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Окно добавления нового владельца уже открыто.");
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка: Не найдено нового владельца для изменения.",
+                                        "Warning",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}");
+            }
         }
 
         private void But_Email_Copy_Click(object sender, RoutedEventArgs e)
@@ -138,8 +172,17 @@ namespace AnimalShelter.Pages
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: добавление нового владельца
-
+            // Проверка, что окно не открыто
+            if (_add_Window == null || !_add_Window.IsVisible)
+            {
+                _add_Window = new AddNewOwnerWindow(null);
+                _add_Window.Added += Update; // Подписываемся на событие
+                _add_Window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Окно добавления нового владельца уже открыто.");
+            }
         }
         private void Clear()
         {
@@ -160,13 +203,12 @@ namespace AnimalShelter.Pages
         }
         private void Update()
         {
-            //TODO: добавить пол в бд 
             // Получаем всех контрагентов
             New_owners = AnimalShelterEntities.GetContext().New_owner.ToList();
-            //if (_only_W)
-            //    //New_owners = New_owners.Where(x => x.Gender == 1).ToList();
-            //else if (_only_M)
-                //New_owners = New_owners.Where(x => x.Gender == 2).ToList();
+            if (_only_W)
+                New_owners = New_owners.Where(x => x.Gender == 1).ToList();
+            else if (_only_M)
+                        New_owners = New_owners.Where(x => x.Gender == 2).ToList();
 
             // Поиск по введенному тексту
             if (!string.IsNullOrWhiteSpace(TB_Search.Text))
