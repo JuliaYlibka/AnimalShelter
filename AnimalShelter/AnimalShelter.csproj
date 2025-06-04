@@ -232,6 +232,9 @@
     <Compile Include="Pages\CareLogsPage.xaml.cs">
       <DependentUpon>CareLogsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ChangeLogOrPasswordPage.xaml.cs">
+      <DependentUpon>ChangeLogOrPasswordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ContractorsPage.xaml.cs">
       <DependentUpon>ContractorsPage.xaml</DependentUpon>
     </Compile>
@@ -358,6 +361,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CareLogsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ChangeLogOrPasswordPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -47,7 +47,7 @@ namespace AnimalShelter
             if (!(e.Content is Page page)) return;
             this.Title = $"Приют для животных: {page.Title}";
 
-            if (e.Content is AuthPage)
+            if (e.Content is AuthPage || e.Content is ChangeLogOrPasswordPage)
             {
                 MenuBar.Visibility = Visibility.Hidden;
 

@@ -153,13 +153,11 @@ namespace AnimalShelter.Pages
             }
         }
 
-        
-
-        private void But_Add_Click(object sender, RoutedEventArgs e)
+        private void Save() 
         {
             StringBuilder errors = new StringBuilder();
 
-            
+
             // Проверка на вид животного
             if (CB_Animal.SelectedItem == null)
                 errors.AppendLine("Укажите животного!");
@@ -182,7 +180,7 @@ namespace AnimalShelter.Pages
             else
                 _current_adoption.Date_of_adoption = (DateTime)DP_Date_of_adoption.SelectedDate;
 
-           
+
             // Проверка на источник поступления
             if (CB_Status.SelectedValue == null)
                 errors.AppendLine("Укажите статус усыновления!");
@@ -194,7 +192,7 @@ namespace AnimalShelter.Pages
 
             _current_adoption.Comment = TB_Comment.Text.Trim();
 
-            
+
 
             // Проверка на наличие ошибок
             if (errors.Length > 0)
@@ -224,6 +222,12 @@ namespace AnimalShelter.Pages
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+
+        private void But_Add_Click(object sender, RoutedEventArgs e)
+        {
+            Save();
 
         }
 
@@ -238,12 +242,15 @@ namespace AnimalShelter.Pages
 
                 MessageBox.Show("Путь к файлу контракта успешно сохранен:\n" + _current_adoption.Contract);
             }
+            Save();
+
 
         }
 
         private void But_Open_contract_Click(object sender, RoutedEventArgs e)
         {
-            if(_current_adoption.Contract!= null) 
+            Save();
+            if (_current_adoption.Contract!= null) 
             OpenFile(_current_adoption.Contract);
 
         }
@@ -518,7 +525,6 @@ namespace AnimalShelter.Pages
             string fileName = _current_adoption.Contract;
             if (string.IsNullOrEmpty(fileName) || !File.Exists(fileName))
             {
-                MessageBox.Show("Файл документа не найден.");
                 return;
             }
 
@@ -584,5 +590,26 @@ namespace AnimalShelter.Pages
             return null;
         }
 
+        private void But_PathPDF_contract_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "All Files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                _current_adoption.ContractPDF = openFileDialog.FileName;
+
+                MessageBox.Show("Путь к файлу контракта успешно сохранен:\n" + _current_adoption.ContractPDF);
+            }
+            Save();
+
+        }
+
+        private void But_OpenPDF_contract_Click(object sender, RoutedEventArgs e)
+        {
+            
+            if (_current_adoption.ContractPDF != null)
+                OpenFile(_current_adoption.ContractPDF);
+        }
     }
 }

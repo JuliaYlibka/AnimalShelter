@@ -94,5 +94,11 @@ namespace AnimalShelter.Pages
                 ButAuth_Click(sender, e);
             }
         }
+
+
+        private void ChangeLogOrPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService?.Navigate(new ChangeLogOrPasswordPage());
+        }
     }
 }
