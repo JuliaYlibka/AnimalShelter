@@ -157,7 +157,6 @@ namespace AnimalShelter.Pages
         {
             StringBuilder errors = new StringBuilder();
 
-
             // Проверка на вид животного
             if (CB_Animal.SelectedItem == null)
                 errors.AppendLine("Укажите животного!");
@@ -180,19 +179,13 @@ namespace AnimalShelter.Pages
             else
                 _current_adoption.Date_of_adoption = (DateTime)DP_Date_of_adoption.SelectedDate;
 
-
             // Проверка на источник поступления
             if (CB_Status.SelectedValue == null)
                 errors.AppendLine("Укажите статус усыновления!");
             else
                 _current_adoption.Adoption_status = (int)CB_Status.SelectedValue;
 
-
-
-
             _current_adoption.Comment = TB_Comment.Text.Trim();
-
-
 
             // Проверка на наличие ошибок
             if (errors.Length > 0)
@@ -200,7 +193,6 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
 
             if (_current_adoption.ID_adoption == 0)
                 AnimalShelterEntities.GetContext().Adoption.Add(_current_adoption);
@@ -223,7 +215,6 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(ex.Message.ToString());
             }
         }
-
 
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
@@ -320,14 +311,6 @@ namespace AnimalShelter.Pages
                 AddParagraph(doc, "Телефон: " + currentOwner.Phone_number + ";", WdParagraphAlignment.wdAlignParagraphJustify);
                 AddParagraph(doc, "В лице руководителя и (ФИО): " + fio + ",", WdParagraphAlignment.wdAlignParagraphJustify);
             }
-
-
-
-
-
-
-
-
 
             AddParagraph(doc, "именуемый(ая) в дальнейшем \"Получатель\", с другой стороны, договорились о нижеследующем:", WdParagraphAlignment.wdAlignParagraphLeft);
             AddParagraph(doc, "1. Приют безвозмездно передает в собственность Получателю животное.", WdParagraphAlignment.wdAlignParagraphLeft);
@@ -561,8 +544,6 @@ namespace AnimalShelter.Pages
 
             }
         }
-
-
 
         private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
         {

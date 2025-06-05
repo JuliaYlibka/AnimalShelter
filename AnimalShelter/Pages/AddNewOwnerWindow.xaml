@@ -8,7 +8,7 @@
 
         xmlns:local="clr-namespace:AnimalShelter.Pages"
         mc:Ignorable="d"
-        Title="AddNewOwnerWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Добавление нового владельца" Height="450" Width="800" WindowStartupLocation="CenterScreen">
 
 <Grid>
         <Grid.ColumnDefinitions>

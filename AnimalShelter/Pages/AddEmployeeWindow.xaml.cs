@@ -56,8 +56,6 @@ namespace AnimalShelter.Pages
                 TB_Password.Visibility = Visibility.Hidden;
                 Text_Password.Visibility = Visibility.Hidden;
                 TB_Login.IsReadOnly = true;
-
-
             }
         
             DataContext = _current_employee;
@@ -149,8 +147,6 @@ namespace AnimalShelter.Pages
             }
             else _current_employee.Password = _selected_employee.Password;
 
-
-
             _current_employee.Patronymic = TB_Patronymic.Text.Trim();
 
             // Проверка на наличие ошибок
@@ -181,7 +177,5 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(ex.Message);
             }
         }
-
-        
     }
 }

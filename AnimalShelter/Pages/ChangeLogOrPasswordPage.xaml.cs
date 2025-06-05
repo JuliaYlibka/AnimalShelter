@@ -105,5 +105,10 @@ namespace AnimalShelter.Pages
                 }
             }
         }
+
+        private void But_Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new AuthPage());
+        }
     }
 }

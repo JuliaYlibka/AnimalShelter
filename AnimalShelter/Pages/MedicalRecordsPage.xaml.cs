@@ -33,8 +33,6 @@ namespace AnimalShelter.Pages
         SolidColorBrush ActiveBut = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFAD50"));
         private AddMedicalRecordWindow _addWindow; // Переменная для хранения текущего окна
 
-
-
         public MedicalRecordsPage()
         {
             InitializeComponent();
@@ -43,9 +41,7 @@ namespace AnimalShelter.Pages
             currentStatuses.Insert(0, new Animal_status { Name_animal_status = "Все статусы" });
             CB_Status.ItemsSource = currentStatuses;
             CB_Status.SelectedIndex = 1;
-
             Clear();
-
         }
 
         private void But_Add_Click(object sender, RoutedEventArgs e)

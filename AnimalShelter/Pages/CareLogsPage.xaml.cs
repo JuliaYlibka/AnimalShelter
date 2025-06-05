@@ -157,13 +157,11 @@ namespace AnimalShelter.Pages
         private void CB_Animal_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
-
         }
 
         private void CB_Care_Type_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
-
         }
 
 
@@ -171,15 +169,12 @@ namespace AnimalShelter.Pages
         {
             CB_Animal.SelectedIndex = 0;
             Update();
-
-
         }
 
         private void But_Clear_CB_Type_Click(object sender, RoutedEventArgs e)
         {
             CB_Care_Type.SelectedIndex = 0;
             Update();
-
         }
         private void Update()
         {
@@ -191,8 +186,6 @@ namespace AnimalShelter.Pages
                 all_Logs = all_Logs.Where(x => x.Animal ==(int) CB_Animal.SelectedValue).ToList();
             if(CB_Care_Type.SelectedIndex>0)
                 all_Logs = all_Logs.Where(x => x.Care_type == (int)CB_Care_Type.SelectedValue).ToList();
-
-
 
             ListAppointed.ItemsSource = all_Logs.Where(c => c.Task_status1.Name_task_status == "Назначено").ToList();
             ListDuring.ItemsSource = all_Logs.Where(c => c.Task_status1.Name_task_status == "В процессе").ToList();

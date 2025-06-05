@@ -57,7 +57,6 @@ namespace AnimalShelter.Pages
                         {
                             MessageBox.Show("Окно добавления пожертвования уже открыто.");
                         }
-
                     }
                     else
                     {

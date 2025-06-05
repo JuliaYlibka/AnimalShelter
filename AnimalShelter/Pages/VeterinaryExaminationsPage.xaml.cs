@@ -42,11 +42,8 @@ namespace AnimalShelter.Pages
             CB_Animal.ItemsSource = All_Animals;
             CB_Animal.SelectedIndex = 0;
             CB_Employee.SelectedIndex = 0;
-
             Update();
-
         }
-
 
         private void Update()
         {
@@ -55,7 +52,6 @@ namespace AnimalShelter.Pages
                             .Veterinary_examination
                             .OrderByDescending(x => x.ID_veterinary_examination)
                             .ToList();
-
 
             // Фильтрация по выбранному животному
             if (CB_Animal.SelectedItem != null && CB_Animal.SelectedIndex > 0) 
@@ -88,9 +84,6 @@ namespace AnimalShelter.Pages
             // Обновляем источник данных для DataGrid
              VetDataGrid.ItemsSource = All_Veterinary_examinations;
         }
-
-     
-
       
         private void CB_Employee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

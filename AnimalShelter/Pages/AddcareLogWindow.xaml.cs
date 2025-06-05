@@ -30,11 +30,8 @@ namespace AnimalShelter.Pages
         public event Action Added;
         DateTime today = DateTime.Today;
 
-
         AddVolunteerWindow _add_Volunteer_Window;
         AddEmployeeWindow _add_Employee_Window;
-
-
 
         public AddcareLogWindow(Care_log Selected)
         {

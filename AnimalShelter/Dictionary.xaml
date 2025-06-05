@@ -2,9 +2,6 @@
                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
     
-    
-    
-    
     <Style TargetType="Button">
         <Setter  Property="Height" Value="30"/>
         <Setter Property="Width" Value="100"/>
@@ -278,8 +275,6 @@
     </ControlTemplate>
 <!--Конец шаблона для комбобоксов-->
 
-
-
     <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -303,8 +298,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
+
     <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
@@ -363,12 +357,6 @@
         </Style.Triggers>
     </Style>
 
-
-    
-    
-    
-    
-
     <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
     <Style x:Key="DataGridCellStyle1" TargetType="{x:Type DataGridCell}">
         <Setter Property="Background" Value="Transparent"/>
@@ -406,18 +394,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-
-
-
-
-
-
-
-
-
-
-
-
 
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="8"/>

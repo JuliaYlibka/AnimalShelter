@@ -28,14 +28,11 @@ namespace AnimalShelter.Pages
         private bool az;
         private bool za;
         private AddContractorWindow _addContractorWindow; // Переменная для хранения текущего окна
-
-
         public ContractorsPage()
         {
             InitializeComponent();
             var allTypes = AnimalShelterEntities.GetContext().Contractor_type.ToList();
             Clear();
-
         }
         private void Clear() 
         {

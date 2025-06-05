@@ -24,7 +24,6 @@ namespace AnimalShelter.Pages
         private Breed _current_breed = new Breed();
         public event Action BreedAdded;
 
-
         public AddBreedWindow(Breed Selected_breed)
         {
             InitializeComponent();
@@ -38,11 +37,9 @@ namespace AnimalShelter.Pages
                 CB_Species.SelectedItem = Selected_breed.Species1;
                 TB_Name_breed.Text = Selected_breed.Name_breed;
                 Title_TB.Text = "Изменение данных о породе";
-
             }
 
             DataContext = _current_breed;
-
         }
 
         private void But_Cancel_Click(object sender, RoutedEventArgs e)
@@ -64,7 +61,6 @@ namespace AnimalShelter.Pages
                 errors.AppendLine("Укажите вид животного!");
             else
                 _current_breed.Species = (int)CB_Species.SelectedValue;
-
             
             // Проверка на наличие ошибок
             if (errors.Length > 0)
@@ -72,7 +68,6 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
 
             if (_current_breed.ID_breed == 0)
                 AnimalShelterEntities.GetContext().Breed.Add(_current_breed);

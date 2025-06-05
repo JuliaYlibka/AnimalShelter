@@ -37,9 +37,6 @@ namespace AnimalShelter.Pages
             CB_Housing_type.ItemsSource = AllTypesOfHouse;
             CB_Contractor_type.ItemsSource = AllTypesOfcontractor;
 
-
-
-
             if (Selected_New_owner != null)
             {
                 _current_New_owner = Selected_New_owner;
@@ -47,8 +44,6 @@ namespace AnimalShelter.Pages
                 CB_Gender.SelectedItem = Selected_New_owner.Gender1;
                 CB_Housing_type.SelectedItem = Selected_New_owner.Housing_type1;
                 DP_Date_of_birth.SelectedDate = Selected_New_owner.Date_of_birth;
-
-
             }
 
             DataContext = _current_New_owner;

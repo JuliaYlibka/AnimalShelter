@@ -39,8 +39,6 @@ namespace AnimalShelter.Pages
             this.Loaded += Page_Loaded;
             _isLoading = false;
             var All_Employees = AnimalShelterEntities.GetContext().Employee.Where(e => e.Position1.ID_position == 2 || e.Position1.ID_position == 3).ToList();
-            
-
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -58,7 +56,6 @@ namespace AnimalShelter.Pages
         {
             StringBuilder errors = new StringBuilder();
 
-
             // Проверка на вид животного
             if (CB_Animal.SelectedItem == null)
                 errors.AppendLine("Укажите животного!");
@@ -72,15 +69,12 @@ namespace AnimalShelter.Pages
             _current_Veterinary_examination.Veterinarian = (int)UserSession.IDUser;
             _current_Veterinary_examination.Date_of_veterinary_examination = (DateTime)Today;
 
-
-
             // Проверка на наличие ошибок
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
 
             if (_current_Veterinary_examination.ID_veterinary_examination == 0)
                 AnimalShelterEntities.GetContext().Veterinary_examination.Add(_current_Veterinary_examination);

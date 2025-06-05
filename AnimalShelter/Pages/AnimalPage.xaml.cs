@@ -266,8 +266,6 @@ namespace AnimalShelter.Pages
 
         }
 
-        
-
         private void But_Medical_record_Click(object sender, RoutedEventArgs e)
         {   
             try
@@ -301,7 +299,6 @@ namespace AnimalShelter.Pages
             }
 
         }
-
 
         private void But_Add_photo_Click(object sender, RoutedEventArgs e)
         {
@@ -341,9 +338,6 @@ namespace AnimalShelter.Pages
                     _current_animal.Photo = filePath; // Убедитесь, что у вас есть соответствующее свойство в классе Animal
                 }
             }
-
-
-            
         }
 
         private void But_Delete_photo_Click(object sender, RoutedEventArgs e)

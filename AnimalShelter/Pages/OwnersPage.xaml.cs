@@ -35,13 +35,10 @@ namespace AnimalShelter.Pages
             InitializeComponent();
             New_owners = AnimalShelterEntities.GetContext().New_owner.ToList();
             List_new_owners.ItemsSource = New_owners;
-
-
         }
 
         private void List_new_owners_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
             try
             {
                 if (List_new_owners.SelectedItem != null)

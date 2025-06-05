@@ -42,7 +42,6 @@ namespace AnimalShelter.Pages
             CB_Status.ItemsSource = Statuses;
             
             Clear();
-
         }
 
         private void ListAdoptions_MouseDoubleClick(object sender, MouseButtonEventArgs e)

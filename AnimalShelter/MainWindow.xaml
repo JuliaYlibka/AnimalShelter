@@ -49,10 +49,10 @@
                 <MenuItem Padding="6" Name="Animals_VET" Header="Список животных" Click="Animals_Click"/>
                 <MenuItem Padding="6" Name="Volunteer_VET" Header="Волонтеры" Click="Volunteer_Click"  />
 
-                <MenuItem Padding="6" Name="Veterinary_examination_VET" Header="Вет осмотры" Click="Veterinary_examination_Click" Foreground="Orange"/>
+                <MenuItem Padding="6" Name="Veterinary_examination_VET" Header="Вет осмотры" Click="Veterinary_examination_Click" />
 
-                <MenuItem Padding="6" Name="Medical_record_VET" Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
-                <MenuItem Padding="6" Name="Care_log_VET" Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
+                <MenuItem Padding="6" Name="Medical_record_VET" Header="Мед карты" Click="Medical_record_Click" />
+                <MenuItem Padding="6" Name="Care_log_VET" Header="Журнал ухода" Click="Care_log_Click"  />
                 <Separator />
 
                 <MenuItem Name="Log_out_But" HorizontalAlignment="Right" Header="Выйти" Click="Log_out_But_Click" Padding="6">

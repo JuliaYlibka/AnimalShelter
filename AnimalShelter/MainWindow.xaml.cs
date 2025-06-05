@@ -225,7 +225,5 @@ namespace AnimalShelter
             UserSession.IDVolunteer = null;
 
         }
-
-        
     }
 }

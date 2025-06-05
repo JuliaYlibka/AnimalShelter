@@ -34,10 +34,7 @@ namespace AnimalShelter.Pages
                 Title_TB.Text = "Изменение данных об источнике";
 
             }
-
             DataContext = _current_source;
-
-
         }
 
         private void But_Add_Source_Click(object sender, RoutedEventArgs e)
@@ -55,7 +52,6 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
 
             if (_current_source.ID_source_of_receipt == 0)
                 AnimalShelterEntities.GetContext().Source_of_receipt.Add(_current_source);

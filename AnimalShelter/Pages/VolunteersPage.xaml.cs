@@ -33,7 +33,6 @@ namespace AnimalShelter.Pages
         {
             InitializeComponent(); 
             Clear();
-
         }
 
         private void ListVolunteers_MouseDoubleClick(object sender, MouseButtonEventArgs e)
