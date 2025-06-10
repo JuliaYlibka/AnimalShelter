@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using AnimalShelter.Pages;
 
 namespace AnimalShelter
@@ -28,14 +29,12 @@ namespace AnimalShelter
         {
             if(MessageBox.Show("Вы действительно хотите выйти из приложения?", "Предупреждение", MessageBoxButton.OKCancel, MessageBoxImage.Question) == MessageBoxResult.Cancel)
                 e.Cancel = true;
-
         }
 
         public MainWindow()
         {
             InitializeComponent();
-
-            
+                                    
             //TODO: ПОСЛЕ РАЗРАБОТКИ изменить титлы страниц на русский язык согласно требованиям. проверить разметку на страницах вывода списка, поле фильтрация немного бродит!
         }
 
@@ -50,11 +49,9 @@ namespace AnimalShelter
             if (e.Content is AuthPage || e.Content is ChangeLogOrPasswordPage)
             {
                 MenuBar.Visibility = Visibility.Hidden;
-
             }
             else {
                 MenuBar.Visibility= Visibility.Visible;
-
             }
 
             if (!(e.Content is AuthPage))

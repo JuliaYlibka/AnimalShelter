@@ -24,10 +24,10 @@
                 <MenuItem Name="AnimalsMenu" Header="Животные" >
                     <MenuItem Name="Animals" Header="Список животных" Click="Animals_Click"/>
                     <Separator/>
-                    <MenuItem Name="Veterinary_examination" Header="Вет осмотры" Click="Veterinary_examination_Click" Foreground="Orange"/>
+                    <MenuItem Name="Veterinary_examination" Header="Вет осмотры" Click="Veterinary_examination_Click" />
 
-                    <MenuItem Name="Medical_record" Header="Мед карты" Click="Medical_record_Click" Foreground="Orange"/>
-                    <MenuItem Name="Care_log" Header="Журнал ухода" Click="Care_log_Click"  Foreground="Orange"/>
+                    <MenuItem Name="Medical_record" Header="Мед карты" Click="Medical_record_Click" />
+                    <MenuItem Name="Care_log" Header="Журнал ухода" Click="Care_log_Click"  />
                     <Separator/>
                     <MenuItem Name="Breeds" Header="Породы" Click="Breeds_Click" />
                     <MenuItem Name="Source_of_receipt" Header="Источники поступления" Click="Source_of_receipt_Click" />
