@@ -52,13 +52,11 @@ namespace AnimalShelter
                 MenuBar.Visibility = Visibility.Hidden;
 
             }
-            //if (page is Pages.AuthPage)
-            //    ButReturn.Visibility = Visibility.Hidden;
             else {
                 MenuBar.Visibility= Visibility.Visible;
 
             }
-            //ButReturn.Visibility = Visibility.Visible;
+
             if (!(e.Content is AuthPage))
             {
                 switch (UserSession.UserPosition)
