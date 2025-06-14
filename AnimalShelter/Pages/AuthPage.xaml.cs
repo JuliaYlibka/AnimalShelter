@@ -31,7 +31,7 @@ namespace AnimalShelter.Pages
         {
             if (string.IsNullOrEmpty(LoginTB.Text.Trim()) || string.IsNullOrEmpty(PasswordAuth.Password.Trim()))
             {
-                MessageBox.Show("Введите логин и пароль!");
+                MessageBox.Show("Введите логин и пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             else { 
@@ -46,7 +46,7 @@ namespace AnimalShelter.Pages
 
                 if (employee != null)
                 {
-                    MessageBox.Show($"Добро пожаловать, {employee.First_name} {employee.Patronymic}!");
+                    MessageBox.Show($"Добро пожаловать, {employee.First_name} {employee.Patronymic}!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.None);
                     UserSession.UserPosition = employee.Position1.Name_position;
                         UserSession.IDUser = employee.ID_employee;
                         if(UserSession.UserPosition== "Ветеринар" || UserSession.UserPosition == "Ассистент ветеринара") NavigationService?.Navigate(new MedicalRecordsPage());
