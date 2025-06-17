@@ -18,8 +18,8 @@
             <ColumnDefinition MinWidth="250" Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Grid.RowSpan="2" Grid.ColumnSpan="2" Source="/Res/WaveBackground.png" Stretch="Fill"/>
-        
-        <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent"  Name="ListBreeds" Margin="10,50,10,10" MouseDoubleClick="ListBreeds_MouseDoubleClick" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"  HorizontalContentAlignment="Center">
+
+        <ListView Grid.Column="0" BorderBrush="Transparent" Background="Transparent" ItemContainerStyle="{StaticResource HorizontalListViewCard}" Name="ListBreeds" Margin="10,50,10,10" MouseDoubleClick="ListBreeds_MouseDoubleClick" Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible"  HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate >
                     <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"></WrapPanel>
@@ -29,7 +29,7 @@
             <ListView.ItemTemplate>
 
                 <DataTemplate>
-                    <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
+                    <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="2">
                         <Grid Width="300" Height="60" Background="Transparent" >
                             
                             <TextBlock VerticalAlignment="Center" Margin="0,10,0,0" TextAlignment="Left" Width="auto"  TextWrapping="Wrap" Text="{Binding ID_breed, StringFormat=' {0}'}" HorizontalAlignment="Left"  />
