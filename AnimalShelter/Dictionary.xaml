@@ -175,7 +175,7 @@
                                           ContentSource="Icon"
                                           VerticalAlignment="Center"
                                           RecognizesAccessKey="True"
-                                              Margin="0,0,8,0"/>
+                                              Margin="0,0,7,0"/>
 
                             <ContentPresenter Grid.Column="1"
                                           ContentSource="Header"
@@ -691,11 +691,11 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="#c4a276"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#dba660"/>
                             <Setter TargetName="Border" Property="BorderThickness" Value="5"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Border" Property="BorderBrush" Value="#c4a276"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#dba660"/>
                             <Setter TargetName="Border" Property="BorderThickness" Value="5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
