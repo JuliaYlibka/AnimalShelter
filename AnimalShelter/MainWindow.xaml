@@ -7,43 +7,42 @@
         xmlns:local="clr-namespace:AnimalShelter"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" MinHeight="615" MinWidth="1020" WindowStartupLocation="CenterScreen">
-    <Grid>
 
+    <Grid>
         <Frame  x:Name="MainFrame" Navigated="MainFrame_Navigated" NavigationUIVisibility="Hidden" Source="Pages/AuthPage.xaml"/>
 
-        <Border Name="MenuBar" CornerRadius="10" BorderThickness="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="63" BorderBrush="#FFFFF1DF" Background="#FFFFF1DF">
+        <Border Name="MenuBar" CornerRadius="10" BorderThickness="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0,0,0,0" Height="63" BorderBrush="#FFFFF1DF" Background="#FFFFF1DF" ClipToBounds="False">
 
-            <Menu  Padding="3" Background="Transparent"   FontFamily="Calibri" FontSize="16" Height="40" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" >
-                <MenuItem Name="Back_But" Header="Назад" Click="Back_But_Click" Padding="6">
+            <Menu  Padding="3" Background="Transparent" FontFamily="Calibri" FontSize="16" Height="40" Margin="10,10,10,10" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                <MenuItem Name="Back_But" Style="{StaticResource MenuIconButItemStyle}" Header="Назад" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="Back_But_Click">
                     <MenuItem.Icon>
-                        <Image Source="Res/BackImage.png" Height="auto " />
+                        <Image Source="Res/BackImage.png" Height="17"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
 
-                <MenuItem Name="AnimalsMenu" Header="Животные" >
-                    <MenuItem Name="Animals" Header="Список животных" Click="Animals_Click"/>
-                    <Separator/>
-                    <MenuItem Name="Veterinary_examination" Header="Вет осмотры" Click="Veterinary_examination_Click" />
+                <MenuItem Name="AnimalsMenu" Style="{StaticResource MenuTopItemStyle}" Header="Животные"  Width="auto">
+                    <MenuItem Name="Animals" Style="{StaticResource MenuSubItemStyle}" Header="Список животных"  Click="Animals_Click"/>
+                    <Separator Style="{StaticResource AnimalsMenuSeparator}"/>
+                    <MenuItem Name="Veterinary_examination" Style="{StaticResource MenuSubItemStyle}" Header="Вет.осмотры" Click="Veterinary_examination_Click" />
 
-                    <MenuItem Name="Medical_record" Header="Мед карты" Click="Medical_record_Click" />
-                    <MenuItem Name="Care_log" Header="Журнал ухода" Click="Care_log_Click"  />
-                    <Separator/>
-                    <MenuItem Name="Breeds" Header="Породы" Click="Breeds_Click" />
-                    <MenuItem Name="Source_of_receipt" Header="Источники поступления" Click="Source_of_receipt_Click" />
+                    <MenuItem Name="Medical_record" Style="{StaticResource MenuSubItemStyle}" Header="Мед.карты" Click="Medical_record_Click" />
+                    <MenuItem Name="Care_log" Style="{StaticResource MenuSubItemStyle}" Header="Журнал ухода" Click="Care_log_Click"  />
+                    <Separator Style="{StaticResource AnimalsMenuSeparator}"/>
+                    <MenuItem Name="Breeds" Style="{StaticResource MenuSubItemStyle}" Header="Породы" Click="Breeds_Click" />
+                    <MenuItem Name="Source_of_receipt" Style="{StaticResource MenuSubItemStyle}" Header="Источники поступления" Click="Source_of_receipt_Click" />
                 </MenuItem>
-                <MenuItem Name="ContractorsMenu" Header="Контрагенты">
-                    <MenuItem Name="Contractor" Header="Контрагенты"  Click="Contractor_Click"/>
-                    <Separator/>
-                    <MenuItem Name="Employee" Header="Сотрудники" Click="Employee_Click" />
-                    <MenuItem Name="Volunteer" Header="Волонтеры" Click="Volunteer_Click"  />
-                    <MenuItem Name="New_owner" Header="Владельцы" Click="New_owner_Click"  />
+                <MenuItem Name="ContractorsMenu" Style="{StaticResource MenuTopItemStyle}" Header="Контрагенты">
+                    <MenuItem Name="Contractor" Style="{StaticResource MenuContractorsItemStyle}" Header="Контрагенты"  Click="Contractor_Click"/>
+                    <Separator Style="{StaticResource ContractorsMenuSeparator}"/>
+                    <MenuItem Name="Employee" Style="{StaticResource MenuContractorsItemStyle}" Header="Сотрудники" Click="Employee_Click" />
+                    <MenuItem Name="Volunteer" Style="{StaticResource MenuContractorsItemStyle}" Header="Волонтеры" Click="Volunteer_Click"  />
+                    <MenuItem Name="New_owner" Style="{StaticResource MenuContractorsItemStyle}" Header="Владельцы" Click="New_owner_Click"  />
                 </MenuItem>
                 <Separator />
-                
-                
-                <MenuItem Name="Donation" Header="Пожертвования" Click="Donation_Click"   />
-                <MenuItem Name="Adoption" Header="Усыновления" Click="Adoption_Click"/>
+
+                <MenuItem Name="Donation" Style="{StaticResource MenuTopItemStyle}" Header="Пожертвования" Click="Donation_Click"   />
+                <MenuItem Name="Adoption" Style="{StaticResource MenuTopItemStyle}" Header="Усыновления" Click="Adoption_Click"/>
                 
                 <!-- для ветеринаров отдельное меню -->
                 <MenuItem Padding="6" Name="Animals_VET" Header="Список животных" Click="Animals_Click"/>
@@ -55,9 +54,9 @@
                 <MenuItem Padding="6" Name="Care_log_VET" Header="Журнал ухода" Click="Care_log_Click"  />
                 <Separator />
 
-                <MenuItem Name="Log_out_But" HorizontalAlignment="Right" Header="Выйти" Click="Log_out_But_Click" Padding="6">
+                <MenuItem Name="Log_out_But" Style="{StaticResource MenuIconButItemStyle}" HorizontalAlignment="Right" Header="Выйти" Click="Log_out_But_Click" Padding="6">
                     <MenuItem.Icon>
-                        <Image Source="Res/LogoutImage.png" Height="auto " />
+                        <Image Source="Res/LogoutImage.png" Height="17" />
                     </MenuItem.Icon>
                 </MenuItem>
             </Menu>

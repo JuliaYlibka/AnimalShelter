@@ -152,15 +152,199 @@
         </Setter>
     </Style>
 
-    <Style TargetType="MenuItem">
+    <Style TargetType="MenuItem" x:Key="MenuIconButItemStyle">
         <Setter Property="FontFamily" Value="Calibri"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Border x:Name="Border"
+                    Background="{TemplateBinding Background}"
+                    Padding="7"
+                    SnapsToDevicePixels="True">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ContentPresenter Grid.Column="0"
+                                          ContentSource="Icon"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"
+                                              Margin="0,0,8,0"/>
+
+                            <ContentPresenter Grid.Column="1"
+                                          ContentSource="Header"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"/>
+                        </Grid>
+                    </Border>
+                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#ffdeb4"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#c4a276"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1.5"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
-    
+
+    <Style TargetType="MenuItem" x:Key="MenuTopItemStyle">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        Padding="7"
+                        SnapsToDevicePixels="True">
+                        <Grid>
+                            <ContentPresenter ContentSource="Header"/>
+                            <Popup x:Name="PART_Popup"
+                               Placement="Bottom"
+                               IsOpen="{TemplateBinding IsSubmenuOpen}"
+                               AllowsTransparency="True"
+                               Focusable="False"
+                               PopupAnimation="Fade">
+                                <Border 
+                                Background="White"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                SnapsToDevicePixels="True">
+                                    <StackPanel 
+                                    IsItemsHost="True" 
+                                    KeyboardNavigation.DirectionalNavigation="Cycle"/>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#ffdeb4"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="#c4a276"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1.5"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                        <Trigger SourceName="PART_Popup" Property="Popup.AllowsTransparency" Value="True">
+                            <Setter TargetName="PART_Popup" Property="Popup.Placement" Value="Bottom"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="MenuItem" x:Key="MenuSubItemStyle">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        SnapsToDevicePixels="True"
+                            Padding="4,0,1,0">
+                        <Grid Width="160">
+                            <ContentPresenter ContentSource="Header"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#ffdeb4"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Gray"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1"/>
+                            <Setter TargetName="Border" Property="Padding" Value="5,0,1,0"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="MenuItem" x:Key="MenuContractorsItemStyle">
+        <Setter Property="FontFamily" Value="Calibri"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Margin" Value="25,0,0,0"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="MenuItem">
+                    <Border x:Name="Border"
+                    Background="{TemplateBinding Background}"
+                    Padding="4,2,2,2"
+                    BorderBrush="Gray"
+                    BorderThickness="0.5,0,0,0"
+                    SnapsToDevicePixels="True">
+                        <Grid Width="120">
+                            <ContentPresenter ContentSource="Header"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="#ffdeb4"/>
+                            <Setter TargetName="Border" Property="BorderBrush" Value="Gray"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="1"/>
+                            <Setter TargetName="Border" Property="Padding" Value="4,2,2,2"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Separator" x:Key="AnimalsMenuSeparator">
+        <Setter Property="Margin" Value="4,4"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Grid SnapsToDevicePixels="True" Height="1" >
+                        <Rectangle Fill="#80808080" Height="1" HorizontalAlignment="Stretch"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Separator" x:Key="ContractorsMenuSeparator">
+        <Setter Property="Margin" Value="25,0,4,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Separator">
+                    <Grid SnapsToDevicePixels="True" Height="1" >
+                        <Rectangle Fill="#80808080" Height="1" HorizontalAlignment="Stretch"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--Шаблон макета для комбобоксов-->
     <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#FFACACAC"/>
     <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#FF606060"/>
@@ -555,7 +739,7 @@
     <Style TargetType="ListViewItem" x:Key="HorizontalListViewCard">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="BorderThickness" Value="7"/>
+        <Setter Property="BorderThickness" Value="8"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
@@ -569,12 +753,12 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
-                            <Setter TargetName="Border" Property="BorderThickness" Value="7"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="8"/>
                             <Setter TargetName="Border" Property="Background" Value="#FFAD50"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
-                            <Setter TargetName="Border" Property="BorderThickness" Value="7"/>
+                            <Setter TargetName="Border" Property="BorderThickness" Value="8"/>
                             <Setter TargetName="Border" Property="Background" Value="#FFAD50"/>
 
                         </Trigger>
