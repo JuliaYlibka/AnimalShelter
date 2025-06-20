@@ -122,7 +122,7 @@ namespace AnimalShelter.Pages
             }
         }
 
-        private void TB_INN_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void OnlyNumbers_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if ((e.Key < Key.D0 || e.Key > Key.D9) && e.Key != Key.Back)
             {

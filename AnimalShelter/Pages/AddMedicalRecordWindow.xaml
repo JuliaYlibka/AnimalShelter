@@ -50,8 +50,8 @@
     SelectedValuePath="ID_animal"
     IsEditable="True"
     TextBoxBase.TextChanged="CB_Animal_TextChanged"/>
-            <TextBox  x:Name="TB_Weight"  Text="{Binding Weight}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
-            <TextBox  x:Name="TB_Height" Text="{Binding Height}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <TextBox  x:Name="TB_Weight"  Text="{Binding Weight}" PreviewTextInput="OnlyNumbersAndDot_PreviewTextInput" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <TextBox  x:Name="TB_Height" Text="{Binding Height}" PreviewTextInput="OnlyNumbersAndDot_PreviewTextInput" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <CheckBox Name="CB_Sterilized" IsChecked="{Binding Sterilized}"   Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" />
             <TextBox  x:Name="TB_Medical_history" TextWrapping="Wrap" Text="{Binding Medical_history}" Grid.Row="5" Grid.Column="1" VerticalAlignment="Stretch" Style="{DynamicResource TB_Defolt}" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
         </Grid>

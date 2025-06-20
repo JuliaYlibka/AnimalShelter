@@ -358,5 +358,13 @@ namespace AnimalShelter.Pages
         {
             NavigationService?.GoBack();
         }
+
+        private void OnlyLetters_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsLetter))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -77,7 +77,14 @@ namespace AnimalShelter.Pages
         private void But_Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
 
+        private void OnlyLetters_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsLetter))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

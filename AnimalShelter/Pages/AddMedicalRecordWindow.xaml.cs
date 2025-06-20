@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -77,20 +78,27 @@ namespace AnimalShelter
             else
                 _current_medical_record.Animal = (int)CB_Animal.SelectedValue;
 
-            decimal height = decimal.Parse(TB_Height.Text);
-            decimal weight = decimal.Parse(TB_Weight.Text);
-            if (height <= 0 || height >= 500)
-                errors.AppendLine("Рост не может быть меньше 0 и не может быть больше 500");
+            if (!decimal.TryParse(TB_Height.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal height))
+            {
+                errors.AppendLine("Рост должен быть числом с точкой в качестве десятичного разделителя!");
+            }
+
+            else if (height <= 0 || height >= 500)
+                errors.AppendLine("Рост не может быть меньше 0 и больше 500.");
             else
                 _current_medical_record.Height = height;
-            if (weight <= 0 || weight >= 500)
-                errors.AppendLine("Вес не может быть меньше 0 и не может быть больше 500");
+
+            if (!decimal.TryParse(TB_Weight.Text, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out decimal weight))
+            {
+                errors.AppendLine("Вес должен быть числом с точкой в качестве десятичного разделителя!");
+            }
+            
+            else if (weight <= 0 || weight >= 500)
+                errors.AppendLine("Вес не может быть меньше 0 и 500.");
             else
                 _current_medical_record.Weight = weight;
 
             _current_medical_record.Last_update_date = (DateTime)Today;
-
-
 
             // Проверка на наличие ошибок
             if (errors.Length > 0)
@@ -98,7 +106,6 @@ namespace AnimalShelter
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
 
             if (_current_medical_record.ID_medical_record == 0)
                 AnimalShelterEntities.GetContext().Medical_record.Add(_current_medical_record);
@@ -160,5 +167,41 @@ namespace AnimalShelter
             tb.SelectionStart = tb.Text.Length;
             tb.SelectionLength = 0; // Сброс выделения
         }
+
+        private void OnlyNumbersAndDot_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            string input = e.Text;
+
+            // Разрешаем только цифры и точку
+            if (!char.IsDigit(input, 0) && input != ".")
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Если вводится точка, проверяем, есть ли она уже в тексте
+            if (input == "." && textBox.Text.Contains("."))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Точка не может быть первой (курсору нужно быть > 0)
+            if (input == "." && textBox.CaretIndex == 0)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            e.Handled = false; // Разрешаем ввод
+        }
+
     }
 }

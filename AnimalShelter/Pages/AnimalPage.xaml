@@ -33,7 +33,7 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Кличка:"  VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <TextBox Grid.Row="0" Name="TB_Nickname" Text="{Binding Nickname}" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5"/>
+            <TextBox Grid.Row="0" Name="TB_Nickname" Text="{Binding Nickname}" VerticalAlignment="Top" HorizontalAlignment="Stretch" PreviewTextInput="OnlyLetters_PreviewKeyDown" Margin="140,0,0,5"/>
 
             <TextBlock Grid.Row="1" Text="Вид:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
             <ComboBox Grid.Row="1" Name="CB_Species" DisplayMemberPath="Name_species" SelectedValuePath="ID_species" VerticalAlignment="Top" HorizontalAlignment="Stretch" Margin="140,0,0,5" Template="{DynamicResource ComboBoxBase}"/>
@@ -62,9 +62,8 @@
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Text="Дата рождения:" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left"/>
             <TextBlock Grid.Row="1" Text="Дата регистрации:" VerticalAlignment="Top" Margin="0,5,0,0" HorizontalAlignment="Left" />
-            <DatePicker Grid.Row="0" SelectedDate="{Binding Date_of_birth}" Name="DP_Date_of_birth" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0" HorizontalAlignment="Stretch" >
-            </DatePicker>
-            <DatePicker Grid.Row="1" SelectedDate="{Binding Date_of_registration}" Name="DP_Date_of_registration" DisplayDate="01.01.2025" VerticalAlignment="Top" Padding="0,5,0,0" Margin="150,0,0,0"  HorizontalAlignment="Stretch" />
+            <DatePicker Grid.Row="0" SelectedDate="{Binding Date_of_birth}" Height="32" Name="DP_Date_of_birth" VerticalAlignment="Top" Margin="150,0,0,0" HorizontalAlignment="Stretch" />
+            <DatePicker Grid.Row="1" SelectedDate="{Binding Date_of_registration}" Height="32" Name="DP_Date_of_registration" DisplayDate="01.01.2025" VerticalAlignment="Top" Margin="150,0,0,0"  HorizontalAlignment="Stretch" />
             <TextBlock Grid.Row="2" Text="Волонтёр:" VerticalAlignment="Bottom" Margin="0,5,0,5"  HorizontalAlignment="Left"/>
             <ComboBox 
                 Name="CB_Volunteer" 

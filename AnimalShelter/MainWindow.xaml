@@ -24,9 +24,9 @@
                 <MenuItem Name="AnimalsMenu" Style="{StaticResource MenuTopItemStyle}" Header="Животные"  Width="auto">
                     <MenuItem Name="Animals" Style="{StaticResource MenuSubItemStyle}" Header="Список животных"  Click="Animals_Click"/>
                     <Separator Style="{StaticResource AnimalsMenuSeparator}"/>
-                    <MenuItem Name="Veterinary_examination" Style="{StaticResource MenuSubItemStyle}" Header="Вет.осмотры" Click="Veterinary_examination_Click" />
+                    <MenuItem Name="Veterinary_examination" Style="{StaticResource MenuSubItemStyle}" Header="Вет. осмотры" Click="Veterinary_examination_Click" />
 
-                    <MenuItem Name="Medical_record" Style="{StaticResource MenuSubItemStyle}" Header="Мед.карты" Click="Medical_record_Click" />
+                    <MenuItem Name="Medical_record" Style="{StaticResource MenuSubItemStyle}" Header="Мед. карты" Click="Medical_record_Click" />
                     <MenuItem Name="Care_log" Style="{StaticResource MenuSubItemStyle}" Header="Журнал ухода" Click="Care_log_Click"  />
                     <Separator Style="{StaticResource AnimalsMenuSeparator}"/>
                     <MenuItem Name="Breeds" Style="{StaticResource MenuSubItemStyle}" Header="Породы" Click="Breeds_Click" />
