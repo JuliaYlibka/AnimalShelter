@@ -128,7 +128,7 @@
                             <Button Name="But_M" Background="White" Cursor="Hand" Grid.Column=" 0" BorderBrush="#FFAD50" Padding="0,7,0,0"  HorizontalAlignment="Stretch"  Style="{DynamicResource  But_Defoult}" Margin="5" Content="Мужчины" Click="But_M_Click" />
                             <Button Name="But_W" Background="White" Cursor="Hand" Grid.Column="1" BorderBrush="#FFAD50" Padding="0,7,0,0" Margin="5" HorizontalAlignment="Stretch" Style="{DynamicResource  But_Defoult}"  Content="Женщины" Click="But_W_Click" />
                         </Grid>
-                        <CheckBox x:Name="CB_Active" Content="Показать только активных" Margin="10 10 0 0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                        <CheckBox x:Name="CB_Active" Content="Показать только активных" Margin="10 5 0 0" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
                         <TextBlock Text="Поиск:" Margin="5,15,0,0"/>

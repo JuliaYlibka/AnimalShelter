@@ -46,7 +46,7 @@
             </Grid>
             
         </Border>
-        <Border  CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5" Grid.Row="0" Grid.Column="2"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
+        <Border x:Name="Border_add" CornerRadius="10" BorderThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,5" Grid.Row="0" Grid.Column="2"  Width="auto" Height="auto" Background="#FF9C1A" BorderBrush="#FF9C1A">
             <Button Name="But_Add"  Content="Добавить запись ухода" Width="200" Height="30" BorderThickness="0" Background="Transparent"  Padding="5"  Click="But_Add_Click" />
         </Border>
         <Grid Grid.Column="0" Grid.Row="1">
@@ -55,8 +55,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Назначено" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Black" FontSize="20"/>
-            <ListView Grid.Row="1" BorderBrush="Transparent" Background="Transparent"  Name="ListAppointed" Margin="0,0,0,0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ListAppointed_MouseDoubleClick"  HorizontalContentAlignment="Center">
+            <TextBlock Text="Назначено" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Black" FontSize="20" Foreground="OrangeRed"/>
+            <ListView Grid.Row="1" ItemContainerStyle="{StaticResource CareLogsNaznachenListViewCard}" BorderBrush="Transparent" Background="Transparent"  Name="ListAppointed" Margin="0,0,0,0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ListAppointed_MouseDoubleClick"  HorizontalContentAlignment="Center">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate >
                     <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -65,7 +65,7 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
+                    <Border BorderBrush="OrangeRed" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
 
                         <Grid Width="400" Height="150" Background="Transparent">
                             <Grid Width="550" Height="150">
@@ -91,7 +91,7 @@
                                     <Line X1="10" Y1="0" X2="10" Y2="150" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
                                     <!--разделяющая горизонтальная линия-->
                                     <Line X1="-426" Y1="35" X2="0" Y2="35" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
-                                    <TextBlock Margin="10 -105 0 0" Grid.Column="1" >
+                                    <TextBlock Margin="10 -105 0 0" Grid.Column="1" Padding="-6,0,0,0">
 <Run Text="Дата создания:"/>
 <Run Text="{Binding Date_care_log, StringFormat={}{0:dd.MM.yyyy}}"/>
                                     </TextBlock>
@@ -125,7 +125,7 @@
 
             <TextBlock Text="В процессе" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Black" FontSize="18"/>
 
-            <ListView Grid.Row="1" BorderBrush="Transparent" Background="Transparent"  Name="ListDuring" Margin="0,0,0,0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ListDuring_MouseDoubleClick"  HorizontalContentAlignment="Center">
+            <ListView Grid.Row="1" ItemContainerStyle="{StaticResource CareLogsProcessListViewCard}" BorderBrush="Transparent" Background="Transparent"  Name="ListDuring" Margin="0,0,0,0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ListDuring_MouseDoubleClick"  HorizontalContentAlignment="Center">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate >
                         <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -134,7 +134,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
+                        <Border BorderBrush="Gray" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
 
                             <Grid Width="400" Height="150" Background="Transparent">
                                 <Grid Width="550" Height="150">
@@ -160,7 +160,7 @@
                                     <Line X1="10" Y1="0" X2="10" Y2="150" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
                                     <!--разделяющая горизонтальная линия-->
                                     <Line X1="-426" Y1="35" X2="0" Y2="35" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
-                                    <TextBlock Margin="10 -105 0 0" Grid.Column="1" >
+                                    <TextBlock Margin="10 -105 0 0" Grid.Column="1" Padding="-6,0,0,0">
                                         <Run Text="Дата создания:"/>
 <Run Text="{Binding Date_care_log, StringFormat={}{0:dd.MM.yyyy}}"/>
                                     </TextBlock>
@@ -190,8 +190,8 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Выполнено" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Black" FontSize="18"/>
-            <ListView Grid.Column="2" Grid.Row="1" BorderBrush="Transparent" Background="Transparent"  Name="ListReady" Margin="0,0,0,0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" MouseDoubleClick="ListReady_MouseDoubleClick"  HorizontalContentAlignment="Center">
+            <TextBlock Text="Выполнено" Grid.Row="0" HorizontalAlignment="Center" FontWeight="Black" Foreground="Green" FontSize="18"/>
+            <ListView ItemContainerStyle="{StaticResource CareLogsDoneListViewCard}" Grid.Column="2" Grid.Row="1" BorderBrush="Transparent" Background="Transparent"  Name="ListReady" Margin="0,0,0,0"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" MouseDoubleClick="ListReady_MouseDoubleClick"  HorizontalContentAlignment="Center">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate >
                         <WrapPanel Cursor="Hand" Orientation="Horizontal" HorizontalAlignment="Center"/>
@@ -200,7 +200,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="#FFAD50" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
+                        <Border BorderBrush="Green" CornerRadius="10" Background="white" BorderThickness="3" Margin="5">
 
                             <Grid Width="400" Height="150" Background="Transparent">
                                 <Grid Width="550" Height="150">
@@ -226,7 +226,7 @@
                                     <Line X1="10" Y1="0" X2="10" Y2="150" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
                                     <!--разделяющая горизонтальная линия-->
                                     <Line X1="-426" Y1="35" X2="0" Y2="35" Stroke="Gray" StrokeThickness="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
-                                    <TextBlock Margin="10 -105 0 0" Grid.Column="1" >
+                                    <TextBlock Margin="10 -105 0 0" Grid.Column="1" Padding="-6,0,0,0">
                                         <Run Text="Дата создания:"/>
                                         <Run Text="{Binding Date_care_log, StringFormat={}{0:dd.MM.yyyy}}"/>
                                     </TextBlock>

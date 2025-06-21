@@ -62,11 +62,13 @@ namespace AnimalShelter
 
 
         }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             // Закрываем выпадающий список, если он открыт
             CB_Animal.IsDropDownOpen = false;
         }
+
         private void But_Add_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
@@ -115,7 +117,7 @@ namespace AnimalShelter
             {
                 AnimalShelterEntities.GetContext().SaveChanges();
                 MessageBox.Show("Данные успешно сохранены!");
-                Added.Invoke();
+                Added?.Invoke();
                 this.Close();
             }
             catch (DbUpdateException dbEx)

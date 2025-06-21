@@ -42,9 +42,9 @@
             <TextBlock Text="Пол:" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBlock Text="Дата рождения:" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBlock Text="Должность:" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="TB_Surname" Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
-            <TextBox x:Name="TB_First_name" Text="{Binding First_name}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
-            <TextBox x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <TextBox x:Name="TB_Surname" Text="{Binding Surname}" Grid.Row="1" PreviewTextInput="OnlyLetters_PreviewKeyDown" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <TextBox x:Name="TB_First_name" Text="{Binding First_name}" Grid.Row="2" Grid.Column="1"  PreviewTextInput="OnlyLetters_PreviewKeyDown" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
+            <TextBox x:Name="TB_Patronymic" Text="{Binding Patronymic}" Grid.Row="3" Grid.Column="1" PreviewTextInput="OnlyLetters_PreviewKeyDown" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3"/>
             <ComboBox Name="CB_Gender" DisplayMemberPath="Name_gender" SelectedValuePath="ID_gender" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="10,0,10,10" Padding="3" Template="{DynamicResource ComboBoxBase}"/>
             <DatePicker Name="DP_Date_of_birth" 
                 DisplayDate="01.01.2024" 

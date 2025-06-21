@@ -246,5 +246,40 @@ namespace AnimalShelter.Pages
             CB_Contractor.ItemsSource = AllContractors;
             CB_Volunteer.ItemsSource = AllVolunteers;
         }
+
+        private void OnlyNumbersAndDot_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            string input = e.Text;
+
+            // Разрешаем только цифры и точку
+            if (!char.IsDigit(input, 0) && input != ".")
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Если вводится точка, проверяем, есть ли она уже в тексте
+            if (input == "." && textBox.Text.Contains("."))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Точка не может быть первой (курсору нужно быть > 0)
+            if (input == "." && textBox.CaretIndex == 0)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            e.Handled = false; // Разрешаем ввод
+        }
     }
 }

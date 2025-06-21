@@ -129,5 +129,13 @@ namespace AnimalShelter.Pages
                 e.Handled = true;
             }
         }
+
+        private void OnlyLetters_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsLetter))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

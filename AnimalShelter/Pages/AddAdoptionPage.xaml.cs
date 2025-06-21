@@ -250,7 +250,7 @@ namespace AnimalShelter.Pages
         {
             But_Generate_contract.IsEnabled = false;
             var currentOwner = _current_adoption.New_owner1;
-            string fileName = "C:\\Users\\acer\\Desktop\\AnimalsShelterDocuments\\Сгенерированный договор усыновления_ID_" + _current_adoption.ID_adoption + "_" + _current_adoption.Animal1.Nickname + ".docx";
+            string fileName = "\"C:\\Users\\79260\\Downloads\\Сгенерированный договор усыновления_ID_" + _current_adoption.ID_adoption + "_" + _current_adoption.Animal1.Nickname + ".docx";
             // Проверяем, открыт ли файл, и закрываем его, если да
             if (IsFileOpen(fileName))
             {
@@ -407,17 +407,23 @@ namespace AnimalShelter.Pages
 
             }
 
+            try
+            {
+                // Сохраняем документ
+                object fileNameObj = fileName;
+                doc.SaveAs2(ref fileNameObj);
+                doc.Close();
+                wordApp.Quit();
 
-            // Сохраняем документ
-            object fileNameObj = fileName;
-            doc.SaveAs2(ref fileNameObj);
-            doc.Close();
-            wordApp.Quit();
-
-            Console.WriteLine("Документ успешно создан!");
-            _current_adoption.Contract = fileName;
-            But_Generate_contract.IsEnabled = true;
-            Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
+                Console.WriteLine("Документ успешно создан!");
+                _current_adoption.Contract = fileName;
+                But_Generate_contract.IsEnabled = true;
+                Process.Start(new ProcessStartInfo(fileName) { UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
         //private XpsDocument ConvertWordDocToXPSDoc(string wordDocName, string xpsDocName)
         //{

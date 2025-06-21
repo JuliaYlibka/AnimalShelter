@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -29,6 +30,8 @@ namespace AnimalShelter.Pages
 
         private void ButAuth_Click(object sender, RoutedEventArgs e)
         {
+            string hashedPassword = GetHash(PasswordAuth.Password);
+
             if (string.IsNullOrEmpty(LoginTB.Text.Trim()) || string.IsNullOrEmpty(PasswordAuth.Password.Trim()))
             {
                 MessageBox.Show("Введите логин и пароль!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -41,8 +44,8 @@ namespace AnimalShelter.Pages
                 var employees = db.Employee.AsNoTracking().ToList();
                 var volunteers = db.Volunteer.AsNoTracking().ToList();
 
-                var employee = employees.FirstOrDefault(em => em.Login == LoginTB.Text && em.Password == PasswordAuth.Password);
-                var volunteer = volunteers.FirstOrDefault(v => v.Login == LoginTB.Text && v.Password == PasswordAuth.Password);
+                var employee = employees.FirstOrDefault(em => em.Login == LoginTB.Text && em.Password == hashedPassword);
+                var volunteer = volunteers.FirstOrDefault(v => v.Login == LoginTB.Text && v.Password == hashedPassword);
 
                 if (employee != null)
                 {
@@ -99,6 +102,15 @@ namespace AnimalShelter.Pages
         private void ChangeLogOrPassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService?.Navigate(new ChangeLogOrPasswordPage());
+        }
+
+        public static string GetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x
+                    => x.ToString("X2")));
+            }
         }
     }
 }

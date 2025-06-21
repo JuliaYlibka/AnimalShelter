@@ -239,7 +239,5 @@ namespace AnimalShelter.Pages
             Update();
 
         }
-
-
     }
 }

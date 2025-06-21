@@ -28,14 +28,22 @@ namespace AnimalShelter.Pages
         List<Animal> animals = AnimalShelterEntities.GetContext().Animal.ToList();
         DateTime Today = DateTime.Today;
 
-        public AddVetExaminationxaml()
+        public AddVetExaminationxaml(Veterinary_examination selectedExamination)
         {
             InitializeComponent();
+            _current_Veterinary_examination = selectedExamination ?? new Veterinary_examination();
             animals = AnimalShelterEntities.GetContext().Animal.ToList();
             All_Medical_records = AnimalShelterEntities.GetContext().Medical_record.ToList();
             CB_Animal.ItemsSource = animals;
 
             DataContext = _current_Veterinary_examination;
+
+            // устанавливаем выбранное животное
+            if (_current_Veterinary_examination.Medical_record1 != null)
+            {
+                var animalId = _current_Veterinary_examination.Medical_record1.Animal;
+                CB_Animal.SelectedItem = animals.FirstOrDefault(a => a.ID_animal == animalId);
+            }
             this.Loaded += Page_Loaded;
             _isLoading = false;
             var All_Employees = AnimalShelterEntities.GetContext().Employee.Where(e => e.Position1.ID_position == 2 || e.Position1.ID_position == 3).ToList();

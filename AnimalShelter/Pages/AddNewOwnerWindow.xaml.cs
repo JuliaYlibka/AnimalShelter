@@ -145,5 +145,13 @@ namespace AnimalShelter.Pages
         {
             this.Close();
         }
+
+        private void OnlyLetters_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsLetter))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnimalShelter.Pages"
         mc:Ignorable="d"
-        Title="Добавление контрагента" Height="450" Width="800">
+        Title="Добавление контрагента" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
@@ -34,9 +34,9 @@
         <TextBlock Text="Тип контрагента: " Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
         <ComboBox x:Name="CB_Contractor_type" DisplayMemberPath="Name_contractor_type" SelectedValuePath="ID_contractor_type" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Template="{DynamicResource ComboBoxBase}"/>
         <TextBlock Text="Имя: " Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"/>
-        <TextBox x:Name="TB_Name" Text="{Binding Name}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
+        <TextBox x:Name="TB_Name" Text="{Binding Name}" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" PreviewTextInput="OnlyLetters_PreviewKeyDown"/>
         <TextBlock Text="Контактное лицо: " Grid.Row="3" Grid.Column="1" VerticalAlignment="Center"/>
-        <TextBox x:Name="TB_Contact_percon" Text="{Binding Contact_person}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+        <TextBox x:Name="TB_Contact_percon" Text="{Binding Contact_person}" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" PreviewTextInput="OnlyLetters_PreviewKeyDown"/>
         <TextBlock Text="Телефон: " Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/> 
         <xctk:MaskedTextBox x:Name="TB_Phone_number" Mask="8(999)000-00-00" Text="{Binding Phone_number}" Height="30" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"/>
         <TextBlock Text="Почта: " Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>

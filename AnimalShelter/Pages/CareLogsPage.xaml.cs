@@ -26,6 +26,18 @@ namespace AnimalShelter.Pages
         public CareLogsPage()
         {
             InitializeComponent();
+
+            if (UserSession.UserPosition != "Куратор" && UserSession.UserPosition != "Администратор")
+            {
+                Border_add.Visibility = Visibility.Hidden;
+                But_Add.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Border_add.Visibility = Visibility.Visible;
+                But_Add.Visibility = Visibility.Visible;
+            }
+
             all_Logs = AnimalShelterEntities.GetContext().Care_log.ToList();
             var all_Types = AnimalShelterEntities.GetContext().Care_type.ToList();
             var all_Animals = AnimalShelterEntities.GetContext().Animal.ToList();

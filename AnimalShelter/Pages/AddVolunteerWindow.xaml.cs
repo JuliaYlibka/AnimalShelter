@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -140,7 +141,7 @@ namespace AnimalShelter.Pages
                 if (string.IsNullOrWhiteSpace(TB_Password.Password))
                     errors.AppendLine("Укажите пароль!");
                 else
-                    _current_volunteer.Password = TB_Password.Password;
+                    _current_volunteer.Password = GetHash(TB_Password.Password);
             }
             else _current_volunteer.Password = _selected_volunteer.Password;
 
@@ -162,6 +163,18 @@ namespace AnimalShelter.Pages
                 return;
             }
 
+            // Проверка на существующий логин
+            if (_selected_volunteer == null)
+            {
+                var existingLogin = AnimalShelterEntities.GetContext().Volunteer
+                    .Any(emp => emp.Login == _current_volunteer.Login);
+                if (existingLogin)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже существует!");
+                    return;
+                }
+            }
+
             // Добавление нового волонтера в базу данных
             if (_current_volunteer.ID_volunteer == 0)
                 AnimalShelterEntities.GetContext().Volunteer.Add(_current_volunteer);
@@ -181,6 +194,26 @@ namespace AnimalShelter.Pages
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public static string GetHash(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                using (var hash = SHA1.Create())
+                {
+                    return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x
+                        => x.ToString("X2")));
+                }
+            }
+        }
+
+        private void OnlyLetters_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsLetter))
+            {
+                e.Handled = true;
             }
         }
     }

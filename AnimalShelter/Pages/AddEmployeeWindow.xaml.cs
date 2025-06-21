@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -143,7 +145,7 @@ namespace AnimalShelter.Pages
                 if (string.IsNullOrWhiteSpace(TB_Password.Password))
                     errors.AppendLine("Укажите пароль!");
                 else
-                    _current_employee.Password = TB_Password.Password;
+                    _current_employee.Password = GetHash(TB_Password.Password);
             }
             else _current_employee.Password = _selected_employee.Password;
 
@@ -155,6 +157,19 @@ namespace AnimalShelter.Pages
                 MessageBox.Show(errors.ToString());
                 return;
             }
+
+            // Проверка на существующий логин
+            if (_selected_employee == null)
+            {
+                var existingLogin = AnimalShelterEntities.GetContext().Employee
+                    .Any(emp => emp.Login == _current_employee.Login);
+                if (existingLogin)
+                {
+                    MessageBox.Show("Пользователь с таким логином уже существует!");
+                    return;
+                }
+            }
+
 
             // Добавление нового волонтера в базу данных
             if (_current_employee.ID_employee == 0)
@@ -168,6 +183,15 @@ namespace AnimalShelter.Pages
                 EmployeeAdded?.Invoke();
                 Close();
             }
+            catch (DbEntityValidationException ex)
+            {
+                var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(i => i.ValidationErrors)
+                    .Select(i => $"Свойство: {i.PropertyName} — Ошибка: {i.ErrorMessage}");
+
+                string fullErrorMessage = string.Join("\n", errorMessages);
+                MessageBox.Show("Ошибка валидации:\n" + fullErrorMessage);
+            }
             catch (DbUpdateException dbEx)
             {
                 MessageBox.Show($"Ошибка обновления: {dbEx.InnerException?.Message}");
@@ -175,6 +199,24 @@ namespace AnimalShelter.Pages
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public static string GetHash(string password)
+        {
+            using (var hash = SHA1.Create())
+            {
+                return string.Concat(hash.ComputeHash(Encoding.UTF8.GetBytes(password)).Select(x
+                    => x.ToString("X2")));
+            }
+        }
+
+        private void OnlyLetters_PreviewKeyDown(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsLetter))
+            {
+                e.Handled = true;
             }
         }
     }
